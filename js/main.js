@@ -932,6 +932,16 @@ function Load(width,height){
       Text12.height = 60;
       Text12.text = "設定しました。";
 
+      var Text13 = new Label();
+      Text13.font  = "60px monospace";
+      Text13.color = 'black';
+      Text13.x = 800;
+      Text13.y = 200;
+      Text13.width = 1600;
+      Text13.height = 60;
+      Text13.text = "▶ 獲得トロフィー";
+      scene.addChild(Text13);
+
       var Round = new Sprite(60,60);
       Round.image = core.assets["image/Round.png"];
       if(window.localStorage.getItem("gender")=="女"){
@@ -1005,6 +1015,57 @@ function Load(width,height){
         }
         core.assets["image/トロフィー/sound.wav"].play();
         scene.addChild(Text12);
+        return;
+      });
+
+      Text13.addEventListener('touchstart',function(e){
+        core.pushScene(TrophiesScene());
+        return;
+      });
+
+      return scene;
+    };
+    var TrophiesScene = function(a){
+      var scene = new Scene();                                // 新しいシーンを作る
+
+      var Background = new Sprite(1600,1600);
+      Background.image = core.assets["image/Background.png"];
+      Background.x = 0;
+      Background.y = 0;
+      scene.addChild(Background);
+
+      var Text = new Label();
+      Text.font  = "60px monospace";
+      Text.color = 'black';
+      Text.x = 200;
+      Text.y = 200;
+      Text.width = 1600;
+      Text.height = 60;
+      Text.text = "▶ 戻る";
+      scene.addChild(Text);
+
+      var Text2 = new Label();
+      Text2.font  = "60px monospace";
+      Text2.color = 'black';
+      Text2.x = 200;
+      Text2.y = 300;
+      Text2.width = 1600;
+      Text2.height = 60;
+      Text2.text = "即決！";
+      if(window.localStorage.getItem("即決！")!=undefined) scene.addChild(Text2);
+
+      var Text3 = new Label();
+      Text3.font  = "60px monospace";
+      Text3.color = 'black';
+      Text3.x = 200;
+      Text3.y = 400;
+      Text3.width = 1600;
+      Text3.height = 60;
+      Text3.text = "カレン強奪事件";
+      if(window.localStorage.getItem("カレン強奪事件")!=undefined) scene.addChild(Text3);
+
+      Text.addEventListener('touchstart',function(e){
+        core.popScene();
         return;
       });
 
