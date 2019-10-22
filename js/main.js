@@ -535,15 +535,15 @@ function Load(width,height){
           core.replaceScene(MainScene(44,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
             break;
           case 74:
-          var Next = "まだ";
-          var Before = "まだ";
+          var Next = 121;
+          var Before = "無し";
           if(Flag[1]){
             Next = 75;
             Before = 73;
           }
           Name = S_name;
           Line = "うん！　これよ！！";
-          core.replaceScene(MainScene(26,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Before,Number,Next));
+          core.replaceScene(MainScene(26,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,Flag[1],true,Before,Number,Next));
             break;
           case 75:
           Name = "";
@@ -699,6 +699,81 @@ function Load(width,height){
           Name = "イメージ　あいね";
           Line = "あっ…。";
           core.replaceScene(MainScene(20,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 107:
+          Name = "イメージ　あいね";
+          Line = "ん…。";
+          core.replaceScene(MainScene(21,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 108:
+          Name = "イメージ　"+S_name;
+          Line = "あいね　私と　フレンズになりましょう。";
+          core.replaceScene(MainScene(22,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 109:
+          Name = "イメージ　あいね";
+          Line = "わ〜っ…　うん！！";
+          core.replaceScene(MainScene(23,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 110:
+          var C1 = "うん！　これよ！！";
+          var C2 = "ドラマチックの意味をはき違えているような…";
+          core.replaceScene(ChoiceScene(23,0,0,false,0,0,false,0,0,false,C1,true,C2,true,"無し",false,"無し",false,"まだ",111,0,0,Number));
+            break;
+          case 111:
+          Name = S_name;
+          Line = "いや…　これって　ドラマチックの意味をはき違えているような…";
+          core.replaceScene(MainScene(5,0,0,false,false,1,3,false,true,0,0,false,false,Name,Line,false,true,Number-1,Number,Number+1));
+            break;
+          case 112:
+          Name = "ココ";
+          Line = "う〜っ…　ココにも意地があるもん。";
+          core.replaceScene(MainScene(5,3,16,true,true,1,3,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 113:
+          Name = "ココ";
+          Line = S_name+"ちゃんが満足する答えを　必ず見つけてみせるんだから！";
+          core.replaceScene(MainScene(5,3,16,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 114:
+          Name = "ココ";
+          Line = "う〜ん…。";
+          core.replaceScene(MainScene(5,3,17,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 115:
+          Name = "ココ";
+          Line = "°△°";
+          core.replaceScene(MainScene(5,3,18,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 116:
+          Name = "ココ";
+          Line = "出た出た　出ました〜！";
+          core.replaceScene(MainScene(5,3,19,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 117:
+          Name = "ココ";
+          Line = "最高にドラマチックな告白ができるスポットを見つけたよ！";
+          core.replaceScene(MainScene(5,3,20,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 118:
+          Name = "ココ";
+          Line = "この観覧車でゴンドラが一番高くなったところで告白すると";
+          core.replaceScene(MainScene(24,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 119:
+          Name = "ココ";
+          Line = "二人はず〜っと　幸せになれるんだって。";
+          core.replaceScene(MainScene(25,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 120:
+          var C1 = "うん！　これよ！！";
+          var C2 = "いや…　これって男女の恋愛じゃ？";
+          core.replaceScene(ChoiceScene(25,0,0,false,0,0,false,0,0,false,C1,true,C2,true,"無し",false,"無し",false,74,"まだ",0,0,Number));
+            break;
+          case 121:
+          Name = "後日";
+          Line = "学校の中庭";
+          core.replaceScene(MainScene(27,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,74,Number,Number+1));
             break;
         case "タイトルに戻る":
           core.replaceScene(TitleScene());
