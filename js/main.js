@@ -6,11 +6,9 @@ function Load(width,height){
   core.preload("image/Buttons.png");
   core.preload("image/Background.png");
   core.preload("image/背景/title.png");
-  for (var i = 0; i <= 2; i++){
-    core.preload("image/トロフィー/"+i+".png");
-  }
   core.preload("image/トロフィー/sound.wav");
   core.preload("image/トロフィー/Trophies.png");
+  core.preload("image/トロフィー/Trophies_image.png");
   for (var i = 0; i <= 53; i++){
     core.preload("image/背景/"+i+".png");
   }
@@ -28,6 +26,11 @@ function Load(width,height){
       window.localStorage.setItem("surname","湊");
     }
     else var Data = true;
+
+    function rand(n) {
+      return Math.floor(Math.random() * (n + 1));
+    }
+
     function Scene_loads(Number){
       var Surname = window.localStorage.getItem("surname");
       var S_name = window.localStorage.getItem("name");
@@ -42,22 +45,38 @@ function Load(width,height){
         }
       }
       switch (Number) {
+        case -21:
+        Name = "";
+        Line = "こんなの(これはテストなので獲得されません。)";
+        var T_text = ["説明用","テスト","トロフィー","レッスン"];
+        core.replaceScene(MainScene("title",1,0,false,true,2,0,false,true,0,0,false,false,Name,Line,true,false,-20,Number,-17,T_text[rand(3)],rand(2)));
+          break;
+        case -20:
+        Name = "";
+        Line = "後無意味なトロフィー機能があります。";
+        core.replaceScene(MainScene("title",1,0,false,true,2,0,false,true,0,0,false,false,Name,Line,true,false,-16,Number,Number-1));
+          break;
+        case -19:
+        Name = "あいね";
+        Line = "もしもし？"+S_name+"ちゃん？";
+        core.replaceScene(MainScene(5,0,0,false,false,1,1,false,true,0,0,false,false,Name,Line,false,true,Number-1,Number,-23,"占いはしておく",0));
+          break;
         case -18:
         Name = S_name;
         Line = "あいね！私達もフレンズを組みましょう！";
-        core.replaceScene(MainScene(52,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,false,true,Number+1,Number,Number-1,"即決！",0));
+        core.replaceScene(MainScene(52,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,false,true,Number+1,Number,-22,"即決！",0));
           break;
         case -17:
         Name = "";
         Line = "説明は以上です。";
         //背景 (キャラNumber キャラframe キャラフェードイン キャラ存在)*3 キャラネーム テキスト 戻れる 設定が出来る 前のシーン 今のシーン 次のシーン
-        core.replaceScene(MainScene("title",1,0,false,true,2,0,false,true,0,0,false,false,Name,Line,true,false,Number+1,Number,"ゲームオーバー"));
+        core.replaceScene(MainScene("title",1,0,false,true,2,0,false,true,0,0,false,false,Name,Line,true,false,-21,Number,"ゲームオーバー"));
           break;
         case -16:
         Name = "";
         Line = "アニメ本編が正解ルートなので間違ったりするとすぐ終わっちゃったりします。";
         //背景 (キャラNumber キャラframe キャラフェードイン キャラ存在)*3 キャラネーム テキスト 戻れる 設定が出来る 前のシーン 今のシーン 次のシーン
-        core.replaceScene(MainScene("title",1,0,false,true,2,0,false,true,0,0,false,false,Name,Line,true,false,Number+1,Number,Number-1));
+        core.replaceScene(MainScene("title",1,0,false,true,2,0,false,true,0,0,false,false,Name,Line,true,false,Number+1,Number,-20));
           break;
         case -15:
         Name = "";
@@ -313,7 +332,7 @@ function Load(width,height){
         case 31:
         var C1 = "ドラマチックな展開のフレンズ結成ね。";
         var C2 = "今すぐあいねに電話をかけましょう。";
-        core.replaceScene(ChoiceScene(5,0,0,false,1,1,true,0,0,false,C1,true,C2,true,"無し",false,"無し",false,32,"まだ",0,0,Number));
+        core.replaceScene(ChoiceScene(5,0,0,false,1,1,true,0,0,false,C1,true,C2,true,"無し",false,"無し",false,32,-19,0,0,Number));
           break;
         case 32:
         Name = S_name;
@@ -613,7 +632,7 @@ function Load(width,height){
           case 89:
           Name = "イメージ";
           Line = "(なぜか他に客がいない映画館)";
-          core.replaceScene(MainScene(10,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1,undefined,true));
+          core.replaceScene(MainScene(10,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1,undefined,undefined,true));
             break;
           case 90:
           Name = "イメージ";
@@ -678,7 +697,7 @@ function Load(width,height){
           case 102:
           Name = "イメージ　あいね";
           Line = "失礼しま〜す。";
-          core.replaceScene(MainScene(16,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1,undefined,true));
+          core.replaceScene(MainScene(16,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1,undefined,undefined,true));
             break;
           case 103:
           Name = "イメージ　あいね";
@@ -775,6 +794,122 @@ function Load(width,height){
           Line = "学校の中庭";
           core.replaceScene(MainScene(27,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,74,Number,Number+1));
             break;
+          case 122:
+          Name = "あいね";
+          Line = "うわ〜っ　うれしい！"+S_name+"ちゃんと　遊びにいけるなんて楽しみだな。";
+          core.replaceScene(MainScene(27,2,1,true,true,1,1,true,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 123:
+          Name = S_name;
+          Line = "今度の土曜　休みが取れたから　久しぶりに　あいねと…。";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 124:
+          Name = "あいね";
+          Line = "今度の土曜…。";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 125:
+          Name = S_name;
+          Line = "もしかして　何か用事があった？";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 126:
+          Name = "あいね";
+          Line = "うん…　ブランド選びのときに　友達になった　なこちゃんがこっちに来るから　会おうって約束したの。";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 127:
+          Name = S_name;
+          Line = "なこちゃんって　名古屋で　アイカツしてる子ね？";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 128:
+          Name = "あいね";
+          Line = "うん！　友達になってから　ずっと　やり取りしてたんだ。";
+          core.replaceScene(MainScene(28,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 129:
+          Name = S_name;
+          Line = "あいねと会って相談がしたい…。";
+          core.replaceScene(MainScene(28,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 130:
+          Name = "あいね";
+          Line = "うん　何だろうね？";
+          core.replaceScene(MainScene(28,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 131:
+          Name = S_name;
+          Line = "あっ…。";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 132:
+          Name = S_name;
+          Line = "(相談って　まさか…)";
+          core.replaceScene(MainScene(29,2,2,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 133:
+          Name = "あいね";
+          Line = "そうだ。　なこちゃんと私たち三人で遊びにいこうよ。";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 134:
+          var C1 = "そうね。";
+          var C2 = "あいねを誑かすなんて許せない。";
+          var C3 = "相談があるなら二人の方がいいでしょう。";
+          core.replaceScene(ChoiceScene(27,2,1,true,1,1,true,0,0,false,C1,true,C2,true,C3,true,"無し",false,"まだ","まだ",135,0,Number));
+            break;
+          case 135:
+          Name = S_name;
+          Line = "ううん。 相談があるなら　二人の方がいいでしょう？";
+          core.replaceScene(MainScene(27,2,1,false,true,1,1,false,true,0,0,false,false,Name,Line,false,true,Number-1,Number,Number+1));
+            break;
+          case 136:
+          Name = "";
+          Line = "土曜日";
+          core.replaceScene(MainScene(5,0,0,false,false,1,1,true,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 137:
+          var C1 = "(今日は計画を練りましょう。)";
+          var C2 = "(気になるわ…。こっそり行動を監視しましょう。)";
+          core.replaceScene(ChoiceScene(5,0,0,false,1,1,true,0,0,false,C1,true,C2,true,"無し",false,"無し",false,"まだ",138,0,0,Number));
+            break;
+          case 138:
+          Name = "";
+          Line = "駅前";
+          core.replaceScene(MainScene(30,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,false,true,Number-1,Number,Number+1));
+            break;
+          case 139:
+          Name = "海老原なこ";
+          Line = "わぁ。";
+          core.replaceScene(MainScene(30,0,0,false,false,0,0,false,false,4,0,true,true,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 140:
+          Name = "あいね";
+          Line = "お〜い！なこちゃん！";
+          core.replaceScene(MainScene(30,2,1,true,true,4,0,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 141:
+          Name = "なこ";
+          Line = "あいねちゃん！";
+          core.replaceScene(MainScene(30,2,1,false,true,4,0,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 142:
+          Name = "なこ";
+          Line = "久しぶり！ウフフ。";
+          core.replaceScene(MainScene(30,2,1,false,true,4,0,false,true,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 143:
+          Name = S_name;
+          Line = "(わざわざ　こっちに来てまで　相談したい事ってあいねとフレンズを組みたいって事なんじゃ…)";
+          core.replaceScene(MainScene(31,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
+          case 144:
+          Name = S_name;
+          Line = "あいね…。";
+          core.replaceScene(MainScene(31,0,0,false,false,0,0,false,false,0,0,false,false,Name,Line,true,true,Number-1,Number,Number+1));
+            break;
         case "タイトルに戻る":
           core.replaceScene(TitleScene());
           break;
@@ -852,14 +987,14 @@ function Load(width,height){
 
       return scene;
     };
-    var MainScene = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){
+    var MainScene = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w){
       var scene = new Scene();                                // 新しいシーンを作る
 
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/背景/"+ a +".png"];
       Background.x = 0;
       Background.y = 0;
-      if(v){
+      if(w){
         Background.opacity = 0;
         Background.tl.fadeIn(15);
       }
@@ -900,7 +1035,7 @@ function Load(width,height){
       var Trophies = new Sprite(443,113);
       if(u!=undefined){
         if(window.localStorage.getItem(u)==undefined){
-          window.localStorage.setItem(u,"獲得！");
+          if(q) window.localStorage.setItem(u,"獲得！");
           var Time = 0;
           Trophies.image = core.assets["image/トロフィー/Trophies.png"];
           Trophies.x = width-463;
@@ -909,9 +1044,10 @@ function Load(width,height){
           Trophies.tl.fadeIn(5);
           scene.addChild(Trophies);
           var Trophies_image = new Sprite(88,85);
-          Trophies_image.image = core.assets["image/トロフィー/"+v+".png"];
+          Trophies_image.image = core.assets["image/トロフィー/Trophies_image.png"];
           Trophies_image.x = width-453;
           Trophies_image.y = 35;
+          Trophies_image.frame = v;
           Trophies_image.opacity = 0;
           Trophies_image.tl.fadeIn(5);
           scene.addChild(Trophies_image);
@@ -971,6 +1107,13 @@ function Load(width,height){
       Enter.frame = 2;
       scene.addChild(Enter);
 
+      var Skip = new Sprite(320,60);
+      Skip.image = core.assets["image/Buttons.png"];
+      Skip.x = width-320;
+      Skip.y = height-65-65;
+      Skip.frame = 3;
+      scene.addChild(Skip);
+
       Trophies.addEventListener("enterframe",function(){
         Time++;
         if(Time==50){
@@ -993,6 +1136,14 @@ function Load(width,height){
       });
 
       Enter.addEventListener('touchstart',function(e){
+        if(window.localStorage.getItem("Save")!="マニュアル"&&q){
+          window.localStorage.setItem("Scene",t);
+          window.localStorage.setItem("flag",Flag);
+        }
+        Scene_loads(t);
+      });
+
+      Skip.addEventListener('touchstart',function(e){
         if(window.localStorage.getItem("Save")!="マニュアル"&&q){
           window.localStorage.setItem("Scene",t);
           window.localStorage.setItem("flag",Flag);
