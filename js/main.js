@@ -1721,7 +1721,7 @@ function Load(width,height){
         window.localStorage.setItem("flag",Flag);
         window.localStorage.setItem("datas",Datas);
       }
-      core.assets["sound/Choice.wav"].play();
+      //core.assets["sound/Choice.wav"].play();
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/背景/"+ Datas[0] +".png"];
       Background.x = 0;
@@ -1902,7 +1902,7 @@ function Load(width,height){
         window.localStorage.setItem("flag",Flag);
         window.localStorage.setItem("datas",Datas);
       }
-      core.assets["sound/Choice.wav"].play();
+      //core.assets["sound/Choice.wav"].play();
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/背景/"+ Datas[0] +".png"];
       Background.x = 0;
