@@ -1348,7 +1348,7 @@ function Load(width,height){
         case 172:
           var T_Name = Name;
           var Text = "ううん。私も フレンズを組むなら あいねしかいないって思ってた。";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,0,0,0];
           core.replaceScene(MainScene(Datas,Return,Flag));
             break;
         case "双眼鏡147":
