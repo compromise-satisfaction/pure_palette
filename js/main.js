@@ -271,9 +271,11 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 15:
-          var T_Name = "舞花";
-          var Text = "あのキメポーズはちょっと恥ずいんですけど…";
-          Datas = [52,0,33,15,0,0,34,0,T_Name,Text,Number-1,1,Number,21,Number+1,0,0];
+          //var T_Name = "舞花";
+          //var Text = "あのキメポーズはちょっと恥ずいんですけど…";
+          //Datas = [52,0,33,15,0,0,34,0,T_Name,Text,Number-1,1,Number,21,Number+1,0,0];
+          var Text = "でしょでしょ。フレンズ組もうってなったら２人で盛り上がっちゃって。コンセプトとか一から作り上げてくのってワクワクするよね。";
+          Datas = [52,0,22,0,0,0,34,0,T_Name,Text,Number-1,1,Number,21,Number+1,0,0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 16:
