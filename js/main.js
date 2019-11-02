@@ -10,6 +10,9 @@ function Load(width,height){
   core.preload("image/Item_S.png");
   core.preload("sound/Choice.wav");
   core.preload("image/Buttons.png");
+  core.preload("sound/永遠の灯.m4a");
+  core.preload("sound/プライド.m4a");
+  core.preload("sound/偶然、必然。.m4a");
   core.preload("sound/Trophies.wav");
   core.preload("image/Trophies.png");
   core.preload("image/Background.png");
@@ -1109,6 +1112,35 @@ function Load(width,height){
           Datas = [55,0,0,0,0,0,26,0,T_Name,Text,0,0,Number,0,137,0,0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
+        case 137.7:
+          var T_Name = Name;
+          var Text = "ラブミーティアのCDがある。";
+          if(Flag[3]){
+            Text = "まだCDがある。";
+            if(Flag[4]){
+              Text = "更にもう一枚。";
+            }
+          }
+          Datas = [5,0,0,0,0,0,26,0,T_Name,Text,0,0,Number,0,137.8,0,0];
+          if(Flag[1]) Datas[0] = 55;
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 137.8:
+          if(Flag[3]){
+            if(Flag[4]){
+              Flag[5] = true;
+              core.pushScene(ItemgetScene(5,"永遠の灯のCDを手に入れた。",137,Flag));
+            }
+            else {
+              Flag[4] = true;
+              core.pushScene(ItemgetScene(4,"偶然、必然。のCDを手に入れた。",137,Flag));
+            }
+          }
+          else {
+            Flag[3] = true;
+            core.pushScene(ItemgetScene(3,"プライドのCDを手に入れた。",137,Flag));
+          }
+          break;
         case 138:
           var T_Name = "";
           var Text = "駅前";
@@ -1583,10 +1615,14 @@ function Load(width,height){
       //[背景,(幅,高,x座標,y座標,名前(又は"シーンロード"),テキスト(又はシーンナンバー))×4]
       switch (Number) {
         case 137:
-          Datas = [5,367,553,1219,309,"シーンロード",137.1];
+          Datas = [5,367,553,1219,309,"シーンロード",137.1,148,565,0,335,"シーンロード",137.7];
           if(Flag[1]){
             Datas[0] = 55;
             Datas[6] = 137.6;
+          }
+          if(Flag[5]){
+            Datas[11] = Name;
+            Datas[12] = "流石にもうない。";
           }
           core.pushScene(InspectScene(Datas,Flag));
           break;
@@ -2688,8 +2724,8 @@ function Load(width,height){
       var Text3 = new Label();
       Text3.font  = "60px monospace";
       Text3.color = 'black';
-      Text3.x = 200;
-      Text3.y = 1000;
+      Text3.x = 1200;
+      Text3.y = 1400;
       Text3.width = 1380;
       Text3.height = 60;
       Text3.text = "";
@@ -2698,12 +2734,42 @@ function Load(width,height){
       var Text4 = new Label();
       Text4.font  = "60px monospace";
       Text4.color = 'black';
-      Text4.x = 1200;
-      Text4.y = 1400;
+      Text4.x = 200;
+      Text4.y = 1000;
       Text4.width = 1600;
       Text4.height = 60;
       Text4.text = "";
       scene.addChild(Text4);
+
+      var Text5 = new Label();
+      Text5.font  = "60px monospace";
+      Text5.color = 'black';
+      Text5.x = 200;
+      Text5.y = 1100;
+      Text5.width = 1600;
+      Text5.height = 60;
+      Text5.text = "";
+      scene.addChild(Text5);
+
+      var Text6 = new Label();
+      Text6.font  = "60px monospace";
+      Text6.color = 'black';
+      Text6.x = 200;
+      Text6.y = 1200;
+      Text6.width = 1600;
+      Text6.height = 60;
+      Text6.text = "";
+      scene.addChild(Text6);
+
+      var Text7 = new Label();
+      Text7.font  = "60px monospace";
+      Text7.color = 'black';
+      Text7.x = 200;
+      Text7.y = 1300;
+      Text7.width = 1600;
+      Text7.height = 60;
+      Text7.text = "";
+      scene.addChild(Text7);
 
       var Items = Class.create(Label, {
         initialize: function(a,b) {
@@ -2726,17 +2792,64 @@ function Load(width,height){
       var Choice_Item = "未設定";
       Item[0] = new Items("アイカツカード",1);
       Item[1] = new Items("双眼鏡",2);
+      Item[2] = new Items("プライド",3);
+      Item[3] = new Items("偶然、必然。",4);
+      Item[4] = new Items("永遠の灯",5);
 
-      function Item_text(a){
+      function Item_text(a,b){
         a = a.substring(2);
         switch (a) {
           case "アイカツカード":
             Item_image.frame = 1;
-            return("あいねの為にデザインしたアイカツカード。ピンクパートナーコーデ。");
+            Text[0] = "あいねの為にデザインしたアイカツカード。";
+            Text[1] = "ピンクパートナーコーデ。";
+            Text[2] = "";
+            Text[3] = "";
+            return(Text[b]);
             break;
           case "双眼鏡":
             Item_image.frame = 2;
-            return("ストーカーの必需品。");
+            Text[0] = "ストーカーの御供。";
+            Text[1] = "";
+            Text[2] = "";
+            Text[3] = "";
+            return(Text[b]);
+            break;
+          case "プライド":
+            Item_image.frame = 3;
+            Text[0] = "そこにしかないもの／プライド";
+            Text[1] = "BEST FRIENDS！";
+            Text[2] = "カレン・ミライ from BEST FRIENDS！";
+            Text[3] = "藤末 樹,片山将太";
+            if(core.assets["sound/"+a+".m4a"].onplaying){
+              Text3.text = "■ 停止";
+            }
+            else Text3.text = "▶ 再生";
+            return(Text[b]);
+            break;
+          case "偶然、必然。":
+            Item_image.frame = 4;
+            Text[0] = "Third Color：PURPLE";
+            Text[1] = "BEST FRIENDS！";
+            Text[2] = "かぐや from BEST FRIENDS！";
+            Text[3] = "片山将太,藤末 樹";
+            if(core.assets["sound/"+a+".m4a"].onplaying){
+              Text3.text = "■ 停止";
+            }
+            else Text3.text = "▶ 再生";
+            return(Text[b]);
+            break;
+          case "永遠の灯":
+            Item_image.frame = 5;
+            Text[0] = "『アイカツ!』主題歌/挿入歌 2年目②";
+            Text[1] = "STAR☆ANIS";
+            Text[2] = "れみ･ふうり from STAR☆ANIS";
+            Text[3] = "南田健吾";
+            if(core.assets["sound/"+a+".m4a"].onplaying){
+              Text3.text = "■ 停止";
+            }
+            else Text3.text = "▶ 再生";
+            return(Text[b]);
             break;
           default:
             return("開発中");
@@ -2754,14 +2867,24 @@ function Load(width,height){
         return;
       });
 
-      Text4.addEventListener('touchstart',function(e){
-        if(Text4.text=="▶ 使う"){
+      Text3.addEventListener('touchstart',function(e){
+        if(Text3.text=="▶ 使う"){
           core.popScene();
           if(Datas.length==17){
             if(Datas[12]!=false) Number = Datas[12];
           }
           else Number = Datas[14]*1;
           Scene_loads(Number,Datas,true,Flag,Choice_Item);
+        }
+        else if(Text3.text=="▶ 再生"){
+          core.assets["sound/"+Choice_Item+".m4a"].onplaying = true;
+          core.assets["sound/"+Choice_Item+".m4a"].play();
+          Text3.text = "■ 停止";
+        }
+        else if(Text3.text=="■ 停止"){
+          core.assets["sound/"+Choice_Item+".m4a"].onplaying = false;
+          core.assets["sound/"+Choice_Item+".m4a"].pause();
+          Text3.text = "▶ 再生";
         }
         return;
       });
@@ -2772,8 +2895,11 @@ function Load(width,height){
             Choice_Item = this.text;
             this.text = "▶ " + this.text;
             this.color = "red";
-            Text3.text = Item_text(this.text);
-            Text4.text = "▶ 使う";
+            Text3.text = "▶ 使う";
+            Text4.text = Item_text(this.text,0);
+            Text5.text = Item_text(this.text,1);
+            Text6.text = Item_text(this.text,2);
+            Text7.text = Item_text(this.text,3);
           }
           else{
             Item_image.frame = 0;
@@ -2781,6 +2907,9 @@ function Load(width,height){
             this.color = "black";
             Text3.text = "";
             Text4.text = "";
+            Text5.text = "";
+            Text6.text = "";
+            Text7.text = "";
           }
           for (var k = 0; k < Item.length; k++){
             if(Item[k].color=="red"&&this!=Item[k]){
