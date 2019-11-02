@@ -12,7 +12,7 @@ function Load(width,height){
   core.preload("image/Buttons.png");
   //core.preload("sound/永遠の灯.m4a");
   //core.preload("sound/プライド.m4a");
-  core.preload("sound/偶然、必然。.m4a");
+  //core.preload("sound/偶然、必然。.m4a");
   //core.preload("sound/Trophies.wav");
   core.preload("image/Trophies.png");
   core.preload("image/Background.png");
