@@ -2,7 +2,7 @@ enchant()
 
 function Load(width,height){
   var core = new Core(width, height);
-  //core.preload("sound/Item.wav");
+  core.preload("sound/Item.wav");
   core.preload("image/Round.png");
   core.preload("image/title.png");
   core.preload("image/white.png");
