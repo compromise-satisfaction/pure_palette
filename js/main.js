@@ -2,24 +2,24 @@ enchant()
 
 function Load(width,height){
   var core = new Core(width, height);
-  //core.preload("sound/Item.wav");
+  core.preload("sound/Item.wav");
   core.preload("image/Round.png");
   core.preload("image/title.png");
   core.preload("image/white.png");
   core.preload("image/Item_B.png");
   core.preload("image/Item_S.png");
-  //core.preload("sound/Choice.wav");
+  core.preload("sound/Choice.wav");
   core.preload("image/Buttons.png");
-  //core.preload("sound/永遠の灯.m4a");
-  //core.preload("sound/プライド.m4a");
-  //core.preload("sound/偶然、必然。.m4a");
-  //core.preload("sound/Trophies.wav");
+  core.preload("sound/永遠の灯.m4a");
+  core.preload("sound/プライド.m4a");
+  core.preload("sound/偶然、必然。.m4a");
+  core.preload("sound/Trophies.wav");
   core.preload("image/Trophies.png");
   core.preload("image/Background.png");
   core.preload("image/Characters.png");
   core.preload("image/Transparent.png");
   core.preload("image/Trophies_image.png");
-  for (var i = 0; i <= 56; i++){
+  for (var i = 0; i <= 57; i++){
     core.preload("image/背景/"+i+".png");
   }
   core.fps = 100;
@@ -120,12 +120,17 @@ function Load(width,height){
           break;
         case -13:
           var Text = "あと、海老原なこちゃん。「名」古屋でアイカツしている女の「子」です。";
-          Datas = [54,0,0,0,24,15,0,0,"",Text,Number+1,-1,0,-22,Number-1,0,0];
+          Datas = [54,0,0,0,24,15,0,0,"",Text,-12.1,-1,0,-22,Number-1,0,0];
+          core.replaceScene(MainScene(Datas,Return));
+          break;
+        case -12.1:
+          var Text = "そういえば県外でも使えるのはおかしいのでは…？";
+          Datas = [57,0,0,0,0,0,0,0,"",Text,-12,-1,0,-22,-13,0,0];
           core.replaceScene(MainScene(Datas,Return));
           break;
         case -12:
           var Text = "ポンコツでもワイはフレンズではココちゃんが一番好きやで…扱いがそれなりに悪いの悲しいんじゃァ…";
-          Datas = [51,0,0,0,0,0,0,0,"",Text,Number+1,-1,0,-22,Number-1,0,0];
+          Datas = [51,0,0,0,0,0,0,0,"",Text,Number+1,-1,0,-22,-12.1,0,0];
           core.replaceScene(MainScene(Datas,Return));
           break;
         case -11:
@@ -1882,7 +1887,7 @@ function Load(width,height){
           Trophies_text.tl.fadeIn(5);
           Trophies_text.text = Datas[15];
           scene.addChild(Trophies_text);
-          //core.assets["sound/Trophies.wav"].play();
+          core.assets["sound/Trophies.wav"].play();
           Trophies.addEventListener("enterframe",function(){
             Time++;
             if(Time==50){
@@ -2245,7 +2250,7 @@ function Load(width,height){
           console.log(Flag);
           window.localStorage.setItem("flag",Flag);
           window.localStorage.setItem("datas",Datas);
-          //core.assets["sound/Item.wav"].play();
+          core.assets["sound/Item.wav"].play();
           scene.addChild(Text5);
         }
         return;
@@ -2276,7 +2281,7 @@ function Load(width,height){
           if(S_Input._element.value=="") window.localStorage.setItem("surname","湊");
           if(S_Input2._element.value=="") window.localStorage.setItem("name","みお");
         }
-        //core.assets["sound/Item.wav"].play();
+        core.assets["sound/Item.wav"].play();
         scene.addChild(Text12);
         return;
       });
@@ -2620,7 +2625,7 @@ function Load(width,height){
         Item.y = 50;
         Item.frame = a;
         scene.addChild(Item);
-        //core.assets["sound/Item.wav"].play();
+        core.assets["sound/Item.wav"].play();
         Item.addEventListener("enterframe",function(){
           if(Item.x!=400) Item.x -= 100;
           if(Item.x==-800){
@@ -2821,10 +2826,10 @@ function Load(width,height){
             Text[1] = "BEST FRIENDS！";
             Text[2] = "カレン・ミライ from BEST FRIENDS！";
             Text[3] = "藤末 樹,片山将太";
-            //if(core.assets["sound/"+a+".m4a"].onplaying){
+            if(core.assets["sound/"+a+".m4a"].onplaying){
               Text3.text = "■ 停止";
-            //}
-            //else Text3.text = "▶ 再生";
+            }
+            else Text3.text = "▶ 再生";
             return(Text[b]);
             break;
           case "偶然、必然。":
@@ -2833,10 +2838,10 @@ function Load(width,height){
             Text[1] = "BEST FRIENDS！";
             Text[2] = "かぐや from BEST FRIENDS！";
             Text[3] = "片山将太,藤末 樹";
-            //if(core.assets["sound/"+a+".m4a"].onplaying){
+            if(core.assets["sound/"+a+".m4a"].onplaying){
               Text3.text = "■ 停止";
-            //}
-            //else Text3.text = "▶ 再生";
+            }
+            else Text3.text = "▶ 再生";
             return(Text[b]);
             break;
           case "永遠の灯":
@@ -2845,10 +2850,10 @@ function Load(width,height){
             Text[1] = "STAR☆ANIS";
             Text[2] = "れみ･ふうり from STAR☆ANIS";
             Text[3] = "南田健吾";
-            //if(core.assets["sound/"+a+".m4a"].onplaying){
+            if(core.assets["sound/"+a+".m4a"].onplaying){
               Text3.text = "■ 停止";
-            //}
-            //else Text3.text = "▶ 再生";
+            }
+            else Text3.text = "▶ 再生";
             return(Text[b]);
             break;
           default:
@@ -2877,13 +2882,13 @@ function Load(width,height){
           Scene_loads(Number,Datas,true,Flag,Choice_Item);
         }
         else if(Text3.text=="▶ 再生"){
-          //core.assets["sound/"+Choice_Item+".m4a"].onplaying = true;
-          //core.assets["sound/"+Choice_Item+".m4a"].play();
+          core.assets["sound/"+Choice_Item+".m4a"].onplaying = true;
+          core.assets["sound/"+Choice_Item+".m4a"].play();
           Text3.text = "■ 停止";
         }
         else if(Text3.text=="■ 停止"){
-          //core.assets["sound/"+Choice_Item+".m4a"].onplaying = false;
-          //core.assets["sound/"+Choice_Item+".m4a"].pause();
+          core.assets["sound/"+Choice_Item+".m4a"].onplaying = false;
+          core.assets["sound/"+Choice_Item+".m4a"].pause();
           Text3.text = "▶ 再生";
         }
         return;
