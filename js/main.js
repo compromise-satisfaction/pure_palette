@@ -10,9 +10,9 @@ function Load(width,height){
   core.preload("image/Item_S.png");
   core.preload("sound/Choice.wav");
   core.preload("image/Buttons.png");
-  //core.preload("sound/永遠の灯.m4a");
-  //core.preload("sound/プライド.m4a");
-  //core.preload("sound/偶然、必然。.m4a");
+  core.preload("sound/永遠の灯.wav");
+  core.preload("sound/プライド.wav");
+  core.preload("sound/偶然、必然。.wav");
   core.preload("sound/Trophies.wav");
   core.preload("image/Trophies.png");
   core.preload("image/Background.png");
@@ -2826,7 +2826,7 @@ function Load(width,height){
             Text[1] = "BEST FRIENDS！";
             Text[2] = "カレン・ミライ from BEST FRIENDS！";
             Text[3] = "藤末 樹,片山将太";
-            if(core.assets["sound/"+a+".m4a"].onplaying){
+            if(core.assets["sound/"+a+".wav"].onplaying){
               Text3.text = "■ 停止";
             }
             else Text3.text = "▶ 再生";
@@ -2838,7 +2838,7 @@ function Load(width,height){
             Text[1] = "BEST FRIENDS！";
             Text[2] = "かぐや from BEST FRIENDS！";
             Text[3] = "片山将太,藤末 樹";
-            if(core.assets["sound/"+a+".m4a"].onplaying){
+            if(core.assets["sound/"+a+".wav"].onplaying){
               Text3.text = "■ 停止";
             }
             else Text3.text = "▶ 再生";
@@ -2850,7 +2850,7 @@ function Load(width,height){
             Text[1] = "STAR☆ANIS";
             Text[2] = "れみ･ふうり from STAR☆ANIS";
             Text[3] = "南田健吾";
-            if(core.assets["sound/"+a+".m4a"].onplaying){
+            if(core.assets["sound/"+a+".wav"].onplaying){
               Text3.text = "■ 停止";
             }
             else Text3.text = "▶ 再生";
@@ -2882,13 +2882,13 @@ function Load(width,height){
           Scene_loads(Number,Datas,true,Flag,Choice_Item);
         }
         else if(Text3.text=="▶ 再生"){
-          core.assets["sound/"+Choice_Item+".m4a"].onplaying = true;
-          core.assets["sound/"+Choice_Item+".m4a"].play();
+          core.assets["sound/"+Choice_Item+".wav"].onplaying = true;
+          core.assets["sound/"+Choice_Item+".wav"].play();
           Text3.text = "■ 停止";
         }
         else if(Text3.text=="■ 停止"){
-          core.assets["sound/"+Choice_Item+".m4a"].onplaying = false;
-          core.assets["sound/"+Choice_Item+".m4a"].pause();
+          core.assets["sound/"+Choice_Item+".wav"].onplaying = false;
+          core.assets["sound/"+Choice_Item+".wav"].pause();
           Text3.text = "▶ 再生";
         }
         return;
