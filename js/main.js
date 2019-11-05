@@ -33,6 +33,9 @@ function Load(width,height){
   for (var i = 1; i <= 58; i++){
     core.preload("image/背景/"+i+".png");
   }
+  for (var i = 0; i <= 0; i++){
+    core.preload("image/アイテム詳細/"+i+".png");
+  }
   core.fps = 100;
   core.onload = function(){
 
@@ -3159,7 +3162,14 @@ function Load(width,height){
         }
         else if(this.text=="▶ 調べる") Inspect_loads(Choice_Item,Flag);
         else{
-          core.pushScene(DetailsScene(Choice_Item));
+          switch (Choice_Item) {
+            case "アイカツカード":
+              Number = 0;
+              break;
+            default:
+              return;
+          }
+          core.pushScene(DetailsScene(Number));
         }
         return;
       });
@@ -3219,6 +3229,12 @@ function Load(width,height){
       Text1.height = 60;
       Text1.text = "▶ 戻る";
       scene.addChild(Text1);
+
+      var Item = new Sprite(1200,1200);
+      Item.image = core.assets["image/アイテム詳細/"+Number+".png"];
+      Item.x = 200;
+      Item.y = 275;
+      scene.addChild(Item);
 
       Text1.addEventListener('touchstart',function(e){
         core.popScene();
