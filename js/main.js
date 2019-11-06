@@ -83,8 +83,8 @@ function Load(width,height){
         Flag[3] = Flag[3]*1;//スキップScene
       }
       if(Item){
-        console.log(Number,Item);
-        Number = Item+Number;
+        Number = Number+Item;
+        console.log(Number);
       }
       /*
       Datas[0] = "背景ナンバー";
@@ -120,9 +120,14 @@ function Load(width,height){
           Datas = [54,0,0,0,0,0,0,0,"",Text,-1,After,Number,"ゲームオーバー",0];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
+        case -21.1:
+          var Text = "芸能人はカードが命。(改行)そして、決闘者はカードが魂。(改行)画像が使いたかっただけなので深い意味はありません。";
+          Datas = [54,0,22,0,0,0,32,0,"",Text,-1,-21,Number,-22,0];
+          core.replaceScene(MainScene(Datas,Return,false));
+          break;
         case -21:
-          var Text = "芸能人はカードが命。そして、決闘者はカードが魂であることを忘れないでください。深い意味はありませんが。";
-          Datas = [54,0,22,0,0,0,32,15,"",Text,-1,After,Number,Before,0];
+          var Text = "芸能人はカードが命。(改行)そして、決闘者はカードが魂。";
+          Datas = [54,0,22,0,0,0,32,15,"",Text,-1,After,Number,-21.1,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -20:
@@ -132,7 +137,7 @@ function Load(width,height){
           break;
         case -19:
           var T_text = ["説明用","トロフィー","レッスン"];
-          var Text = "こんなの。これはテストなので獲得されません。";
+          var Text = "こんなの。(これはテストなので獲得されません。)";
           Datas = [54,0,0,0,0,0,0,0,"",Text,-1,After,Number,Before,-22,false,false,T_text[rand(2)],rand(2)];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
@@ -142,37 +147,37 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -17:
-          var Text = "アニメ本編が正解ルートなので間違ったりするとすぐ終わっちゃったりします。";
+          var Text = "アニメ本編が正解ルートなので(改行)間違ったりするとすぐ終わっちゃったりします。";
           Datas = [54,0,25,0,0,0,21,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -16:
-          var Text = "みおちゃんとなって選択肢を選んでいき、あいねちゃんとフレンズを組みましょう。みおちゃんの名前だけは後で変更できます。";
+          var Text = "みおちゃんとなって選択肢を選んでいき、(改行)あいねちゃんとフレンズを組みましょう。(改行)みおちゃんの名前だけは後で変更できます。";
           Datas = [54,0,25,0,0,0,21,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -15:
-          var Text = "このゲームはあいねちゃんとみおちゃんがフレンズ、要はユニットを組むまでのお話です。";
+          var Text = "このゲームはあいねちゃんとみおちゃんがフレンズ、(改行)要はユニットを組むまでのお話です。";
           Datas = [54,0,25,15,0,0,21,15,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -14:
-          var Text = "名古屋らしくエビフライが好物で、頭と苗字にも海老が付いています。わかりやすいですね。なんかそういうデュエリストいたような…";
+          var Text = "名古屋らしくエビフライが好物で、(改行)頭と苗字にも海老が付いています。(改行)わかりやすいですね。(改行)(なんかそういうデュエリストいたような…)";
           Datas = [54,0,0,0,24,0,0,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -13:
-          var Text = "あと、海老原なこちゃん。「名」古屋でアイカツしている女の「子」です。";
+          var Text = "あと、海老原なこちゃん。(改行)「名」古屋でアイカツしている女の「子」です。";
           Datas = [54,0,0,0,24,15,0,0,"",Text,-1,-12.1,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -12.1:
-          var Text = "そういえば県外でも使えるのはおかしいのでは…？";
+          var Text = "そういえば圏外でも使えるのはおかしいのでは…？(改行)(見た感じ電波は来ているがここは異世界だし…)";
           Datas = [57,0,0,0,0,0,0,0,"",Text,-1,-12,Number,-13,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -12:
-          var Text = "ポンコツでもワイはフレンズではココちゃんが一番好きやで…扱いがそれなりに悪いの悲しいんじゃァ…";
+          var Text = "ポンコツでもワイはフレンズでは(改行)ココちゃんが一番好きやで…(改行)扱いがそれなりに悪いの悲しいんじゃァ…";
           Datas = [51,0,0,0,0,0,0,0,"",Text,-1,After,Number,-12.1,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
@@ -192,22 +197,26 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -8:
-          var Text = "要はアイカツフレンズ!世界のSiriといったところでしょうか。AIのくせに一人しかいないらしく、忙しい時は 呼んでも出でこなかったり、舌を噛んだり、自分にわからないことは人任せにして電話を勝手にかけるくらいの高性能AIです。";
+          var Text = "要はアイカツフレンズ!世界のSiriといったところです。(改行)";
+              Text+= "AIのくせに一人しかいないらしく、(改行)";
+              Text+= "忙しい時は呼んでも出でこなかったり、舌を噛んだり、(改行)";
+              Text+= "自分にわからないことは人任せにして(改行)";
+              Text+= "勝手に電話をかけるくらいの高性能AIです。";
           Datas = [54,0,0,0,31,0,0,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -7:
-          var Text = "ついでに、アイカツ！ナビのココちゃん。　アイカツ！モバイルに「ハロー、ココちゃん！」　と呼びかけると出てきてくれるAIです。";
+          var Text = "ついでに、アイカツ！ナビのココちゃん。(改行)アイカツ！モバイルに「ハロー、ココちゃん！」(改行)と呼びかけると出てきてくれるAIです。";
           Datas = [54,0,0,0,31,15,0,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -6:
-          var Text = "どう見ても盗撮しようとして気づかれたみたいな構図の写真だけども、みおちゃんが写真を撮らせてもらえないのか、それとも恥ずかしくて撮らせてと言えないのかはたまた盗撮行為が好きなのか。多分後者だろうね。(偏見です)";
+          var Text = "盗撮しようとして気づかれたみたいな構図の写真だ。(改行)みおちゃんが写真を撮らせてもらえないのか、(改行)それとも恥ずかしくて撮らせてと言えないのか、(改行)盗撮行為が好きなのか。多分後者だろうね。(偏見です)";
           Datas = [54,0,0,0,21,0,0,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -5:
-          var Text = "ちなみにこの写真は二人がフレンズを組んで 一度解散し 再結成した後のみおちゃんの電話の呼び出し画面の画像です。";
+          var Text = "ちなみにこの写真は二人がフレンズを組んで(改行)一度解散し、再結成した後のみおちゃんの(改行)電話の呼び出し画面の画像です。";
           Datas = [54,0,0,0,21,0,0,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
@@ -217,12 +226,12 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -3:
-          var Text = "この娘が友希あいねちゃん。ピュアパレットのピュアな方です。";
+          var Text = "この娘が友希あいねちゃん。(改行)ピュアパレットのピュアな方です。";
           Datas = [54,0,0,0,21,15,0,0,"",Text,-1,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
         case -2:
-          var Text = "この娘は湊みお。ピュアパレットのピュアじゃない方です。";
+          var Text = "この娘は湊みお。(改行)ピュアパレットのピュアじゃない方です。";
           Datas = [54,0,0,0,25,15,0,0,"",Text,0,After,Number,Before,-22];
           core.replaceScene(MainScene(Datas,Return,false));
           break;
@@ -233,12 +242,26 @@ function Load(width,height){
           break;
         case 1:
           var Flag = [10,1];//0体力,1尋問
-          Flag[4] = "結成秘話を復習";
-          Flag[5] = "アイカツカード";
-          Flag[6] = "プライド";
-          Flag[7] = "偶然、必然。";
-          Flag[8] = "永遠の灯";
-          Flag[9] = "双眼鏡";
+          Flag[4] = false;//結成秘話を復習
+          Flag[5] = false;//アイカツカードを所持
+          Flag[6] = false;//プライドを所持
+          Flag[7] = false;//偶然、必然。を所持
+          Flag[8] = false;//永遠の灯を所持
+          Flag[9] = false;//双眼鏡を所持
+          Flag[10] = false;//知ってた。
+          Flag[11] = false;//ええ。
+          Flag[12] = false;//もちろん。
+          Flag[13] = false;//私もそう思う。
+          Flag[14] = false;//あいねから誘う。
+          Flag[15] = false;//即決
+          Flag[16] = false;//電話
+          Flag[17] = false;//妥協
+          Flag[18] = false;//普通
+          Flag[19] = false;//ゲーム感覚
+          Flag[20] = false;//悪ノリ
+          Flag[21] = false;//疑惑
+          Flag[22] = false;//嫉妬
+          Flag[23] = false;//包丁を所持
           Flag = R_S(Number,Flag,21);
           var T_Name = "友希 あいね";
           var Text = "これまでの『アイカツフレンズ！』。";
@@ -261,25 +284,25 @@ function Load(width,height){
           break;
         case 4:
           var T_Name = "あいね";
-          var Text = "学園のトップアイドル　" + Surname +""+ Name + "ちゃんと出会ってアイドル科に転入したんだ。";
+          var Text = "学園のトップアイドル　" + Surname +" "+ Name + "ちゃんと出会って(改行)アイドル科に転入したんだ。";
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 5:
           var T_Name = "あいね";
-          var Text = "ダンスとお祭りが大好きな舞花ちゃんと一つ上の先輩で　私たちを元気に引っ張ってくれるエマちゃん。";
+          var Text = "ダンスとお祭りが大好きな舞花ちゃんと一つ上の先輩で(改行)私たちを元気に引っ張ってくれるエマちゃん。";
           Datas = [1,0,33,15,0,0,34,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 6:
           var T_Name = "あいね";
-          var Text = "凸凹だけどすっごく仲よしな２人はついにフレンズになった。";
+          var Text = "凸凹だけどすっごく仲よしな２人は(改行)ついにフレンズになった。";
           Datas = [1,0,33,0,0,0,34,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 7:
           var T_Name = "あいね";
-          var Text = "アイドルは　カードも友達　ファンも友達。         目指せ　友達100万人！";
+          var Text = "アイドルは　カードも友達　ファンも友達。(改行)目指せ　友達100万人！";
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -315,13 +338,13 @@ function Load(width,height){
           break;
         case 13:
           var T_Name = "あいね";
-          var Text = "たしかに。舞花ちゃんもエマちゃんも猫っぽいイメージあるし。";
+          var Text = "たしかに。舞花ちゃんもエマちゃんも(改行)猫っぽいイメージあるし。";
           Datas = [52,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 14:
           var T_Name = "エマ";
-          var Text = "でしょでしょ。フレンズ組もうってなったら２人で盛り上がっちゃって。コンセプトとか一から作り上げてくのってワクワクするよね。";
+          var Text = "でしょでしょ。(改行)フレンズ組もうってなったら(改行)２人で盛り上がっちゃって。(改行)コンセプトとか一から作り上げてくのって(改行)ワクワクするよね。";
           Datas = [52,0,22,0,0,0,34,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -339,19 +362,19 @@ function Load(width,height){
           break;
         case 17:
           var T_Name = "舞花";
-          var Text = "あのときは…。エマとフレンズを組めたからテンション上がっちゃって…。";
+          var Text = "あのときは…。(改行)エマとフレンズを組めたから(改行)テンション上がっちゃって…。";
           Datas = [52,0,33,0,0,0,34,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 18:
           var T_Name = "エマ";
-          var Text = "うんうん。かわいいやつめ！";
+          var Text = "うんうん。(改行)かわいいやつめ！";
           Datas = [52,0,33,0,0,0,34,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 19:
           var T_Name = "あいね";
-          var Text = "二人ともすっごく楽しそう。フレンズっていいな〜。";
+          var Text = "二人ともすっごく楽しそう。(改行)フレンズっていいな〜。";
           Datas = [52,0,22,0,0,0,34,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -366,8 +389,28 @@ function Load(width,height){
           var C2 = "あいね！私達もフレンズを組みましょう！";
           var C3 = 0;
           var C4 = 0;
-          Datas = [52,22,0,26,C1,C2,C3,C4,24,0,0,0,Rewind,Before,Number];
+          Datas = [52,22,0,26,C1,C2,C3,C4,24,22,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 22:
+          Flag = R_S(Number,Flag,248);
+          Flag[15] = true;//即決
+          var T_Name = Name;
+          var Text = "あいね！私達もフレンズを組みましょう！";
+          Datas = [52,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip,0,0,"即決！",1];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 23:
+          var T_Name = "あいね";
+          var Text = "わ〜っ…　うん！！";
+          Datas = [52,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,23.1,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 23.1:
+          var T_Name = Name;
+          var Text = "あいね…。";
+          Datas = [52,0,22,0,0,0,35,0,T_Name,Text,Rewind,23,Number,248,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 24:
           Flag = R_S(Number,Flag,31);
@@ -396,13 +439,13 @@ function Load(width,height){
           break;
         case 28:
           var T_Name = Name;
-          var Text = "古今東西あらゆる占いで私とあいねの相性はバッチリだってわかったし…。";
+          var Text = "古今東西あらゆる占いで(改行)私とあいねの相性はバッチリだってわかったし…。";
           Datas = [5,0,0,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 29:
           var T_Name = Name;
-          var Text = "それに何より私の直感があいねとフレンズを組めばすごいことが起きるってビビっと訴えかけてる。";
+          var Text = "それに何より私の直感があいねとフレンズを組めば(改行)すごいことが起きるってビビっと訴えかけてる。";
           Datas = [5,0,0,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -417,8 +460,34 @@ function Load(width,height){
           var C2 = "今すぐあいねに電話をかけましょう。";
           var C3 = 0;
           var C4 = 0;
-          Datas = [5,0,0,26,C1,C2,C3,C4,32,0,0,0,Rewind,Before,Number];
+          Datas = [5,0,0,26,C1,C2,C3,C4,32,31.1,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 31.1:
+          Flag = R_S(Number,Flag,248);
+          Flag[16] = true;//電話
+          var T_Name = Name;
+          var Text = "もしもし？"+Name+"ちゃん？";
+          if(Flag[17]){
+            Rewind = 54.1;
+            Before = 54.2;
+          }
+          Datas = [5,0,21,15,0,0,26,0,T_Name,Text,Rewind,Before,Number,31.2,Skip,0,0,"電話",0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 31.2:
+          var T_Name = Name;
+          var Text = "あいね、私とフレンズになりましょう。";
+          if(Flag[17]) Rewind = 54.1;
+          else Rewind = 0;
+          Datas = [5,0,21,0,0,0,26,0,T_Name,Text,Rewind,31.1,Number,31.3,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 31.3:
+          var T_Name = "あいね";
+          var Text = "わ〜っ…　うん！！";
+          Datas = [5,0,21,0,0,0,26,0,T_Name,Text,Rewind,31.2,Number,248,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 32:
           Flag = R_S(Number,Flag,35);
@@ -451,7 +520,7 @@ function Load(width,height){
           Flag = R_S(Number,Flag,54);
           Flag[4] = true;
           var T_Name = Name;
-          var Text = "ラブミーティアのドラマチック極まりない結成エピソードは　もはや伝説。";
+          var Text = "ラブミーティアのドラマチック極まりない(改行)結成エピソードはもはや伝説。";
           Datas = [6,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -463,13 +532,13 @@ function Load(width,height){
           break;
         case 38:
           var T_Name = Name;
-          var Text = "スターハーモニー学園に入ってトップアイドルに駆け上がったカレンさんとミライさん。";
+          var Text = "スターハーモニー学園に入って(改行)トップアイドルに駆け上がった(改行)カレンさんとミライさん。";
           Datas = [27,15,28,15,0,0,29,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 39:
           var T_Name = Name;
-          var Text = "二人は出会ってすぐに意気投合したのだけど　フレンズ結成にはあと一歩踏み込めないでいた。";
+          var Text = "二人は出会ってすぐに意気投合したのだけど(改行)フレンズ結成にはあと一歩踏み込めないでいた。";
           Datas = [27,0,28,0,0,0,29,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -481,7 +550,7 @@ function Load(width,height){
           break;
         case 41:
           var T_Name = Name;
-          var Text = "カレンさんは世界的プロデューサーからアイドルとしてプロデュースしたいというオファーを受けてアメリカに旅立つことになったのだ。";
+          var Text = "カレンさんは世界的プロデューサーから(改行)アイドルとしてプロデュースしたいという(改行)オファーを受けてアメリカに旅立つことになったのだ。";
           Datas = [53,15,0,0,0,0,28,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -505,7 +574,7 @@ function Load(width,height){
           break;
         case 45:
           var T_Name = "ミライ";
-          var Text = "アメリカになんて行かせない。カレンをいちばん輝かせることができるのは…。";
+          var Text = "アメリカになんて行かせない。(改行)カレンをいちばん輝かせることができるのは…。";
           Datas = [53,0,29,0,0,0,28,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -535,7 +604,7 @@ function Load(width,height){
           break;
         case 50:
           var T_Name = Name;
-          var Text = "う～っ…ハァ！何度読んでもやっぱりいい！！ずっと憧れていた…。私もフレンズを組むならこんなふうにドラマチックにって。";
+          var Text = "う～っ…ハァ！ 何度読んでもやっぱりいい！！(改行)ずっと憧れていた…。(改行)私もフレンズを組むなら(改行)こんなふうにドラマチックにって。";
           Datas = [9,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -563,8 +632,21 @@ function Load(width,height){
           var C2 = "妥協して一刻も早くあいねとフレンズになるべきよ。";
           var C3 = 0;
           var C4 = 0;
-          Datas = [5,0,0,26,C1,C2,C3,C4,55,0,0,0,Rewind,Before,Number];
+          Datas = [5,0,0,26,C1,C2,C3,C4,55,54.1,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 54.1:
+          Flag[17] = true;//妥協
+          var T_Name = Name;
+          var Text = "ここは妥協して(改行)一刻も早くあいねとフレンズになるべきね。";
+          Datas = [5,0,0,0,0,0,26,0,T_Name,Text,0,0,Number,54.2,248];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 54.2:
+          var T_Name = Name;
+          var Text = "そうと決まればさっそくあいねに電話しましょう。";
+          Datas = [5,0,0,0,0,0,26,0,T_Name,Text,0,54.1,Number,31.1,248];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 55:
           Flag = R_S(Number,Flag,57);
@@ -584,8 +666,34 @@ function Load(width,height){
           var C2 = "ドラマチックな告白について教えて。";
           var C3 = "あいねのアイカツモバイルを盗聴して。";
           var C4 = 0;
-          Datas = [5,1,0,26,C1,C2,C3,C4,0,76,58,0,Rewind,Before,Number];
+          Datas = [5,1,0,26,C1,C2,C3,C4,57.1,76,58,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 57.1:
+          Flag = R_S(Number,Flag,95);
+          Flag[18] = true;//普通
+          var T_Name = Name;
+          var Text = "フレンズの誘い方を教えて。";
+          Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,57.2,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 57.2:
+          var T_Name = "ココ";
+          var Text = "ココろえました！";
+          Datas = [5,0,2,0,0,0,26,0,T_Name,Text,0,57.1,Number,57.3,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 57.3:
+          var T_Name = "ココ";
+          var Text = "フレンズの誘い方と言っても色々あるけど、(改行)どんな感じがいいかな？";
+          Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,57.2,Number,57.4,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 57.4:
+          var T_Name = Name;
+          var Text = "なるべくドラマチックなのでお願い。";
+          Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,57.3,Number,85,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 58:
           Flag = R_S(Number,Flag,75);
@@ -602,25 +710,25 @@ function Load(width,height){
           break;
         case 60:
           var T_Name = "ココ";
-          var Text = "え～っ！？アイカツモバイルを盗聴！？あいねちゃんの！？どうして！？";
+          var Text = "え～っ！？アイカツモバイルを盗聴！？(改行)あいねちゃんの！？どうして！？";
           Datas = [5,0,3,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 61:
           var T_Name = Name;
-          var Text = "あいねとフレンズになるためのドラマチックな告白を成功させるのに必要なの。";
+          var Text = "あいねとフレンズになるための(改行)ドラマチックな告白を成功させるのに必要なの。";
           Datas = [5,0,3,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 62:
           var T_Name = "ココ";
-          var Text = "う〜ん、それでどうして盗聴が必要になるのかなぁ？";
+          var Text = "う〜ん(改行)それでどうして盗聴が必要になるのかなぁ？";
           Datas = [5,0,4,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 63:
           var T_Name = Name;
-          var Text = "あいねの趣味、生活を完璧に理解してあいねが喜ぶ完璧なエスコートをするためよ。";
+          var Text = "あいねの趣味、生活を完璧に理解して(改行)あいねが喜ぶ完璧なエスコートをするためよ。";
           Datas = [5,0,4,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -644,25 +752,25 @@ function Load(width,height){
           break;
         case 67:
           var T_Name = Name;
-          var Text = "う〜ん、それじゃあ盗聴機を仕込むしかないわね…何かいい方法は…";
+          var Text = "う〜ん、それじゃあ盗聴機を仕込むしかないわね…(改行)何かいい方法は…";
           Datas = [5,0,6,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 68:
           var T_Name = "ココ";
-          var Text = "…お友達どうしでアクセサリーを持つのが流行ってるみたいだよ。２つがそろうと１つになるデザインが人気みたいだね。";
+          var Text = "…お友達どうしでアクセサリーを持つのが(改行)流行ってるみたいだよ。(改行)２つがそろうと１つになるデザインが人気みたいだね。";
           Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 69:
           var T_Name = Name;
-          var Text = "なるほど、それに仕込めば…早速製作に取り掛かりましょう。";
+          var Text = "なるほど、それに仕込めば…(改行)早速製作に取り掛かりましょう。";
           Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 70:
           var T_Name = "ココ";
-          var Text = "…関係ないけど、ペットが迷子になった時のための首輪につけられる小さなGPS発信機っていうのもあるみたいだね。";
+          var Text = "…関係ないけど、ペットが迷子になった時のための(改行)首輪につけられる小さなGPS発信機っていうのも(改行)あるみたいだね。";
           Datas = [5,0,11,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -686,13 +794,13 @@ function Load(width,height){
           break;
         case 74:
           var T_Name = "";
-          var Text = "後日、アクセサリーを渡すことに成功した"+Name+"ちゃんは、それからしばらくして幸せなフレンズ生活をおくったのであった…。";
+          var Text = "後日、アクセサリーを渡すことに成功した(改行)"+Name+"ちゃんはそれからしばらくして(改行)幸せなフレンズ生活をおくったのであった…。";
           Datas = [45,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 75:
           var T_Name = "ストーカーエンド";
-          var Text = "疑惑はあるけど実際はこんな事してないよ！………たぶん。";
+          var Text = "疑惑はあるけど実際はこんな事してないよ！(改行)…たぶん。";
           Datas = [45,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,"ゲームオーバー",0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -732,13 +840,33 @@ function Load(width,height){
           var C2 = "いいえ";
           var C3 = 0;
           var C4 = 0;
-          Datas = [5,9,0,26,C1,C2,C3,C4,0,82,0,0,Rewind,Before,Number];
+          Datas = [5,9,0,26,C1,C2,C3,C4,81.1,82,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 81.1:
+          Flag = R_S(Number,Flag,121);
+          Flag[20] = true;//悪ノリ
+          var T_Name = Name;
+          var Text = "(ここは乗っておきましょう。)(改行)そうなの。";
+          Datas = [5,0,9,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,81.2,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 81.2:
+          var T_Name = "ココ";
+          var Text = "よ～し。ドラマチックな告白で検索。";
+          Datas = [5,0,1,0,0,0,26,0,T_Name,Text,0,81.1,Number,81.3,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 81.3:
+          var T_Name = "ココ";
+          var Text = "こんな結果が出たよ。";
+          Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,81.2,Number,118,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 82:
           Flag = R_S(Number,Flag,95);
           var T_Name = Name;
-          var Text = "違う違う。フレンズになってくださいってドラマチックに告白するにはってこと。";
+          var Text = "違う違う。フレンズになってくださいって(改行)ドラマチックに告白するにはってこと。";
           Datas = [5,0,9,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -755,6 +883,7 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 85:
+          if(Flag[18]) Before = 57.4;
           var T_Name = "ココ";
           var Text = "ドラマチックな告白で検索。";
           Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -819,8 +948,21 @@ function Load(width,height){
           var C2 = "いや…　ないわね。";
           var C3 = 0;
           var C4 = 0;
-          Datas = [15,0,0,0,C1,C2,C3,C4,0,96,0,0,Rewind,Before,Number];
+          Datas = [15,0,0,0,C1,C2,C3,C4,95.1,96,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 95.1:
+          Flag = R_S(Number,Flag,0);
+          var T_Name = Name;
+          var Text = "うん！　これよ！！";
+          Datas = [26,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,95.2,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 95.2:
+          var T_Name = "";
+          var Text = "映画館を貸切るために"+Name+"ちゃんは(改行)バイトに明け暮れるのであった…。";
+          Datas = ["Black",0,0,0,0,0,0,0,T_Name,Text,0,95.1,Number,"ゲームオーバー",0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 96:
           Flag = R_S(Number,Flag,110);
@@ -912,13 +1054,26 @@ function Load(width,height){
           var C2 = "ドラマチックの意味をはき違えているような…";
           var C3 = 0;
           var C4 = 0;
-          Datas = [23,0,0,0,C1,C2,C3,C4,0,111,0,0,Rewind,Before,Number];
+          Datas = [23,0,0,0,C1,C2,C3,C4,110.1,111,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 110.1:
+          Flag[19] = true;//ゲーム感覚
+          var T_Name = Name;
+          var Text = "うん！　これよ！！";
+          Datas = [26,0,0,0,0,0,0,0,T_Name,Text,0,0,Number,110.2,248];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 110.2:
+          var T_Name = "";
+          var Text = "見事成功し、(改行)"+Name+"ちゃんとあいねちゃんはフレンズになった。";
+          Datas = [22,0,0,0,0,0,0,0,T_Name,Text,0,110.1,Number,248,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 111:
           Flag = R_S(Number,Flag,120);
           var T_Name = Name;
-          var Text = "いや…　これって　ドラマチックの意味をはき違えているような…";
+          var Text = "いや…　これって(改行)ドラマチックの意味をはき違えているような…";
           Datas = [5,0,0,0,0,0,30,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -930,7 +1085,7 @@ function Load(width,height){
           break;
         case 113:
           var T_Name = "ココ";
-          var Text = Name+"ちゃんが満足する答えを　必ず見つけてみせるんだから！";
+          var Text = Name+"ちゃんが満足する答えを(改行)必ず見つけてみせるんだから！";
           Datas = [5,0,16,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -954,17 +1109,22 @@ function Load(width,height){
           break;
         case 117:
           var T_Name = "ココ";
-          var Text = "最高にドラマチックな告白ができるスポットを見つけたよ！";
+          var Text = "最高にドラマチックな告白ができるスポットを(改行)見つけたよ！";
           Datas = [5,0,20,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 118:
+          if(Flag[20]) Before = 81.3;
           var T_Name = "ココ";
-          var Text = "この観覧車でゴンドラが一番高くなったところで告白すると";
+          var Text = "この観覧車でゴンドラが(改行)一番高くなったところで告白すると";
           Datas = [24,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 119:
+          if(Flag[20]){
+            After = 121;
+            Skip = 0;
+          }
           var T_Name = "ココ";
           var Text = "二人はず〜っと　幸せになれるんだって。";
           Datas = [25,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -975,8 +1135,42 @@ function Load(width,height){
           var C2 = "これって男女の恋愛じゃない？";
           var C3 = 0;
           var C4 = 0;
-          Datas = [25,0,0,0,C1,C2,C3,C4,121,0,0,0,Rewind,Before,Number];
+          Datas = [25,0,0,0,C1,C2,C3,C4,121,121.1,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 121.1:
+          Flag = R_S(Number,Flag,134);
+          var T_Name = Name;
+          Flag[21] = true;//疑惑
+          var Text = "これって男女の恋愛じゃない？";
+          After = 121.2;
+          Datas = [5,0,1,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 121.2:
+          var T_Name = "ココ";
+          var Text = "…？それがどうかした？";
+          Rewind = 0;
+          Before = 121.1;
+          After = 121.3;
+          Datas = [5,0,11,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 121.3:
+          var T_Name = Name;
+          var Text = "…そうね！たいした問題じゃないわ！";
+          Before = 121.2;
+          After = 121.4;
+          Datas = [5,0,11,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 121.4:
+          var T_Name = Name;
+          var Text = "…そうね！たいした問題じゃないわ！(改行)ドラマチックだし！";
+          Before = 121.3;
+          After = 122;
+          Datas = [5,0,11,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 121:
           Flag = R_S(Number,Flag,134);
@@ -986,6 +1180,7 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 122:
+          if(Flag[21]) Before = 121.4;
           var T_Name = "後日";
           var Text = "学校の中庭";
           Datas = [27,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,122.9,Skip];
@@ -993,13 +1188,13 @@ function Load(width,height){
           break;
         case 122.9:
           var T_Name = "あいね";
-          var Text = "うわ〜っ　うれしい！"+Name+"ちゃんと　遊びにいけるなんて楽しみだな。";
+          var Text = "うわ〜っ　うれしい！(改行)"+Name+"ちゃんと　遊びにいけるなんて楽しみだな。";
           Datas = [27,0,22,15,0,0,26,15,T_Name,Text,Rewind,122,Number,123,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 123:
           var T_Name = Name;
-          var Text = "今度の土曜　休みが取れたから　久しぶりに　あいねと…。";
+          var Text = "今度の土曜　休みが取れたから(改行)久しぶりに　あいねと…。";
           Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -1017,7 +1212,7 @@ function Load(width,height){
           break;
         case 126:
           var T_Name = "あいね";
-          var Text = "うん…　ブランド選びのときに　友達になった　なこちゃんがこっちに来るから　会おうって約束したの。";
+          var Text = "うん…　ブランド選びのときに　友達になった(改行)なこちゃんがこっちに来るから(改行)会おうって約束したの。";
           Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -1029,7 +1224,7 @@ function Load(width,height){
           break;
         case 128:
           var T_Name = "あいね";
-          var Text = "うん！　友達になってから　ずっと　やり取りしてたんだ。";
+          var Text = "うん！　友達になってから(改行)ずっと　やり取りしてたんだ。";
           Datas = [28,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
@@ -1068,17 +1263,92 @@ function Load(width,height){
           var C2 = "私のあいねを誑かすなんて許せない。";
           var C3 = "相談があるなら二人の方がいいでしょう。";
           var C4 = 0;
-          Datas = [27,22,0,26,C1,C2,C3,C4,0,0,135,0,Rewind,Before,Number];
+          Datas = [27,22,0,26,C1,C2,C3,C4,133.1,134.1,135,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 134.1:
+          Flag = R_S(Number,Flag,137);
+          var T_Name = Name;
+          Flag[22] = true;//嫉妬
+          After = 134.2;
+          var Text = "(…私のあいねを誑かすなんて許せない。)";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 134.2:
+          var T_Name = Name;
+          Rewind = 0;
+          Before = 134.1;
+          After = 134.9;
+          var Text = "いえ。私は遠慮しておくわ。";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 134.9:
+          Rewind = 0;
+          Before = 135;
+          After = 136;
+          if(Flag[22]){
+            Rewind = 134.1;
+            Before = 134.2;
+          }
+          var T_Name = Name;
+          var Text = "相談があるなら　二人の方がいいでしょう？";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 135:
           Flag = R_S(Number,Flag,137);
           var T_Name = Name;
-          var Text = "ううん。 相談があるなら　二人の方がいいでしょう？";
+          After = 134.9;
+          var Text = "ううん。";
           Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
+        case "134.9プライド":
+          var T_Name = Name;
+          var Text = "あ、そうだ。(改行)コレをなこちゃんに。";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,135.1,135.2,135.5,"0600,0250,15",3];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 135.1:
+          var T_Name = Name;
+          var Text = "あ、そうだ。(改行)コレをなこちゃんに。";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,Number,135.2,135.5,"0600,0250,15",3];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 135.2:
+          var T_Name = "あいね";
+          var Text = "ラブミーティアのCD…？ いいの？";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,135.1,Number,135.3,135.5,"0600,0250,0",3];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 135.3:
+          var T_Name = Name;
+          var Text = "ええ。それは布教用だから。";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,135.1,135.2,Number,135.4,135.5,"0600,0250,0",3];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 135.4:
+          var T_Name = "あいね";
+          var Text = "…？ ありがとう、"+Name+"ちゃん。";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,135.1,135.3,Number,135.5,0,"0600,0250,0",3];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 135.5:
+          Flag[6] = false;
+          core.assets["sound/プライド.wav"].stop();
+          core.assets["sound/プライド.wav"].onplaying = false;
+          core.pushScene(ItemgetScene(3,"プライドを手渡した。",135.6,Flag));
+          break;
+        case 135.6:
+          var T_Name = "あいね";
+          var Text = "それじゃあまたね。";
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,Number,136,137,0,0,"字面が面白い",1];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
         case 136:
+          if(Flag[22]==false) Rewind = 135;
           var T_Name = "";
           var Text = "土曜日";
           Datas = [5,0,0,0,0,0,26,30,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -1092,6 +1362,7 @@ function Load(width,height){
           else{
             Rewind = 135;
             Before = 136;
+            if(Flag[22]) Rewind = 134.1;
           }
           var C1 = "(今日は計画を練りましょう。)";
           var C2 = "(気になるわ…。こっそり行動を監視しましょう。)";
@@ -1106,12 +1377,12 @@ function Load(width,height){
           core.replaceScene(InterrogationScene(Datas,Flag));
           break
         case 12346:
-          Datas = [32,"セラ","終わりです。",1138,Before,Number,Before,137,"アイカツカード"];
+          Datas = [32,"何文字書けるかのテストです","「一二三四五六七八九零一二三四五六七八九零一二三四(改行)一二三四五六七八九零一二三四五六七八九零一二三四五(改行)一二三四五六七八九零一二三四五六七八九零一二三四五(改行)一二三四五六七八九零一二三四五六七八九零一二三四五(改行)一二三四五六七八九零一二三四五六七八九零一二三四」",1,Before,Number,Before,137,"アイカツカード"];
           core.replaceScene(InterrogationScene(Datas,Flag));
           break
         case 1138:
           var T_Name = Name;
-          var Text = "あいねの為にデザインしたドレス…ピンクパートナーコーデのアイカツカードね。";
+          var Text = "あいねの為にデザインしたドレス…(改行)ピンクパートナーコーデのアイカツカードね。";
           if(Flag[9]){
             Text = "やっぱり必要な気がする。";
             After = 1140;
@@ -1138,7 +1409,9 @@ function Load(width,height){
           break;
         case 1142:
           Flag[9] = true;
-          core.pushScene(ItemgetScene(2,"双眼鏡を手に入れた。",137,Flag));
+          After = 137;
+          if(Flag[22]) After = 1146;
+          core.pushScene(ItemgetScene(2,"双眼鏡を手に入れた。",After,Flag));
           break;
         case 1143:
           Flag[5] = false;
@@ -1176,310 +1449,328 @@ function Load(width,height){
             core.pushScene(ItemgetScene(3,"プライドのCDを手に入れた。","シーンを外す",Flag));
           }
           break;
+        case 1146:
+          var T_Name = Name;
+          var Text = "…。";
+          Datas = [55,0,0,0,0,0,26,0,T_Name,Text,0,0,0,After,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 1147:
+          Flag[23] = true;
+          After = 137;
+          core.pushScene(ItemgetScene(6,"使い古された包丁をそっと鞄にしまった。",After,Flag));
+          break;
         case 138:
+          Flag = R_S(Number,Flag,147);
           var T_Name = "";
           var Text = "駅前";
-          Datas = [30,0,0,0,0,0,0,0,T_Name,Text,0,0,Number,148,Number+1,0,0];
+          Datas = [30,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 139:
           var T_Name = "海老原なこ";
           var Text = "わぁ。";
-          Datas = [30,0,0,0,24,15,0,0,T_Name,Text,Number-1,0,Number,148,Number+1,0,0];
+          Datas = [30,0,0,0,24,15,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 140:
           var T_Name = "あいね";
           var Text = "お〜い！なこちゃん！";
-          Datas = [30,0,22,15,0,0,24,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          Datas = [30,0,22,15,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 141:
           var T_Name = "なこ";
           var Text = "あいねちゃん！";
-          Datas = [30,0,22,0,0,0,24,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          Datas = [30,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 142:
           var T_Name = "なこ";
           var Text = "久しぶり！ウフフ。";
-          Datas = [30,0,22,0,0,0,24,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          Datas = [30,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 143:
           var T_Name = Name;
-          var Text = "(わざわざ　こっちに来てまで　相談したい事ってあいねとフレンズを組みたいって事なんじゃ…)";
-          Datas = [31,0,0,0,0,0,0,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          var Text = "(わざわざ　こっちに来てまで(改行) 相談したい事ってあいねと(改行) フレンズを組みたいって事なんじゃ…)";
+          Datas = [31,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 144:
           var T_Name = Name;
           var Text = "あいね…。";
-          Datas = [31,0,0,0,0,0,0,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          Datas = [31,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 145:
           var T_Name = "なこ";
-          var Text = "あいねちゃんちのカフェか。　一度　来てみたかったんだよね。";
-          Datas = [32,0,0,0,0,0,0,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          var Text = "あいねちゃんちのカフェか。(改行)一度　来てみたかったんだよね。";
+          Datas = [32,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 146:
           var T_Name = "";
           var Text = "～～";
-          Datas = [32,0,0,0,0,0,0,0,T_Name,Text,Number-1,138,Number,148,Number+1,0,0];
+          Datas = [32,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 147:
           var T_Name = "多分山下公園";
           var Text = "その後も街を巡る二人。";
-          Datas = [33,0,0,0,0,0,0,0,T_Name,Text,Number-1,138,Number,0,Number+1,0,0];
+          Skip = 172;
+          Datas = [33,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 148:
+          Flag = R_S(Number,Flag,172);
           var T_Name = "あいね";
           var Text = "あれ？"+Name+"ちゃん？";
-          Datas = [56,0,24,0,0,0,22,0,T_Name,Text,0,0,Number,0,Number+1,0,0];
+          Datas = [56,0,24,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 149:
           var T_Name = "なこ";
           var Text = "えっ？";
-          Datas = [56,0,24,0,0,0,22,0,T_Name,Text,Number-1,0,Number,0,Number+1,0,0];
+          Datas = [56,0,24,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 150:
           var T_Name = Name;
           var Text = "あっ…";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 151:
           var T_Name = Name;
           var Text = "(しまった。近づきすぎた…)";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 152:
           var T_Name = Name;
           var Text = "あっ…えっと、やっぱり気になっちゃって。";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 153:
           var T_Name = "あいね";
           var Text = "そうなんだ。";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 154:
           var T_Name = "なこ";
           var Text = "そうだ。"+Name+"ちゃんにも聞いて欲しいな。";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 155:
           var T_Name = Name;
           var Text = "え。";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 156:
           var T_Name = "なこ";
-          var Text = "私ね、この間イベントで知り合った子とすっごく仲良くなって　そのことフレンズを組みたいって思ってるんだけど…";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          var Text = "私ね、この間イベントで知り合った子と(改行)すっごく仲良くなって(改行)そのことフレンズを組みたいって思ってるんだけど…";
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 157:
           var T_Name = "なこ";
-          var Text = "私は中学を卒業するまで名古屋にいるつもりだから　遠距離フレンズがうまくいくか不安で…";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          var Text = "私は中学を卒業するまで名古屋にいるつもりだから(改行)遠距離フレンズがうまくいくか不安で…";
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 158:
           var T_Name = "なこ";
           var Text = "名古屋と東京で離れていてもフレンズになれるかな？";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 159:
           var T_Name = Name;
           var Text = "なれる！仲がいいなら絶対なれるわ！";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 160:
           var T_Name = "なこ";
           var Text = "ありがとう！そう言ってくれると勇気出てくるよ！";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 161:
           var T_Name = "着信音";
           var Text = "(ピロリ)";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 162:
           var T_Name = "なこ";
           var Text = "あっ仕事終わったからこれから会おう。";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 163:
           var T_Name = "なこ";
-          var Text = "よ〜し！　"+Name+"ちゃんのおかげで勇気出たし、フレンズ組もうって申し込んでみるよ。";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          var Text = "よ〜し！(改行)"+Name+"ちゃんのおかげで勇気出たし、(改行)フレンズ組もうって申し込んでみるよ。";
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 164:
           var T_Name = "なこ";
-          var Text = "また遊ぼうね、あいねちゃん！あいねちゃんも頑張ってね！";
-          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          var Text = "また遊ぼうね、あいねちゃん！(改行)あいねちゃんも頑張ってね！";
+          Datas = [56,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 165:
           var T_Name = Name;
           var Text = "\"あいねちゃんも…？\"";
-          Datas = [56,0,26,0,0,0,0,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,24,-15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 166:
           var T_Name = "あいね";
-          var Text = "うん！私も"+Name+"ちゃんと…";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          var Text = "うん！私も"+Name+"ちゃんとフレンズになる為の相談を…。";
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 167:
           var T_Name = "あいね";
           var Text = "あ。";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 168:
           var T_Name = Name;
           var Text = "え。";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 169:
           var T_Name = "あいね";
           var Text = "……私も、"+Name+"ちゃんとフレンズを組みたい！";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 170:
           var T_Name = Name;
           var Text = "あいね…。";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 171:
           var T_Name = "あいね";
           var Text = "ダメ、かな…？";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,Number+1,0,0];
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 172:
+          Flag = R_S(148,Flag,172);
           var T_Name = Name;
-          var Text = "ううん。私も フレンズを組むなら あいねしかいないって思ってた。";
-          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,Number-1,148,Number,0,0,0,0];
+          Flag[14] = true;
+          var Text = "ううん。(改行)私も フレンズを組むなら(改行)あいねしかいないって思ってた。";
+          Datas = [56,0,26,0,0,0,22,0,T_Name,Text,148,171,Number,248,0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
-        case "双眼鏡147":
+        case "147双眼鏡":
+          Flag = R_S(173,Flag,188);
           var T_Name = Name;
           var Text = "これって…。";
-          Datas = [34,0,0,0,0,0,0,0,T_Name,Text,0,0,173,188,174,0,0];
+          Datas = [34,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,173,174,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 173:
+          Flag = R_S(Number,Flag,188);
           var T_Name = Name;
           var Text = "これって…。";
-          Datas = [34,0,0,0,0,0,0,0,T_Name,Text,0,0,Number,188,Number+1,0,0];
+          Datas = [34,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 174:
           var T_Name = Name;
           var Text = "フレンズ結成の流れにしか見えないんだけど。";
-          Datas = [35,0,0,0,0,0,0,0,T_Name,Text,Number-1,0,Number,188,Number+1,0,0];
+          Datas = [35,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 175:
           var T_Name = "どうみても赤レンガ倉庫";
           var Text = "";
-          Datas = [36,0,0,0,0,0,0,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 176:
           var T_Name = "なこ";
           var Text = "うわ〜っ…。綺麗…。";
-          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 177:
           var T_Name = "あいね";
-          var Text = "でしょう？ なこちゃんにもこの景色を見せたかったんだ。";
-          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          var Text = "でしょう？(改行)なこちゃんにもこの景色を見せたかったんだ。";
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 178:
           var T_Name = Name;
           var Text = "ここって…。";
-          Datas = [36,0,26,15,0,0,0,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,26,15,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 179:
           var T_Name = Name;
           var Text = "(ココちゃんが言ってた観覧車…)";
-          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 180:
           var T_Name = Name;
           var Text = "(あいねとなこちゃんもそれを知ってて…)";
-          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 181:
           var T_Name = "なこ";
           var Text = "それでね、あいねちゃんに相談なんだけど。";
-          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 182:
           var T_Name = "あいね";
           var Text = "うん。";
-          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 183:
           var T_Name = "なこ";
           var Text = "名古屋と東京で離れていてもフレンズになれるかな？";
-          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 184:
           var T_Name = Name;
           var Text = "あっ…。";
-          Datas = [36,0,26,15,0,0,0,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,26,15,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 185:
           var T_Name = "あいね";
           var Text = "うん！　気持ちがつながっていればきっとなれるよ。";
-          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 186:
           var T_Name = Name;
           var Text = "…。";
-          Datas = [36,0,26,15,0,0,0,0,T_Name,Text,Number-1,173,Number,188,Number+1,0,0];
+          Datas = [36,0,26,15,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 187:
           var T_Name = Name;
           var Text = "(本当に…それでいいの？)";
-          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Number-1,173,Number,0,Number+1,0,0];
+          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 188:
@@ -1487,97 +1778,98 @@ function Load(width,height){
           var C2 = "それでいい";
           var C3 = "殺してでも奪い取る";
           var C4 = 0;
-          Datas = [36,26,0,0,C1,C2,C3,C4,189,0,0,0,Number-1,173,Number];
+          Datas = [36,26,0,0,C1,C2,C3,C4,189,0,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
           break;
         case 189:
+          Flag = R_S(Number,Flag,204);
           var T_Name = Name;
           var Text = "(私のフレンズはあいねしかいない。)";
-          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,0,0,Number,204,Number+1,0,0];
+          Datas = [36,0,26,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 190:
           var T_Name = Name;
           var Text = "(この気持ちに嘘はつけない！)";
-          Datas = [37,0,0,0,0,0,0,0,T_Name,Text,Number-1,0,Number,204,Number+1,0,0];
+          Datas = [37,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 191:
           var T_Name = "あいね";
           var Text = "えっ？　"+ Name.substring(0,1) +"…"+Name+"ちゃん？";
-          Datas = [37,0,0,0,0,0,0,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [37,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 192:
           var T_Name = "なこ";
           var Text = "えっ？";
-          Datas = [37,0,0,0,0,0,0,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [37,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 193:
           var T_Name = Name;
           var Text = "来て…　あいね！";
-          Datas = [38,0,0,0,0,0,0,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [38,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 194:
           var T_Name = "あいね";
           var Text = "えっ？え〜！？";
-          Datas = [39,0,0,0,0,0,0,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [39,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 195:
           var T_Name = "なこ";
           var Text = "…？";
-          Datas = [36,0,24,0,0,0,0,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [36,0,24,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 196:
           var T_Name = "あいね";
           var Text = Name+"ちゃんどうしてここに？";
-          Datas = [40,0,22,15,0,0,26,15,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [40,0,22,15,0,0,26,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 197:
           var T_Name = Name;
           var Text = "あいねにどうしても伝えたいことがあるの。";
-          Datas = [40,0,22,0,0,0,26,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [40,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 198:
           var T_Name = "";
           var Text = "観覧車";
-          Datas = [43,0,0,0,0,0,0,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [43,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 199:
           var T_Name = "あいね";
           var Text = "ねぇねぇ　伝えたいことって何？何？何？";
-          Datas = [41,0,22,15,0,0,26,15,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [41,0,22,15,0,0,26,15,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 200:
           var T_Name = Name;
           var Text = "…！";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 201:
           var T_Name = Name;
-          var Text = "(勢いで連れて来ちゃったけど、観覧車ってこんなに遅いの？)";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          var Text = "(勢いで連れて来ちゃったけど、(改行)観覧車ってこんなに遅いの？)";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 202:
           var T_Name = Name;
           var Text = "(一番上までどれくらいかかるのよ…)";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,189,Number,204,Number+1,0,0];
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 203:
           var T_Name = "あいね";
           var Text = "早く聞かせてよ〜！"+Name+"ちゃん！";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,189,Number,0,Number+1,0,0];
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 204:
@@ -1585,41 +1877,438 @@ function Load(width,height){
           var C2 = "ドラマチックとかどうでもいい！";
           var C3 = 0;
           var C4 = 0;
-          Datas = [41,22,0,26,C1,C2,C3,C4,205,0,0,0,Number-1,189,Number];
+          Datas = [41,22,0,26,C1,C2,C3,C4,205,0,0,0,Rewind,Before,Number];
           core.replaceScene(ChoiceScene(Datas,Flag));
           break;
         case 205:
+          Flag = R_S(Number,Flag,208);
           var T_Name = Name;
           var Text = "も…もうちょっと待って。";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,0,0,Number,0,Number+1,0,0];
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 206:
           var T_Name = "あいね";
           var Text = "え〜！もったいつけられると余計気になるよ〜！";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,0,Number,0,Number+1,0,0];
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 207:
           var T_Name = "あいね";
           var Text = "教えて教えてー！";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,205,Number,0,Number+1,0,0];
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 208:
           var T_Name = Name;
-          var Text = "も…もうちょっと待って。";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,0,0,Number,0,0,0,0];
-          if(Flag[1]){
-            Datas[9] = "ちょっ…　あっ！";
-            Datas[14] = 209;
-          }
+          var Text = "ちょっ…　";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,0];
+          if(Flag[5]!=true) Datas[13] = 208.1;
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.1:
+          Flag = R_S(Number,Flag,208.9);
+          var T_Name = Name;
+          var Text = "ちょっ…　そんなに動いたら…";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,208.2,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.2:
+          var T_Name = "観覧車";
+          var Text = "ガタン！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,0,208.1,Number,208.3,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.3:
+          var T_Name = "あいね";
+          var Text = "あっ…止まっちゃった？";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,208.2,Number,208.4,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.4:
+          var T_Name = "アナウンス";
+          var Text = "困りますよお客さん。(改行)危険なので緊急停止しました。";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,208.3,Number,208.5,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.5:
+          var T_Name = "あいね "+Name;
+          var Text = "あ…。";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,208.4,Number,208.6,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.6:
+          var T_Name = "あいね";
+          var Text = "ごめんなさい…。";
+          Datas = [40,0,22,15,0,0,26,15,T_Name,Text,Rewind,208.5,Number,208.7,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.7:
+          var T_Name = Name;
+          var Text = "(完全にタイミングを失ってしまった…。)";
+          Datas = ["Black",10,23,0,0,0,26,0,T_Name,Text,Rewind,208.6,Number,208.8,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.8:
+          var T_Name = "お叱りエンド";
+          var Text = "このエンドにたどり着くとはなかなかやりますね！";
+          Datas = ["Black",0,23,0,0,0,26,0,T_Name,Text,Rewind,208.7,Number,208.9,0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 208.9:
+          var T_Name = "お叱りエンド";
+          var Text = "このエンドにたどり着くとはなかなかやりますね！(改行)ゲームオーバーですが。";
+          Datas = ["Black",0,23,0,0,0,26,0,T_Name,Text,Rewind,208.8,Number,"ゲームオーバー",0,false,false,"やっぱり必要だった",0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 209:
+          Flag = R_S(Number,Flag,212);
+          Flag[5] = false;
+          var T_Name = Name;
+          var Text = "ちょっ…　あっ！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip,"0450,0852,15",1];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 210:
           var T_Name = "あいね";
-          var Text = "アイカツカード…？これって"+Name+"ちゃんがデザインしたドレスだよね？";
-          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Number-1,205,Number,0,Number+1,0,0];
+          var Text = "…？";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip,"0450,0852,0",1];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 211:
+          var T_Name = "あいね";
+          var Text = "アイカツカード…？(改行)これって"+Name+"ちゃんがデザインしたドレスだよね？";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip,"0450,0450,0",1];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 212:
+          var C1 = "…";
+          var C2 = "そうよ…";
+          var C3 = 0;
+          var C4 = 0;
+          Datas = [41,22,0,26,C1,C2,C3,C4,205,213,0,0,Rewind,Before,Number];
+          core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 213:
+          Flag = R_S(Number,Flag,215);
+          var T_Name = Name;
+          var Text = "そうよ…(改行)あいねのためにデザインしたの。";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 214:
+          var T_Name = "あいね";
+          var Text = "私のため？";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 215:
+          var C1 = "…";
+          var C2 = "ドラマチックとかどうでもいい！";
+          var C3 = 0;
+          var C4 = 0;
+          Datas = [41,22,0,26,C1,C2,C3,C4,0,216,0,0,Rewind,Before,Number];
+          core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 216:
+          Flag = R_S(Number,Flag,248);
+          var T_Name = Name;
+          var Text = "あ〜！もう！(改行)こうなったらドラマチックとかどうでもいい！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 217:
+          var T_Name = "あいね";
+          var Text = Name + "ちゃん(改行)立つと危ないよ！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 218:
+          var T_Name = Name;
+          var Text = "あいね…。";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 219:
+          var T_Name = Name;
+          var Text = "あいね…。(改行)私とフレンズになって。";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 220:
+          var T_Name = "あいね";
+          var Text = "え…";
+          if(Flag[4]) After = 221;
+          else After = 222;
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 221:
+          var T_Name = "汽笛";
+          var Text = "ボー";
+          Datas = [42,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 222:
+          var T_Name = "あいね";
+          var Text = "…";
+          if(Flag[4]){
+            Before = 221;
+            var a = 15;
+          }
+          else{
+            Before = 220;
+            var a = 0;
+          }
+          Datas = [41,0,22,a,0,0,26,a,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 223:
+          var T_Name = Name;
+          var Text = "(そっか…)";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 224:
+          var T_Name = Name;
+          var Text = "(そっか…(改行) そうよね。あいねはなこちゃんと…)";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 225:
+          var T_Name = "あいね";
+          var Text = "うわ〜っ！嬉しい！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 226:
+          var T_Name = "あいね";
+          var Text = "うわ〜っ！嬉しい！(改行)ありがとう！"+Name+"ちゃん！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 227:
+          var T_Name = "あいね";
+          var Text = "うわ〜っ！嬉しい！(改行)ありがとう！"+Name+"ちゃん！(改行)私も"+Name+"ちゃんとフレンズになりたいって(改行)すっごくすっごく思ってた！";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 228:
+          var T_Name = Name;
+          var Text = "あいね…";
+          Datas = [41,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 229:
+          var T_Name = "(ココ)";
+          var Text = "(この観覧車でゴンドラが(改行) 一番高くなったところで告白すると(改行) 二人はず〜っと　幸せになれるんだって。)";
+          Datas = [46,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 230:
+          var T_Name = "なこ";
+          var Text = "フレンズ結成おめでとう！(改行)あいねちゃん。";
+          Datas = [36,0,22,15,0,0,24,15,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 231:
+          var T_Name = "あいね";
+          var Text = "うん！ありがとう。";
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 232:
+          var T_Name = "なこ";
+          var Text = "ほんとよかったね、あいねちゃん(改行)"+Name+"ちゃんとフレンズになる為に(改行)すごく頑張ってたもんね。";
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 233:
+          var T_Name = Name;
+          var Text = "え。";
+          Datas = [36,0,26,15,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 234:
+          var T_Name = "なこ";
+          var Text = "目指せ　ランニング100万キロ！とか。";
+          Datas = [36,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 235:
+          var T_Name = "あいね";
+          var Text = "わ〜っ　わ〜っ　わ〜っ！";
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 236:
+          var T_Name = "あいね";
+          var Text = "わ〜っ　わ〜っ　わ〜っ！(改行)それ　"+Name+"ちゃんに言っちゃだめ！";
+          Datas = [36,0,22,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 237:
+          var T_Name = Name;
+          var Text = "100万キロって地球何十周分よ？";
+          Datas = [36,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 238:
+          var T_Name = Name;
+          var Text = "ごめんね。なこちちゃんもあいねとフレンズを…。";
+          Datas = [36,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 239:
+          var T_Name = "着信音";
+          var Text = "(ピロリ)";
+          Datas = [36,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 240:
+          var T_Name = "なこ";
+          var Text = "あっ仕事終わったからこれから会おう。";
+          Datas = [36,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 241:
+          var T_Name = "なこ";
+          var Text = "あっ仕事終わったからこれから会おう。(改行)よ〜し！　あいねちゃんのおかげで勇気出たし、(改行)私もフレンズ組もうって申し込んでみるよ。";
+          Datas = [36,0,26,0,0,0,24,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 242:
+          var T_Name = "なこ";
+          var Text = "あっ仕事終わったからこれから会おう。(改行)よ〜し！　あいねちゃんのおかげで勇気出たし、(改行)私もフレンズ組もうって申し込んでみるよ。(改行)また遊ぼうね、あいねちゃん！";
+          Datas = [36,0,26,0,0,0,24,-15,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 243:
+          var T_Name = Name;
+          var Text = "えっと…　どういうこと？";
+          Datas = [36,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 244:
+          var T_Name = "あいね";
+          var Text = "なこちゃん　この間イベントで知り合った子と(改行)すっごく仲良くなって　そのことフレンズを組みたい(改行)って思ってたんだけど";
+          Datas = [36,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 245:
+          var T_Name = "あいね";
+          var Text = "なこちゃんは中学を卒業するまで(改行)名古屋にいるつもりだから(改行)遠距離フレンズがうまくいくか不安だった見たい。";
+          Datas = [36,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 246:
+          var T_Name = Name;
+          var Text = "…";
+          Datas = [36,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 247:
+          var T_Name = Name;
+          var Text = "…(改行)そういうことか。";
+          Datas = [36,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 248:
+          Flag = R_S(Number,Flag,254);
+          Flag[9] = false;
+          var T_Name = "パシフィコ横浜";
+          var Text = "(フレンズ結成お披露目ライブ)";
+          Datas = [47,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 249:
+          var T_Name = Name;
+          var Text = "ここからだよ。";
+          Datas = [48,0,22,15,0,0,26,15,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 250:
+          var T_Name = "あいね";
+          var Text = "うん。";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 251:
+          var T_Name = Name;
+          var Text = "ここから、私たちのアイカツの、(改行)新しい一歩がスタートする。";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 252:
+          var T_Name = "あいね";
+          var Text = "なんか緊張する…。でも…";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 253:
+          var T_Name = "あいね";
+          var Text = "なんか緊張する…。でも…(改行)"+Name+"ちゃんとフレンズを組めば(改行)きっとすごいことが起きるって(改行)すっごくドキドキしてるんだ。";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 254:
+          var C1 = "ええ。";
+          var C2 = "もちろん！";
+          var C3 = "私もそう思う。";
+          var C4 = 0;
+          if(Flag[4]) C4 = "うん　知ってた。";
+          Datas = [48,22,0,26,C1,C2,C3,C4,255,256,257,258,Rewind,Before,Number];
+          core.replaceScene(ChoiceScene(Datas,Flag));
+          break;
+        case 255:
+          Flag = R_S(Number,Flag,260);
+          Flag[11] = true;
+          var T_Name = Name;
+          var Text = "ええ。";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,259,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 256:
+          Flag = R_S(Number,Flag,260);
+          Flag[12] = true;
+          var T_Name = Name;
+          var Text = "もちろん！私たちでビッグバンを起こすのよ！";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,259,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 257:
+          Flag = R_S(Number,Flag,260);
+          Flag[13] = true;
+          var T_Name = Name;
+          var Text = "私もそう思う。";
+          Datas = [48,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,259,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 258:
+          Flag[10] = true;
+          Flag = R_S(Number,Flag,260);
+          var T_Name = Name;
+          var Text = "うん　知ってた。";
+          Datas = [50,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 259:
+          if(Flag[10]) Before = 258;
+          if(Flag[11]) Before = 255;
+          if(Flag[12]) Before = 256;
+          if(Flag[13]) Before = 257;
+          var T_Name = "二人";
+          var Text = "私たち　ピュアパレットです！";
+          Datas = [49,0,0,0,0,0,0,0,T_Name,Text,0,Before,Number,After,Skip];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 260:
+          var Percent = 0;
+          if(Flag[4]) Percent += 50;
+          if(Flag[10]) Percent += 50;
+          var T_Name = "クリア";
+          var Text = "正解率"+Percent+"パーセント";
+          Datas = [49,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,"ゲームオーバー",0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case "タイトルに戻る":
@@ -1639,10 +2328,20 @@ function Load(width,height){
           if(window.localStorage.getItem("Save")=="マニュアル") Datas[5] = "セーブ読み込み";
           core.replaceScene(ChoiceScene(Datas,Flag));
           break;
+        case "未設定":
+          Datas = ["Black",0,0,0,0,0,0,0,"作者","開発中",0,0,0,"シーンを外す",0];
+          core.pushScene(MainScene(Datas,Return,Flag));
+          break;
         default:
           if(Item){
-            Number = Number.substring(Item.length)*1;
-            core.pushScene(ItemgetScene(0,"ここでは使えないようだ。",Number,Flag));
+            if(Number.substring(Number.length-5)=="つきつける"){
+              Number = Number.substring(0,Number.length-Item.length)*1;
+              core.pushScene(ItemgetScene(0,"反応がない。",Number,Flag));
+            }
+            else{
+              Number = Number.substring(0,Number.length-Item.length)*1;
+              core.pushScene(ItemgetScene(0,"ここでは使えないようだ。",Number,Flag));
+            }
           }
           else{
             //(背景,背景時間,(キャラ番号,時間)*3,名前,文章,前,今,次,トロフィー,トロフィー画像
@@ -1669,8 +2368,12 @@ function Load(width,height){
           Datas = [58,917,717,333,85,"しない","双眼鏡"];
           core.pushScene(InspectScene(Datas,Flag));
           break;
+        case "使い古された包丁":
+          Datas = [58,917,717,333,85,"しない","包丁"];
+          core.pushScene(InspectScene(Datas,Flag));
+          break;
         default:
-          Datas = ["Black",1600,900,0,0,"？？？",191];
+          Datas = ["Black",1600,900,0,0,"しない","未設定"];
           core.pushScene(InspectScene(Datas,Flag));
           break;
       }
@@ -1682,9 +2385,9 @@ function Load(width,height){
         var Data = false;
         Flag = [];
         window.localStorage.setItem("flag",Flag);
-        window.localStorage.setItem("gender","男");
-        window.localStorage.setItem("name","俛人");
-        window.localStorage.setItem("surname","若辻");
+        window.localStorage.setItem("gender","女");
+        window.localStorage.setItem("name","みお");
+        window.localStorage.setItem("surname","湊");
       }
       else var Data = true;
 
@@ -1771,7 +2474,6 @@ function Load(width,height){
         window.localStorage.setItem("Number",Datas[12]);
       }
 
-
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/背景/"+ Datas[0] +".png"];
       Background.x = 0;
@@ -1791,12 +2493,6 @@ function Load(width,height){
         }
       }
       scene.addChild(Background);//背景
-
-      var White = new Sprite(1600,900);
-      White.image = core.assets["image/white.png"];
-      White.x = 0;
-      White.y = 900;
-      scene.addChild(White);//白地
 
       if(Datas[2]!=false){
         var Character1 = new Sprite(800,900);
@@ -1893,6 +2589,12 @@ function Load(width,height){
         scene.addChild(Item);
       }//アイテム
 
+      var White = new Sprite(1600,900);
+      White.image = core.assets["image/white.png"];
+      White.x = 0;
+      White.y = 900;
+      scene.addChild(White);//白地
+
       if(Datas[8]!=""){
         var C_name = new Label();
         C_name.font  = "60px monospace";
@@ -1905,16 +2607,36 @@ function Load(width,height){
         scene.addChild(C_name);//キャラ名
       }
 
-      var Text = new Label();
-      Text.font  = "60px monospace";
-      Text.color = 'black';
-      Text.x = 60;
-      Text.y = 1040;
-      Text.width = 1480;
-      Text.height = 800;
-      Text.text = Datas[9];
-      if(Text.text.substring(0,1)=="("&&Text.text.substring(Text.text.length-1)==")") Text.color = "blue";
-      scene.addChild(Text);//テキスト
+      var Numbers = 1040;
+
+      var Texts = Class.create(Label, {
+        initialize: function(a) {
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 60;
+          this.y = Numbers;
+          this.width = 2000;
+          this.height = 60;
+          this.text = a;
+          if(a.substring(0,1)=="("&&a.substring(a.length-1)==")") this.color = "blue";
+          Numbers += 100;
+          scene.addChild(this);
+        }
+      });
+
+      var Text = Datas[9].split("(改行)");
+
+      for (var i = 0; i < Text.length; i++) {
+        Text[i] = new Texts(Text[i]);
+      }
+
+
+      if(Text[0].text.substring(0,1)=="("&&Text[i-1].text.substring(Text[i-1].text.length-1)==")"){
+        for (var i = 0; i < Text.length; i++) {
+          Text[i].color = "blue";
+        }
+      }
 
       if(Datas[10]!=false){
         var Return1 = new Sprite(320,60);
@@ -2246,15 +2968,28 @@ function Load(width,height){
       C_name.text = "【" + Datas[1] + "】";
       scene.addChild(C_name);//キャラ名
 
-      var Text = new Label();
-      Text.font  = "60px monospace";
-      Text.color = 'black';
-      Text.x = 60;
-      Text.y = 1040;
-      Text.width = 1480;
-      Text.height = 800;
-      Text.text = Datas[2];
-      scene.addChild(Text);//テキスト
+      var Numbers = 1040;
+
+      var Texts = Class.create(Label, {
+        initialize: function(a) {
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 60;
+          this.y = Numbers;
+          this.width = 2000;
+          this.height = 60;
+          this.text = a;
+          Numbers += 100;
+          scene.addChild(this);
+        }
+      });//テキスト
+
+      var Text = Datas[2].split("(改行)");
+
+      for (var i = 0; i < Text.length; i++) {
+        Text[i] = new Texts(Text[i]);
+      }
 
       var Button1 = new Sprite(320,60);
       Button1.image = core.assets["image/Buttons.png"];
@@ -2312,11 +3047,6 @@ function Load(width,height){
     };
     var SettingScene = function(Number,Flag){
       var scene = new Scene();                                // 新しいシーンを作る
-
-      if(window.localStorage.getItem("name")==""){
-        window.localStorage.setItem("name","十代")
-        window.localStorage.setItem("surname","遊城")
-      }
 
       var Background = new Sprite(1600,1600);
       Background.image = core.assets["image/Background.png"];
@@ -2562,14 +3292,22 @@ function Load(width,height){
         window.localStorage.setItem("surname",S_Input._element.value);
         window.localStorage.setItem("name",S_Input2._element.value);
         if(Round.x == Text9.x){
+          if(S_Input2._element.value=="チートマン"){
+            core.popScene();
+            core.popScene();
+            Flag = [];
+            Flag[99] = false;
+            Scene_loads(S_Input._element.value*1,false,Flag,false);
+            return;
+          }
           window.localStorage.setItem("gender","男");
-          if(S_Input._element.value=="") window.localStorage.setItem("surname","若辻");
-          if(S_Input2._element.value=="") window.localStorage.setItem("name","俛人");
+          if(S_Input._element.value=="") window.localStorage.setItem("surname","青眼の");
+          if(S_Input2._element.value=="") window.localStorage.setItem("name","白龍");
         }
         else{
           window.localStorage.setItem("gender","女");
-          if(S_Input._element.value=="") window.localStorage.setItem("surname","防人");
-          if(S_Input2._element.value=="") window.localStorage.setItem("name","玲奈");
+          if(S_Input._element.value=="") window.localStorage.setItem("surname","湊");
+          if(S_Input2._element.value=="") window.localStorage.setItem("name","みお");
         }
         core.assets["sound/Item.wav"].play();
         scene.addChild(Text12);
@@ -2592,204 +3330,82 @@ function Load(width,height){
       Background.y = 0;
       scene.addChild(Background);
 
-      var Text = new Label();
-      Text.font  = "60px monospace";
-      Text.color = 'black';
-      Text.x = 200;
-      Text.y = 200;
-      Text.width = 1600;
-      Text.height = 60;
-      Text.text = "▶ 戻る";
-      scene.addChild(Text);
+      var Text1 = new Label();
+      Text1.font  = "60px monospace";
+      Text1.color = 'black';
+      Text1.x = 200;
+      Text1.y = 200;
+      Text1.width = 1600;
+      Text1.height = 60;
+      Text1.text = "▶ 戻る";
+      scene.addChild(Text1);
 
       var Text2 = new Label();
       Text2.font  = "60px monospace";
       Text2.color = 'black';
       Text2.x = 200;
-      Text2.y = 400;
-      Text2.width = 1600;
-      Text2.height = 60;
-      Text2.text = "未取得";
-      if(window.localStorage.getItem("カレン強奪事件")!=undefined) Text2.text = "カレン強奪事件";
+      Text2.y = 1100;
+      Text2.width = 1200;
+      Text2.height = 180;
+      Text2.text = "";
       scene.addChild(Text2);
 
-      var Text3 = new Label();
-      Text3.font  = "60px monospace";
-      Text3.color = 'black';
-      Text3.x = 200;
-      Text3.y = 500;
-      Text3.width = 1600;
-      Text3.height = 60;
-      Text3.text = "未取得";
-      if(window.localStorage.getItem("犯行の手口")!=undefined) Text3.text = "犯行の手口";
-      scene.addChild(Text3);
+      var Numbers = 300;
 
-      var Text4 = new Label();
-      Text4.font  = "60px monospace";
-      Text4.color = 'black';
-      Text4.x = 200;
-      Text4.y = 300;
-      Text4.width = 1600;
-      Text4.height = 60;
-      Text4.text = "未取得";
-      if(window.localStorage.getItem("即決！")!=undefined) Text4.text = "即決！";
-      scene.addChild(Text4);
+      var Texts = Class.create(Label, {
+        initialize: function(a,b,c) {
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 200;
+          this.y = Numbers;
+          this.width = 1600;
+          this.height = 60;
+          this.text = "未獲得";
+          this.syousai = b;
+          if(window.localStorage.getItem(a)=="獲得！"){
+            this.text = a;
+            this.syousai = c;
+          }
+          Numbers += 100;
+          scene.addChild(this);
+        }
+      });
 
-      var Text5 = new Label();
-      Text5.font  = "60px monospace";
-      Text5.color = 'black';
-      Text5.x = 200;
-      Text5.y = 600;
-      Text5.width = 1600;
-      Text5.height = 60;
-      Text5.text = "未取得";
-      if(window.localStorage.getItem("電話")!=undefined) Text5.text = "電話";
-      scene.addChild(Text5);
+      var Text = [];
+      Text[0] = new Texts("即決！","すぐさまフレンズを結成しよう。","実際にこれぐらいの勢いがあれば友達もっといるんだろうなぁ。あ、みおちゃんの話だよ。");
+      Text[1] = new Texts("カレン強奪事件","復習は大事","ラブミーティアの結成秘話。実際には噂が一人歩きしたものである。そういう意味では神話というのは正しいのかもしれない。ちなみに、カレンさんもこの話がお気に入りである。");
+      Text[2] = new Texts("犯行の手口","実際にやるなよ。","あいねちゃんを監視するための手段。実際にはリフレクトムーンの目撃情報の集計である。ネットリテラシーの欠片もない。");
+      Text[3] = new Texts("電話","そんなこと電話で済ますか…？","夜分遅くに電話かけるのはよくないよ。あいねちゃんだから許してくれるけど。");
+      Text[4] = new Texts("やっぱり必要だった","命は預けた。","アイカツカードはちゃんと持っとかないと。");
+      Text[5] = new Texts("字面が面白い","プライドを布教しよう。","ちなみに渡そうと思えば何回でも渡せる。");
 
-      var Text10 = new Label();
-      Text10.font  = "60px monospace";
-      Text10.color = 'black';
-      Text10.x = 200;
-      Text10.y = 1100;
-      Text10.width = 1200;
-      Text10.height = 180;
-      Text10.text = "";
-      scene.addChild(Text10);
-
-      Text.addEventListener('touchstart',function(e){
+      Text1.addEventListener('touchstart',function(e){
         core.popScene();
         return;
       });
 
-      Text2.addEventListener('touchstart',function(e){
-        if(window.localStorage.getItem("カレン強奪事件")!=undefined){
-          Text2.text = "▶ カレン強奪事件";
-          Text10.text = "ラブミーティアの結成秘話。実際には噂が一人歩きしたものである。そういう意味では神話というのは正しいのかもしれない。ちなみに、カレンさんもこの話がお気に入りである。";
-        }
-        else{
-          Text2.text = "▶ 未取得";
-          Text10.text = "復習は大事。";
-        }
-        Text2.color = "red";
-        if(window.localStorage.getItem("犯行の手口")!=undefined){
-          Text3.text = "犯行の手口";
-        }
-        else{
-          Text3.text = "未取得";
-        }
-        Text3.color = "black";
-        if(window.localStorage.getItem("即決！")!=undefined){
-          Text4.text = "即決！";
-        }
-        else{
-          Text4.text = "未取得";
-        }
-        Text4.color = "black";
-        if(window.localStorage.getItem("電話")!=undefined){
-          Text5.text = "電話";
-        }
-        else{
-          Text5.text = "未取得";
-        }
-        Text5.color = "black";
-        return;
-      });
-
-      Text3.addEventListener('touchstart',function(e){
-        if(window.localStorage.getItem("カレン強奪事件")!=undefined){
-          Text2.text = "カレン強奪事件";
-        }
-        else{
-          Text2.text = "未取得";
-        }
-        Text2.color = "black";
-        if(window.localStorage.getItem("犯行の手口")!=undefined){
-          Text3.text = "▶ 犯行の手口";
-          Text10.text = "あいねちゃんを監視するための手段。実際にはリフレクトムーンの目撃情報の集計である。ネットリテラシーの欠片もない。";
-        }
-        else{
-          Text3.text = "▶ 未取得";
-          Text10.text = "現実ではやっちゃあ駄目だよ！ココとのお約束！";
-        }
-        Text3.color = "red";
-        if(window.localStorage.getItem("即決！")!=undefined){
-          Text4.text = "即決！";
-        }
-        else{
-          Text4.text = "未取得";
-        }
-        Text4.color = "black";
-        if(window.localStorage.getItem("電話")!=undefined){
-          Text5.text = "電話";
-        }
-        else{
-          Text5.text = "未取得";
-        }
-        Text5.color = "black";
-        return;
-      });
-
-      Text4.addEventListener('touchstart',function(e){
-        if(window.localStorage.getItem("カレン強奪事件")!=undefined){
-          Text2.text = "カレン強奪事件";
-        }
-        else{
-          Text2.text = "未取得";
-        }
-        Text2.color = "black";
-        if(window.localStorage.getItem("犯行の手口")!=undefined){
-          Text3.text = "犯行の手口";
-        }
-        else{
-          Text3.text = "未取得";
-        }
-        Text3.color = "black";
-        if(window.localStorage.getItem("即決！")!=undefined){
-          Text4.text = "▶ 即決！";
-          Text10.text = "実際にこれぐらいの勢いがあれば友達もっといるんだろうなぁ。";
-        }
-        else{
-          Text4.text = "▶ 未取得";
-          Text10.text = "迷ってる暇などない！";
-        }
-        Text4.color = "red";
-        if(window.localStorage.getItem("電話")!=undefined){
-          Text5.text = "電話";
-        }
-        else{
-          Text5.text = "未取得";
-        }
-        Text5.color = "black";
-        return;
-      });
-
-      Text5.addEventListener('touchstart',function(e){
-        if(window.localStorage.getItem("カレン強奪事件")!=undefined){
-          Text2.text = "カレン強奪事件";
-        }
-        else Text2.text = "未取得";
-        Text2.color = "black";
-        if(window.localStorage.getItem("犯行の手口")!=undefined){
-          Text3.text = "犯行の手口";
-        }
-        else Text3.text = "未取得";
-        Text3.color = "black";
-        if(window.localStorage.getItem("即決！")!=undefined){
-          Text4.text = "即決！";
-        }
-        else Text4.text = "未取得";
-        Text4.color = "black";
-        if(window.localStorage.getItem("電話")!=undefined){
-          Text5.text = "▶ 電話";
-          Text10.text = "夜分遅くに電話かけるのはよくないよ。あいねちゃんだから許してくれるけど。";
-        }
-        else{
-          Text5.text = "▶ 未取得";
-          Text10.text = "大事なことだけど電話ですませちゃう。しかも夜分遅くに。";
-        }
-        Text5.color = "red";
-        return;
-      });
+      for (var i = 0; i < Text.length; i++){
+        Text[i].addEventListener('touchstart',function(e){
+          if(this.color=="black"){
+            this.text = "▶ " + this.text;
+            this.color = "red";
+            Text2.text = this.syousai;
+          }
+          else{
+            this.text = this.text.substring(2);
+            this.color = "black";
+            Text2.text = "";
+          }
+          for (var k = 0; k < Text.length; k++){
+            if(Text[k].color=="red"&&this!=Text[k]){
+              Text[k].text = Text[k].text.substring(2);
+              Text[k].color = "black";
+            }
+          }
+          return;
+        });
+      }
 
       return scene;
     };
@@ -2880,15 +3496,28 @@ function Load(width,height){
       Background.y = 900;
       scene.addChild(Background);
 
-      var Text = new Label();
-      Text.font  = "60px monospace";
-      Text.color = 'black';
-      Text.x = 60;
-      Text.y = 1040;
-      Text.width = 1480;
-      Text.height = 800;
-      Text.text = b;
-      scene.addChild(Text);//テキスト
+      var Numbers = 1040;
+
+      var Texts = Class.create(Label, {
+        initialize: function(a) {
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 60;
+          this.y = Numbers;
+          this.width = 2000;
+          this.height = 60;
+          this.text = a;
+          Numbers += 100;
+          scene.addChild(this);
+        }
+      });//テキスト
+
+      var Text = b.split("(改行)");
+
+      for (var i = 0; i < Text.length; i++) {
+        Text[i] = new Texts(Text[i]);
+      }
 
       var Enter = new Sprite(320,60);
       Enter.image = core.assets["image/Buttons.png"];
@@ -2896,7 +3525,7 @@ function Load(width,height){
       Enter.y = height-65;
       Enter.frame = 5;
       scene.addChild(Enter);
-      if(b!="ここでは使えないようだ。"){
+      if(b!="ここでは使えないようだ。"&&b!="反応がない。"){
         var Item = new Sprite(800,800);
         Item.image = core.assets["image/Item_B.png"];
         Item.x = 1600;
@@ -2914,7 +3543,7 @@ function Load(width,height){
       }
 
       Enter.addEventListener('touchstart',function(e){
-        if(b=="ここでは使えないようだ。") {
+        if(b=="ここでは使えないようだ。"||b=="反応がない。") {
           core.popScene();
           Scene_loads(c,true,Flag,false);
         }
@@ -2939,8 +3568,6 @@ function Load(width,height){
       Background.y = 0;
       scene.addChild(Background);
 
-      var Numbers = 400;
-
       var Item_image = new Sprite(400,400);
       Item_image.image = core.assets["image/Item_S.png"];
       Item_image.x = 1000;
@@ -2955,7 +3582,7 @@ function Load(width,height){
       Text1.y = 200;
       Text1.width = 1600;
       Text1.height = 60;
-      Text1.text = "▶ 戻る";
+      Text1.text = "▶ 閉じる";
       scene.addChild(Text1);
 
       var Text2 = new Label();
@@ -3030,32 +3657,63 @@ function Load(width,height){
       Text8.text = "";
       scene.addChild(Text8);
 
+      var Text9 = new Label();
+      Text9.font  = "60px monospace";
+      Text9.color = 'black';
+      Text9.x = 200;
+      Text9.y = 1400;
+      Text9.width = 1380;
+      Text9.height = 60;
+      Text9.text = "◀ 前";
+
+      var Text10 = new Label();
+      Text10.font  = "60px monospace";
+      Text10.color = 'black';
+      Text10.x = 600;
+      Text10.y = 1400;
+      Text10.width = 1380;
+      Text10.height = 60;
+      Text10.text = "▶ 次";
+
+      var Numbers = 400;
+      var Numbers2 = 200;
+
       var Items = Class.create(Label, {
-        initialize: function(a,b,c) {
-          Label.call(this);
-          this.font  = "60px monospace";
-          this.color = 'black';
-          this.x = 200;
-          this.y = Numbers;
-          this.width = 1600;
-          this.height = 60;
-          this.text = a;
-          if(Flag[b]==true){
+        initialize: function(a,b) {
+            Label.call(this);
+            this.font  = "60px monospace";
+            this.color = 'black';
+            this.x = Numbers2;
+            this.y = Numbers;
+            this.width = 1600;
+            this.height = 60;
+            this.text = a;
             Numbers += 100;
             scene.addChild(this);
+            if(Numbers2==1800){
+              scene.addChild(Text9);
+              scene.addChild(Text10);
+            }
+            if(Numbers==900){
+              Numbers = 400;
+              Numbers2 += 1600;
+            }
+            if(b) this.syousai = "▶ " + b;
+            else this.syousai = "";
+            Item_Number ++;
           }
-          if(c) this.syousai = "▶ " + c;
-          else this.syousai = "";
-        }
       });
 
       var Item = [];
       var Choice_Item = "未設定";
-      Item[0] = new Items("アイカツカード",5,"詳細");
-      Item[1] = new Items("双眼鏡",9,"調べる");
-      Item[2] = new Items("プライド",6,"再生");
-      Item[3] = new Items("偶然、必然。",7,"再生");
-      Item[4] = new Items("永遠の灯",8,"再生");
+      var Item_Number = 0;
+
+      if(Flag[5]) Item[Item_Number] = new Items("アイカツカード","詳細");
+      if(Flag[9]) Item[Item_Number] = new Items("双眼鏡","調べる");
+      if(Flag[6]) Item[Item_Number] = new Items("プライド","再生");
+      if(Flag[7]) Item[Item_Number] = new Items("偶然、必然。","再生");
+      if(Flag[8]) Item[Item_Number] = new Items("永遠の灯","再生");
+      if(Flag[23]) Item[Item_Number] = new Items("使い古された包丁","調べる");
 
       function Item_text(a,b){
         a = a.substring(2);
@@ -3112,7 +3770,16 @@ function Load(width,height){
             else Text8.text = "▶ 再生";
             return(Text[b]);
             break;
+          case "使い古された包丁":
+            Item_image.frame = 6;
+            Text[0] = "包丁。";
+            Text[1] = "手入れが必要だろう。";
+            Text[2] = "";
+            Text[3] = "";
+            return(Text[b]);
+            break;
           default:
+            Item_image.frame = 0;
             return("開発中");
             break;
         }
@@ -3131,16 +3798,9 @@ function Load(width,height){
       });
 
       Text3.addEventListener('touchstart',function(e){
-        if(this.text=="▶ 使う"){
-          core.popScene();
-          if(Datas.length==13){
-            if(Datas[11]!=false) Number = Datas[11];
-          }
-          else Number = Datas[13]*1;
-          Scene_loads(Number,true,Flag,Choice_Item);
-        }
+        core.popScene();
+        if(this.text=="▶ 使う") Scene_loads(Number,true,Flag,Choice_Item);
         else{
-          core.popScene();
           if(Ig==Choice_Item) core.pushScene(PopScene(Number,"異議あり！",Flag));
           else if(Ig=="日常") Scene_loads(Number,true,Flag,Choice_Item+"つきつける");
           else core.pushScene(PopScene(41,"異議あり！",Flag));
@@ -3162,14 +3822,45 @@ function Load(width,height){
         }
         else if(this.text=="▶ 調べる") Inspect_loads(Choice_Item,Flag);
         else{
+          var Syousai = "詳細";
           switch (Choice_Item) {
             case "アイカツカード":
-              Number = 0;
+              Syousai = 0;
               break;
             default:
               return;
           }
-          core.pushScene(DetailsScene(Number));
+          core.pushScene(DetailsScene(Syousai));
+        }
+        return;
+      });
+
+      Text9.addEventListener('touchstart',function(e){
+        if(Item[0].x==200){
+          for (var i = 0; i < Item.length; i++){
+            Item[i].x -= 1600*((Item.length-Item.length%5)/5);
+            if(Item.length%5==0) Item[i].x += 1600;
+          }
+        }
+        else{
+          for (var i = 0; i < Item.length; i++){
+            Item[i].x += 1600;
+          }
+        }
+        return;
+      });
+
+      Text10.addEventListener('touchstart',function(e){
+        if(Item[Item.length-1].x==200){
+          for (var i = 0; i < Item.length; i++){
+            Item[i].x += 1600*((Item.length-Item.length%5)/5);
+            if(Item.length%5==0) Item[i].x -= 1600;
+          }
+        }
+        else{
+          for (var i = 0; i < Item.length; i++){
+            Item[i].x -= 1600;
+          }
         }
         return;
       });
