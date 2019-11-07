@@ -8,28 +8,29 @@ function Load(width,height){
   core.preload("image/title.png");
   core.preload("image/right.png");
   core.preload("image/white.png");
+  core.preload("image/stand.png");
   core.preload("image/Item_B.png");
   core.preload("image/Item_S.png");
   core.preload("sound/Choice.wav");
   core.preload("image/Buttons.png");
   core.preload("image/待った！.png");
+  core.preload("sound/プライド.wav");
+  core.preload("sound/永遠の灯.wav");
   core.preload("sound/待った！.wav");
   core.preload("sound/Trophies.wav");
   core.preload("image/Trophies.png");
   core.preload("image/背景/left.png");
   core.preload("image/異議あり！.png");
   core.preload("sound/異議あり！.wav");
+  core.preload("image/背景/stand.png");
   core.preload("image/背景/Black.png");
   core.preload("image/背景/right.png");
+  core.preload("image/背景/裁判長.png");
   core.preload("image/Background.png");
   core.preload("image/Characters.png");
-  core.preload("image/stand.png");
-  core.preload("image/Trophies_image.png");
-  core.preload("image/背景/stand.png");
-  core.preload("image/背景/Transparent.png");
-  core.preload("sound/プライド.wav");
-  core.preload("sound/永遠の灯.wav");
   core.preload("sound/偶然、必然。.wav");
+  core.preload("image/Trophies_image.png");
+  core.preload("image/背景/Transparent.png");
   for (var i = 1; i <= 61; i++){
     core.preload("image/背景/"+i+".png");
   }
@@ -123,9 +124,9 @@ function Load(width,height){
           else Flag[i] = false;
         }
         Flag[0] = Flag[0]*1;//体力
-        Flag[1] = Flag[1]*1;//今どの尋問Sceneか
-        Flag[2] = Flag[2]*1;//戻るScene
-        Flag[3] = Flag[3]*1;//スキップScene
+        Flag[1] = Flag[1]*1;//本編シーンナンバー
+        Flag[2] = Flag[2]*1;//戻るシーンナンバー
+        Flag[3] = Flag[3]*1;//スキップシーンナンバー
       }
       if(Item){
         switch (Item) {
@@ -449,9 +450,7 @@ function Load(width,height){
           var Text = "これまでの『アイカツフレンズ！』。";
           Item_Flag = [];
           Get_Item("アイカツカード","あいねの為にデザインしたアイカツカード。(改行)ピンクパートナーコーデ。",1,"詳細");
-          for (var i = 1; i < 50001; i++) {
-            Get_Item("テストアイテム"+i,"テストのためのアイテム五万個の一つ。(改行)"+i+"個目",0);
-          }
+          Get_Item("テストアイテム","テストのためのアイテム");
           Get_Item("時の魔術師","光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
           Rewrite_Item("時の魔術師","消失");
           Rewrite_Item("アイカツカード","消失");
@@ -468,9 +467,7 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 3:
-          for (var i = 1; i < 50001; i++) {
-            Rewrite_Item("テストアイテム"+i,"消失");
-          }
+          Rewrite_Item("テストアイテム","消失");
           var T_Name = "あいね";
           var Text = "スターハーモニー学園に通う中学２年生。";
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -4029,6 +4026,7 @@ function Load(width,height){
         scene.addChild(Text9);
         scene.addChild(Text10);
       }
+      else Pages = 0;
 
       var Numbers = 400;
 
