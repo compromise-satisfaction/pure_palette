@@ -23,9 +23,9 @@ function Load(width,height){
   core.preload("image/背景/right.png");
   core.preload("image/Background.png");
   core.preload("image/Characters.png");
-  core.preload("image/Test_stand.png");
+  core.preload("image/stand.png");
   core.preload("image/Trophies_image.png");
-  core.preload("image/背景/Test_stand.png");
+  core.preload("image/背景/stand.png");
   core.preload("image/背景/Transparent.png");
   core.preload("sound/プライド.wav");
   core.preload("sound/永遠の灯.wav");
@@ -47,6 +47,8 @@ function Load(width,height){
     var Skip = 0;
     var Before = 0;
     var After = 0;
+    var Item_Flag = [];//所持アイテム
+    var Pages = 0;//アイテムのページ
 
     function R_S(a,b,c){
       b[2] = a;
@@ -56,6 +58,32 @@ function Load(width,height){
       Before = 0;
       return(b);
     }
+
+    function Get_Item(a,b,c,d){
+      Item_Flag[Item_Flag.length] = [a,b,c,d];
+      return;
+    }//アイテムget
+
+    function Rewrite_Item(a,b,c,d,e){
+      for (var i = 0; i < Item_Flag.length; i++) {
+        if(Item_Flag[i][0]==a) break;
+      }
+      if(b=="消失"){
+        Item_Flag[i] = false;
+        var Item_Flag2 = [];
+        k = 0;
+        for (var i = 0; i < Item_Flag.length; i++){
+          if(Item_Flag[i]){
+            Item_Flag2[k] = Item_Flag[i];
+            k++;
+          }
+        }
+        Item_Flag = Item_Flag2;
+        if(Pages==Item_Flag.length) Pages-=5;
+      }
+      else Item_Flag[i] = [b,c,d,e];
+      return;
+    }//アイテム情報の書き換え&Lost
 
     function Scene_loads(Number,Return,Flag,Item){
       var Name = window.localStorage.getItem("name");
@@ -73,6 +101,11 @@ function Load(width,height){
       if(Number=="セーブ読み込み"){
         Number = window.localStorage.getItem("Number")*1;
         Flag = window.localStorage.getItem("flag").split(",");
+        var www = window.localStorage.getItem("Items")*1;
+        for (var i = 0; i < www; i++) {
+          Item_Flag[i] = window.localStorage.getItem("Item"+i).split(",");
+        }
+        console.log(Item_Flag);
         for (var i = 4; i < Flag.length; i++){
           if(Flag[i]=="true") Flag[i] = true;
           else Flag[i] = false;
@@ -82,7 +115,6 @@ function Load(width,height){
         Flag[2] = Flag[2]*1;//戻るScene
         Flag[3] = Flag[3]*1;//スキップScene
       }
-      console.log(Number,Item);
       if(Item){
         switch (Item) {
           case "時の魔術師つきつける":
@@ -101,7 +133,7 @@ function Load(width,height){
               break;
           }
           break;
-          case "時の魔術師":
+          case "時の魔術師 32":
           switch (Number) {
             case 261:
               var Text = "よ～し。";
@@ -403,6 +435,11 @@ function Load(width,height){
           Flag = R_S(Number,Flag,21);
           var T_Name = "友希 あいね";
           var Text = "これまでの『アイカツフレンズ！』。";
+          Item_Flag = [["アイカツカード","あいねの為にデザインしたアイカツカード。(改行)ピンクパートナーコーデ。",1,"詳細"]];
+          for (var i = 1; i < 50001; i++) {
+            Get_Item("時の魔術師 "+i,"光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
+          }
+          Get_Item("時の魔術師","光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
           window.localStorage.setItem("syoken",false);
           Data = true;
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -411,7 +448,10 @@ function Load(width,height){
         case 2:
           var T_Name = "あいね";
           var Text = "私　友希あいね。";
-          Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          Get_Item("双眼鏡","ストーカーの御供。",2,"調べる");
+          var T_Name = "テスト";
+          var Text = "どうでしょうか…？";
+          Datas = ["left",0,32,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 3:
@@ -421,6 +461,7 @@ function Load(width,height){
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 4:
+          Rewrite_Item("双眼鏡","消失");
           var T_Name = "あいね";
           var Text = "学園のトップアイドル　" + Surname +" "+ Name + "ちゃんと出会って(改行)アイドル科に転入したんだ。";
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -2588,8 +2629,6 @@ function Load(width,height){
       var Datas = [];
       //[背景,(幅,高,x座標,y座標,シーンロード又はfalse以外,シーンナンバー]
       if(Item){
-        console.log(Item);
-        console.log(Number);
         switch (Item) {
           case "双眼鏡":
             Datas = [58,917,717,333,85,"しない","双眼鏡"];
@@ -2646,6 +2685,10 @@ function Load(width,height){
       if(window.localStorage.getItem("syoken")!="false"){
         var Data = false;
         Flag = [];
+        for (var i = 0; i < Item_Flag.length; i++) {
+          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+        }
+        window.localStorage.setItem("Items",Item_Flag.length);
         window.localStorage.setItem("flag",Flag);
         window.localStorage.setItem("gender","女");
         window.localStorage.setItem("name","みお");
@@ -2734,6 +2777,10 @@ function Load(width,height){
       if(window.localStorage.getItem("Save")!="マニュアル"&&Datas[12]!=false&&Datas[12]!=1){
         window.localStorage.setItem("flag",Flag);
         window.localStorage.setItem("Number",Datas[12]);
+        for (var i = 0; i < Item_Flag.length; i++) {
+          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+        }
+        window.localStorage.setItem("Items",Item_Flag.length);
       }
 
       var Background = new Sprite(1600,900);
@@ -2826,7 +2873,7 @@ function Load(width,height){
       }//キャラ真ん中
 
       switch (Datas[0]) {
-        case "Test_stand":
+        case "stand":
         case "right":
         case "left":
           var Stand = new Sprite(1600,900);
@@ -2932,7 +2979,7 @@ function Load(width,height){
         Settings.frame = 4;
         scene.addChild(Settings);
         Settings.addEventListener('touchstart',function(e){
-          core.pushScene(ItemScene(Datas[12],Flag,false,0));
+          core.pushScene(ItemScene(Datas[12],Flag,false,Pages));
         });
       }//アイテム
 
@@ -3009,6 +3056,10 @@ function Load(width,height){
       if(window.localStorage.getItem("Save")!="マニュアル"&Datas[14]!="ゲームオーバー"){
         window.localStorage.setItem("flag",Flag);
         window.localStorage.setItem("Number",Datas[14]);
+        for (var i = 0; i < Item_Flag.length; i++) {
+          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+        }
+        window.localStorage.setItem("Items",Item_Flag.length);
       }
 
       var Background = new Sprite(1600,900);
@@ -3062,7 +3113,7 @@ function Load(width,height){
         scene.addChild(C1);
         C1.addEventListener('touchstart',function(e){
           if(C1.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C1.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
+          else if (C1.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
           else Scene_loads(Datas[8],false,Flag,false);
         });
       }
@@ -3079,7 +3130,7 @@ function Load(width,height){
         scene.addChild(C2);
         C2.addEventListener('touchstart',function(e){
           if(C2.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C2.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
+          else if (C2.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
           else Scene_loads(Datas[9],false,Flag,false);
         });
       }
@@ -3096,7 +3147,7 @@ function Load(width,height){
         scene.addChild(C3);
         C3.addEventListener('touchstart',function(e){
           if(C3.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C3.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
+          else if (C3.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
           else Scene_loads(Datas[10],false,Flag,false);
         });
       }
@@ -3113,7 +3164,7 @@ function Load(width,height){
         scene.addChild(C4);
         C4.addEventListener('touchstart',function(e){
           if(C4.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C4.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
+          else if (C4.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
           else Scene_loads(Datas[11],false,Flag,false);
         });
       }
@@ -3150,7 +3201,7 @@ function Load(width,height){
         Settings.frame = 4;
         scene.addChild(Settings);
         Settings.addEventListener('touchstart',function(e){
-          core.pushScene(ItemScene(Datas[14],Flag,false,0));
+          core.pushScene(ItemScene(Datas[14],Flag,false,Pages));
         });
       }
 
@@ -3203,12 +3254,16 @@ function Load(width,height){
       if(window.localStorage.getItem("Save")!="マニュアル"&&Datas[5]!=false){
         window.localStorage.setItem("flag",Flag);
         window.localStorage.setItem("Number",Datas[5]);
+        for (var i = 0; i < Item_Flag.length; i++) {
+          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+        }
+        window.localStorage.setItem("Items",Item_Flag.length);
       }
 
       Flag[1] = Datas[5];
 
       var Background = new Sprite(1600,900);
-      Background.image = core.assets["image/背景/Test_stand.png"];
+      Background.image = core.assets["image/背景/stand.png"];
       Background.x = 0;
       Background.y = 0;
       scene.addChild(Background);//証言席
@@ -3220,11 +3275,11 @@ function Load(width,height){
       Character.frame = Datas[0];
       scene.addChild(Character);//キャラ
 
-      var Test_stand = new Sprite(1600,900);
-      Test_stand.image = core.assets["image/Test_stand.png"];
-      Test_stand.x = 0;
-      Test_stand.y = 0;
-      scene.addChild(Test_stand);//証言台
+      var Stand = new Sprite(1600,900);
+      Stand.image = core.assets["image/stand.png"];
+      Stand.x = 0;
+      Stand.y = 0;
+      scene.addChild(Stand);//証言台
 
       var C_name = new Label();
       C_name.font  = "60px monospace";
@@ -3308,7 +3363,7 @@ function Load(width,height){
       Button5.frame = 7;
       scene.addChild(Button5);
       Button5.addEventListener('touchstart',function(e){
-        core.pushScene(ItemScene(Datas[7],Flag,Datas[8],0));
+        core.pushScene(ItemScene(Datas[7],Flag,Datas[8],Pages));
       });//つきつける
 
       return scene;
@@ -3535,9 +3590,12 @@ function Load(width,height){
 
       Text4.addEventListener('touchstart',function(e){
         if(Text4.text == "▶ セーブする"){
-          console.log(Flag);
           window.localStorage.setItem("flag",Flag);
           window.localStorage.setItem("Number",Number);
+          for (var i = 0; i < Item_Flag.length; i++) {
+            window.localStorage.setItem("Item"+i,Item_Flag[i]);
+          }
+          window.localStorage.setItem("Items",Item_Flag.length);
           core.assets["sound/Item.wav"].play();
           scene.addChild(Text5);
         }
@@ -3829,7 +3887,7 @@ function Load(width,height){
 
       return scene;
     }
-    var ItemScene = function(Number,Flag,Ig,Pages){
+    var ItemScene = function(Number,Flag,Ig){
       var scene = new Scene();                                // 新しいシーンを作る
 
       var Background = new Sprite(1600,1600);
@@ -3945,7 +4003,7 @@ function Load(width,height){
       Text10.height = 60;
       Text10.text = "▶ 次";
 
-      if(Pages!=0){
+      if(Item_Flag.length>5){
         scene.addChild(Text9);
         scene.addChild(Text10);
       }
@@ -3953,7 +4011,7 @@ function Load(width,height){
       var Numbers = 400;
 
       var Items = Class.create(Label, {
-        initialize: function(a,b) {
+        initialize: function(a) {
             Label.call(this);
             this.font  = "60px monospace";
             this.color = 'black';
@@ -3961,61 +4019,36 @@ function Load(width,height){
             this.y = Numbers;
             this.width = 1600;
             this.height = 60;
-            this.text = a;
+            this.text = a[0];
+            var Syousai_text = a[1].split("(改行)");
+            if(Syousai_text[0]) this.text2 = Syousai_text[0];
+            else this.text2 = "";
+            if(Syousai_text[1]) this.text3 = Syousai_text[1];
+            else this.text3 = "";
+            if(Syousai_text[2]) this.text4 = Syousai_text[2];
+            else this.text4 = "";
+            if(Syousai_text[3]) this.text5 = Syousai_text[3];
+            else this.text5 = "";
+            this.image = a[2];
+            if(a[3]) this.text6 = "▶ " + a[3];
+            else this.text6 = "";
             scene.addChild(this);
-            if(b) this.syousai = "▶ " + b;
-            else this.syousai = "";
             Numbers += 100;
+            Item_Number ++;
           }
       });
 
       var Item = [];
       var Choice_Item = "未設定";
-      var Item_Number = Pages;
+      var Item_Number = 0;
 
-      function Item_view(a,b){
-        if(Item_Number>=0&&Item_Number<5){
-          Item[Item_Number] = new Items(a,b);
-        }
-        if(Item_Number==5){
-          scene.addChild(Text9);
-          scene.addChild(Text10);
-        }
-        Item_Number ++;
-        return;
+      for (var i = 0; i < 5; i++) {
+        if(Item_Flag[i+Pages]) Item[Item_Number] = new Items(Item_Flag[i+Pages]);
       }
-
-      if(Flag[5]) Item_view("アイカツカード","詳細");
-      if(Flag[9]) Item_view("双眼鏡","調べる");
-      if(Flag[6]) Item_view("プライド","再生");
-      if(Flag[7]) Item_view("偶然、必然。","再生");
-      if(Flag[8]) Item_view("永遠の灯","再生");
-      if(Flag[23]){
-        if(Flag[25]) Item_view("新品で強靭な包丁","調べる");
-        else if(Flag[26]) Item_view("折れた包丁","調べる");
-        else  Item_view("使い古された包丁","調べる");
-      }
-      if(Flag[24])Item_view("時の魔術師","詳細");
 
       function Item_text(a,b){
         a = a.substring(2);
         switch (a) {
-          case "アイカツカード":
-            Item_image.frame = 1;
-            Text[0] = "あいねの為にデザインしたアイカツカード。";
-            Text[1] = "ピンクパートナーコーデ。";
-            Text[2] = "";
-            Text[3] = "";
-            return(Text[b]);
-            break;
-          case "双眼鏡":
-            Item_image.frame = 2;
-            Text[0] = "ストーカーの御供。";
-            Text[1] = "";
-            Text[2] = "";
-            Text[3] = "";
-            return(Text[b]);
-            break;
           case "プライド":
             Item_image.frame = 3;
             Text[0] = "そこにしかないもの／プライド";
@@ -4058,14 +4091,6 @@ function Load(width,height){
             Text[1] = "手入れが必要だろう。";
             Text[2] = "";
             Text[3] = "";
-            return(Text[b]);
-            break;
-          case "時の魔術師":
-            Item_image.frame = 7;
-            Text[0] = "光属性";
-            Text[1] = "レベル 2";
-            Text[2] = "【魔法使い族/効果】";
-            Text[3] = "攻撃力 500 守備力 400";
             return(Text[b]);
             break;
             case "新品で強靭な包丁":
@@ -4133,7 +4158,7 @@ function Load(width,height){
             case "アイカツカード":
               Syousai = 0;
               break;
-            case "時の魔術師":
+            case "時の魔術師 32":
               Syousai = 1;
               break;
             default:
@@ -4145,37 +4170,33 @@ function Load(width,height){
       });
 
       Text9.addEventListener('touchstart',function(e){
-        if(Pages==0){
-          Pages = -(Item_Number-Item_Number%5);
-          if(Item_Number%5==0) Pages += 5;
-          core.replaceScene(ItemScene(Number,Flag,Ig,Pages));
-        }
-        else core.replaceScene(ItemScene(Number,Flag,Ig,Pages+5));
+        if(Pages==0) Pages = Item_Flag.length-Item_Flag.length%5;
+        else Pages-=5;
+        core.replaceScene(ItemScene(Number,Flag,Ig));
         return;
       });
 
       Text10.addEventListener('touchstart',function(e){
-        if(Item_Number<=5){
-          Pages = 0
-          core.replaceScene(ItemScene(Number,Flag,Ig,Pages));
-        }
-        else core.replaceScene(ItemScene(Number,Flag,Ig,Pages-5));
+        if(Pages > Item_Flag.length) Pages = 0;
+        else Pages+=5;
+        core.replaceScene(ItemScene(Number,Flag,Ig));
         return;
       });
 
       for (var i = 0; i < Item.length; i++){
         Item[i].addEventListener('touchstart',function(e){
           if(this.color=="black"){
+            Item_image.frame = this.image;
             Choice_Item = this.text;
             this.text = "▶ " + this.text;
             this.color = "red";
             if(Ig) Text3.text = "▶ つきつける";
             else Text3.text = "▶ 使う";
-            Text4.text = Item_text(this.text,0);
-            Text5.text = Item_text(this.text,1);
-            Text6.text = Item_text(this.text,2);
-            Text7.text = Item_text(this.text,3);
-            if(this.syousai!="▶ 再生") Text8.text = this.syousai;
+            Text4.text = this.text2;
+            Text5.text = this.text3;
+            Text6.text = this.text4;
+            Text7.text = this.text5;
+            if(this.syousai!="▶ 再生") Text8.text = this.text6;
           }
           else{
             Item_image.frame = 0;
