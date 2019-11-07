@@ -133,7 +133,7 @@ function Load(width,height){
               break;
           }
           break;
-          case "時の魔術師 32":
+          case "時の魔術師":
           switch (Number) {
             case 261:
               var Text = "よ～し。";
@@ -436,10 +436,9 @@ function Load(width,height){
           var T_Name = "友希 あいね";
           var Text = "これまでの『アイカツフレンズ！』。";
           Item_Flag = [["アイカツカード","あいねの為にデザインしたアイカツカード。(改行)ピンクパートナーコーデ。",1,"詳細"]];
-          for (var i = 1; i < 50001; i++) {
-            Get_Item("時の魔術師 "+i,"光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
+          for (var i = 1; i < 25; i++) {
+            Get_Item("時の魔術師","光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
           }
-          Get_Item("時の魔術師","光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
           window.localStorage.setItem("syoken",false);
           Data = true;
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -4158,7 +4157,7 @@ function Load(width,height){
             case "アイカツカード":
               Syousai = 0;
               break;
-            case "時の魔術師 32":
+            case "時の魔術師":
               Syousai = 1;
               break;
             default:
