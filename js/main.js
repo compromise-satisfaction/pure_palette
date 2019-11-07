@@ -24,16 +24,16 @@ function Load(width,height){
   core.preload("image/Background.png");
   core.preload("image/Characters.png");
   core.preload("image/Test_stand.png");
-  core.preload("image/Transparent.png");
   core.preload("image/Trophies_image.png");
   core.preload("image/背景/Test_stand.png");
+  core.preload("image/背景/Transparent.png");
   core.preload("sound/プライド.wav");
   core.preload("sound/永遠の灯.wav");
   core.preload("sound/偶然、必然。.wav");
-  for (var i = 1; i <= 58; i++){
+  for (var i = 1; i <= 61; i++){
     core.preload("image/背景/"+i+".png");
   }
-  for (var i = 0; i <= 0; i++){
+  for (var i = 0; i <= 1; i++){
     core.preload("image/アイテム詳細/"+i+".png");
   }
   core.fps = 100;
@@ -82,9 +82,143 @@ function Load(width,height){
         Flag[2] = Flag[2]*1;//戻るScene
         Flag[3] = Flag[3]*1;//スキップScene
       }
+      console.log(Number,Item);
       if(Item){
-        Number = Number+Item;
-        console.log(Number);
+        switch (Item) {
+          case "時の魔術師つきつける":
+          switch (Number) {
+            case 261:
+              var Text = "よ～し。";
+              Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,"時の魔術師",0];
+              if(Flag[25]) Datas[0] = 60;
+              if(Flag[26]) Datas[0] = 61;
+              core.pushScene(MainScene(Datas,Return,Flag));
+              break;
+            default:
+              var Text = "時の魔術師を召喚！";
+              Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,262,0,"0600,0250,15",7];
+              core.pushScene(MainScene(Datas,false,Flag));
+              break;
+          }
+          break;
+          case "時の魔術師":
+          switch (Number) {
+            case 261:
+              var Text = "よ～し。";
+              Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,"時の魔術師",0];
+              if(Flag[25]) Datas[0] = 60;
+              if(Flag[26]) Datas[0] = 61;
+              core.pushScene(MainScene(Datas,Return,Flag));
+              break;
+            default:
+              var Text = "時の魔術師を召喚！";
+              Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,262,0,"0600,0250,15",7];
+              core.pushScene(MainScene(Datas,false,Flag));
+              break;
+          }
+          break;
+          case "使い古された包丁つきつける":
+          case "新品で強靭な包丁つきつける":
+          case "折れた包丁つきつける":
+          case "使い古された包丁":
+          case "新品で強靭な包丁":
+          case "折れた包丁":
+          switch (Number) {
+            case 261:
+              var Text = "いやいや…どうやって？";
+              Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,261,0];
+              if(Flag[25]) Datas[0] = 60;
+              if(Flag[26]) Datas[0] = 61;
+              core.replaceScene(MainScene(Datas,Return,Flag));
+              break;
+            default:
+              var Text = "(危ないでしょう。)";
+              Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,"シーンを外す",0];
+              core.pushScene(MainScene(Datas,Return,Flag));
+              break;
+          }
+          break;
+          case "アイカツカードつきつける":
+          switch (Number) {
+            case 261:
+              var Text = "流石にアイカツカードじゃ(改行)包丁は手入れできないか。(改行)何か他のカードを…。";
+              Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,261,0];
+              if(Flag[25]) Datas[0] = 60;
+              if(Flag[26]) Datas[0] = 61;
+              core.replaceScene(MainScene(Datas,Return,Flag));
+              break;
+            default:
+              var Text = "(このカードは大事なものだ。)";
+              Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,"シーンを外す",0];
+              core.pushScene(MainScene(Datas,Return,Flag));
+              break;
+          }
+          break;
+          case "包丁":
+            switch (Number) {
+              case 261:
+              break;
+              case 137:
+              case 136:
+                var Text = "よく調べてみましょう。";
+                Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,261,0];
+                if(Flag[25]) Datas[0] = 60;
+                if(Flag[26]) Datas[0] = 61;
+                core.replaceScene(MainScene(Datas,Return,Flag));
+                  break;
+              default:
+                var Text = "(よく調べてみたいけど、(改行)家じゃないと危ないわよね…。)";
+                Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,"シーンを外す",0];
+                core.pushScene(MainScene(Datas,Return,Flag));
+                break;
+            }
+            break;
+          case "プライド":
+            switch (Number) {
+              case 134.9:
+                var T_Name = Name;
+                var Text = "あ、そうだ。(改行)コレをなこちゃんに。";
+                Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,135.1,135.2,135.5,"0600,0250,15",3];
+                core.replaceScene(MainScene(Datas,Return,Flag));
+                break;
+              default:
+                var Text = "(このCDは布教用だから使うといったら布教よね。)";
+                Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,"シーンを外す",0];
+                core.pushScene(MainScene(Datas,Return,Flag));
+                break;
+            }
+            break;
+          case "双眼鏡":
+            switch (Number) {
+                case 147:
+                Flag = R_S(173,Flag,188);
+                var T_Name = Name;
+                var Text = "これって…。";
+                Datas = [34,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,173,174,Skip];
+                core.replaceScene(MainScene(Datas,Return,Flag));
+                break;
+              default:
+                var Text = "双眼鏡は近くに隠れるものがない時使うといいわ。(改行)公園とか。";
+                Datas = ["Transparent",0,0,0,0,0,0,0,Name,Text,0,0,0,"シーンを外す",0];
+                core.pushScene(MainScene(Datas,Return,Flag));
+                break;
+            }
+            break;
+          default:
+            if(Item.substring(Item.length-5)=="つきつける"){
+              var Text = "反応がない。";
+              Datas = ["Transparent",0,0,0,0,0,0,0,"",Text,0,0,0,"シーンを外す",0];
+              core.pushScene(MainScene(Datas,Return,Flag));
+              break;
+            }
+            else{
+              var Text = "ここでは使えないようだ。";
+              Datas = ["Transparent",0,0,0,0,0,0,0,"",Text,0,0,0,"シーンを外す",0];
+              core.pushScene(MainScene(Datas,Return,Flag));
+            }
+            break;
+        }
+        return;
       }
       /*
       Datas[0] = "背景ナンバー";
@@ -262,6 +396,10 @@ function Load(width,height){
           Flag[21] = false;//疑惑
           Flag[22] = false;//嫉妬
           Flag[23] = false;//包丁を所持
+          Flag[24] = false;//時の魔術師を所持
+          Flag[25] = false;//包丁強靭
+          Flag[26] = false;//包丁折れる
+          Flag[27] = false;//自主規制
           Flag = R_S(Number,Flag,21);
           var T_Name = "友希 あいね";
           var Text = "これまでの『アイカツフレンズ！』。";
@@ -1305,12 +1443,6 @@ function Load(width,height){
           Datas = [27,0,22,0,0,0,26,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
-        case "134.9プライド":
-          var T_Name = Name;
-          var Text = "あ、そうだ。(改行)コレをなこちゃんに。";
-          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,135.1,135.2,135.5,"0600,0250,15",3];
-          core.replaceScene(MainScene(Datas,Return,Flag));
-          break;
         case 135.1:
           var T_Name = Name;
           var Text = "あ、そうだ。(改行)コレをなこちゃんに。";
@@ -1339,19 +1471,20 @@ function Load(width,height){
           Flag[6] = false;
           core.assets["sound/プライド.wav"].stop();
           core.assets["sound/プライド.wav"].onplaying = false;
-          core.pushScene(ItemgetScene(3,"プライドを手渡した。",135.6,Flag));
+          core.pushScene(ItemgetScene(3,"プライドを明け渡した。",135.6,Flag));
           break;
         case 135.6:
           var T_Name = "あいね";
           var Text = "それじゃあまたね。";
-          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,Number,136,137,0,0,"字面が面白い",1];
+          Datas = [27,0,22,0,0,0,26,0,T_Name,Text,0,0,Number,136,137,0,0,"使途",1];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 136:
-          if(Flag[22]==false) Rewind = 135;
+          if(Flag[22]) Rewind = 134.1;
+          else Rewind = 135;
           var T_Name = "";
           var Text = "土曜日";
-          Datas = [5,0,0,0,0,0,26,30,T_Name,Text,Rewind,Before,Number,After,Skip];
+          Datas = [5,0,0,0,0,0,26,30,T_Name,Text,Rewind,134.9,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 137:
@@ -1373,10 +1506,26 @@ function Load(width,height){
           core.replaceScene(ChoiceScene(Datas,Flag));
           break;
         case 12345:
-          Datas = [32,"セラ","まず、被害者は溺死です。",1138,0,Number,After,137,"アイカツカード"];
-          core.replaceScene(InterrogationScene(Datas,Flag));
+          Flag = R_S(Number,Flag,147);
+          var Text = "…";
+          Flag[27] = true;
+          Datas = [5,0,0,0,0,0,26,0,Name,Text,Rewind,Before,Number,After,Skip];
+          if(Flag[5]) Datas[0] = 55;
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break
         case 12346:
+          var Text = "…ダメ！";
+          Datas = [5,0,0,0,0,0,26,0,Name,Text,Rewind,Before,Number,After,Skip];
+          if(Flag[5]) Datas[0] = 55;
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break
+        case 12347:
+          var Text = "…ダメ！やっぱり気になる！";
+          Datas = [5,0,0,0,0,0,26,0,Name,Text,Rewind,Before,Number,138,Skip];
+          if(Flag[5]) Datas[0] = 55;
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break
+        case 12348:
           Datas = [32,"何文字書けるかのテストです","「一二三四五六七八九零一二三四五六七八九零一二三四(改行)一二三四五六七八九零一二三四五六七八九零一二三四五(改行)一二三四五六七八九零一二三四五六七八九零一二三四五(改行)一二三四五六七八九零一二三四五六七八九零一二三四五(改行)一二三四五六七八九零一二三四五六七八九零一二三四」",1,Before,Number,Before,137,"アイカツカード"];
           core.replaceScene(InterrogationScene(Datas,Flag));
           break
@@ -1426,8 +1575,12 @@ function Load(width,height){
           if(Flag[6]) Text = "まだCDがある。";
           if(Flag[7]) Text = "更にもう一枚。";
           if(Flag[8]){
-            Text = "流石にもうない。";
+            Text = "さすがにもうない。";
             After = "シーンを外す";
+            if(Flag[23]&&Flag[24]==false){
+              Text = "あれ？これは…。";
+              After = 1148;
+            }
           }
           Datas = [5,0,0,0,0,0,26,0,T_Name,Text,0,0,0,After,0];
           if(Flag[5]) Datas[0] = 55;
@@ -1460,8 +1613,13 @@ function Load(width,height){
           After = 137;
           core.pushScene(ItemgetScene(6,"使い古された包丁をそっと鞄にしまった。",After,Flag));
           break;
+        case 1148:
+          Flag[24] = true;
+          core.pushScene(ItemgetScene(7,"時の魔術師のカードを入手した。","シーンを外す",Flag));
+          break;
         case 138:
-          Flag = R_S(Number,Flag,147);
+          if(Flag[27]) Before = 12347;
+          else Flag = R_S(Number,Flag,147);
           var T_Name = "";
           var Text = "駅前";
           Datas = [30,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -1673,13 +1831,6 @@ function Load(width,height){
           Flag[14] = true;
           var Text = "ううん。(改行)私も フレンズを組むなら(改行)あいねしかいないって思ってた。";
           Datas = [56,0,26,0,0,0,22,0,T_Name,Text,148,171,Number,248,0];
-          core.replaceScene(MainScene(Datas,Return,Flag));
-          break;
-        case "147双眼鏡":
-          Flag = R_S(173,Flag,188);
-          var T_Name = Name;
-          var Text = "これって…。";
-          Datas = [34,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,173,174,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 173:
@@ -2311,13 +2462,106 @@ function Load(width,height){
           Datas = [49,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,"ゲームオーバー",0];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
-        case "タイトルに戻る":
-          core.replaceScene(TitleScene());
+        case 261:
+          var C1 = "調べる";
+          var C2 = "つきつける";
+          var C3 = "やめる";
+          var C4 = 0;
+          Datas = [59,0,0,0,C1,C2,C3,C4,0,0,137,0,0,0,Number];
+          if(Flag[25]) Datas[0] = 60;
+          if(Flag[26]) Datas[0] = 61;
+          core.replaceScene(ChoiceScene(Datas,Flag));
           break;
-        case "双眼鏡":
+        case 262:
+          var T_Name = Name;
+          var Text = "…";
+          Datas = ["Transparent",0,0,0,0,0,0,0,T_Name,Text,0,0,0,263,0,"0600,0250,0",7];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+        case 263:
+          var T_Name = Name;
+          var Text = "……特に意味はないけど楽しいわねコレ。";
+          Datas = ["Transparent",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"シーンを外す",0,"0600,0250,0",7];
+          core.replaceScene(MainScene(Datas,Return,Flag));
+          break;
+          case 264:
+            var Text = "簡単にひしゃげそうだ。";
+            var T_Name = Name;
+            if(Flag[25]) Text = "光り輝いている。";
+            if(Flag[26]) Text = "目も当てられない。";
+            Datas = [59,0,0,0,0,0,0,0,Name,Text,0,0,0,"シーンを外す",0];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.pushScene(MainScene(Datas,Return,Flag));
+            break;
+          case "双眼鏡":
           var Text = "双眼鏡ね。尾行に使えるわ。";
           Datas = [58,0,0,0,0,0,26,0,Name,Text,0,0,0,"シーンを外す",0];
           core.pushScene(MainScene(Datas,Return,Flag));
+          break;
+          case "時の魔術師":
+            var Text = "よ～し。時の魔術師を召喚！";
+            Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,"時の魔術師1",0,"0290,0252,15",7];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.replaceScene(MainScene(Datas,Return,Flag));
+            break;
+          case "時の魔術師1":
+            var Text = "時の魔術師の効果発動！";
+            Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,"時の魔術師2",0,"0290,0252,0",7];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.replaceScene(MainScene(Datas,Return,Flag));
+            break;
+          case "時の魔術師2":
+            var Text = "時の魔術師の効果発動！(改行)タイムルーレット！！";
+            Datas = [59,0,0,0,0,0,26,0,Name,Text,0,0,0,"時の魔術師3",0,"0290,0252,0",7];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.replaceScene(MainScene(Datas,Return,Flag));
+            break;
+          case "時の魔術師3":
+            var Text = "…";
+            Datas = [59,0,0,0,0,0,26,0,"",Text,0,0,0,"時の魔術師4",0,"0290,0252,0",7];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.replaceScene(MainScene(Datas,Return,Flag));
+            break;
+          case "時の魔術師4":
+            if(rand(1)==0){
+              var Text = "……成功！";
+              After = "成功"
+            }
+            else{
+              var Text = "……失敗！"
+              After = "失敗";
+            }
+            Datas = [59,0,0,0,0,0,26,0,"",Text,0,0,0,After,0,"0290,0252,0",7];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.replaceScene(MainScene(Datas,Return,Flag));
+            break;
+            case "成功":
+              Flag[25] = true;//包丁強靭
+              Flag[26] = false;//包丁折れる
+              Text = "新品で強靭な包丁になった！"
+              After = "処理";
+              core.pushScene(ItemgetScene(8,Text,After,Flag));
+              break;
+            case "失敗":
+              Flag[25] = false;//包丁強靭
+              Flag[26] = true;//包丁折れる
+              Text = "包丁が折れてしまった！"
+              After = "処理";
+              core.pushScene(ItemgetScene(9,Text,After,Flag));
+              break;
+            case "処理":
+              core.popScene();
+              core.popScene();
+              Scene_loads(261,true,Flag,false);
+              break;
+        case "タイトルに戻る":
+          core.replaceScene(TitleScene());
           break;
         case "シーンを外す":
           core.popScene();
@@ -2333,28 +2577,46 @@ function Load(width,height){
           core.pushScene(MainScene(Datas,Return,Flag));
           break;
         default:
-          if(Item){
-            if(Number.substring(Number.length-5)=="つきつける"){
-              Number = Number.substring(0,Number.length-Item.length)*1;
-              core.pushScene(ItemgetScene(0,"反応がない。",Number,Flag));
-            }
-            else{
-              Number = Number.substring(0,Number.length-Item.length)*1;
-              core.pushScene(ItemgetScene(0,"ここでは使えないようだ。",Number,Flag));
-            }
-          }
-          else{
-            //(背景,背景時間,(キャラ番号,時間)*3,名前,文章,前,今,次,トロフィー,トロフィー画像
-            Datas = [54,0,0,0,0,0,0,0,"","ここから先はできていません。",0,0,0,"ゲームオーバー",0];
-            core.replaceScene(MainScene(Datas,Return,Flag));
-          }
+          //(背景,背景時間,(キャラ番号,時間)*3,名前,文章,前,今,次,トロフィー,トロフィー画像
+          Datas = [54,0,0,0,0,0,0,0,"","ここから先はできていません。",0,0,0,"ゲームオーバー",0];
+          core.replaceScene(MainScene(Datas,Return,Flag));
           break;
       }
     }
-    function Inspect_loads(Number,Flag){
+    function Inspect_loads(Number,Flag,Item){
       var Name = window.localStorage.getItem("name");
       var Datas = [];
       //[背景,(幅,高,x座標,y座標,シーンロード又はfalse以外,シーンナンバー]
+      if(Item){
+        console.log(Item);
+        console.log(Number);
+        switch (Item) {
+          case "双眼鏡":
+            Datas = [58,917,717,333,85,"しない","双眼鏡"];
+            core.pushScene(InspectScene(Datas,Flag,false));
+            break;
+          case "使い古された包丁":
+          case "新品で強靭な包丁":
+          case "折れた包丁":
+            if(Number==261){
+              Datas = [59,1069,900,266,0,"シーンロード",264];
+              if(Flag[25]) Datas[0] = 60;
+              if(Flag[26]) Datas[0] = 61;
+              core.replaceScene(InspectScene(Datas,Flag,false));
+              break;
+            }
+            Datas = [59,1069,900,266,0,"シーンロード",Number];
+            if(Flag[25]) Datas[0] = 60;
+            if(Flag[26]) Datas[0] = 61;
+            core.replaceScene(InspectScene(Datas,Flag,"包丁"));
+            break;
+          default:
+            Datas = ["Black",1600,900,0,0,"しない","未設定"];
+            core.pushScene(InspectScene(Datas,Flag,false));
+            break;
+        }
+        return;
+      }
       switch (Number) {
         case 137:
           Datas = [5,367,553,1219,309,"シーンロード",1138,158,567,0,333,"しない",1144];
@@ -2362,19 +2624,19 @@ function Load(width,height){
             Datas[0] = 55;
             Datas[6] = 1143;
           }
-          core.pushScene(InspectScene(Datas,Flag));
+          core.pushScene(InspectScene(Datas,Flag,false));
           break;
-        case "双眼鏡":
-          Datas = [58,917,717,333,85,"しない","双眼鏡"];
-          core.pushScene(InspectScene(Datas,Flag));
+        case 261:
+          Datas = [59,1069,900,266,0,"シーンロード",264];
+          if(Flag[25]) Datas[0] = 60;
+          if(Flag[26]) Datas[0] = 61;
+          core.pushScene(InspectScene(Datas,Flag,false));
           break;
-        case "使い古された包丁":
-          Datas = [58,917,717,333,85,"しない","包丁"];
-          core.pushScene(InspectScene(Datas,Flag));
+          core.pushScene(InspectScene(Datas,Flag,false));
           break;
         default:
           Datas = ["Black",1600,900,0,0,"しない","未設定"];
-          core.pushScene(InspectScene(Datas,Flag));
+          core.pushScene(InspectScene(Datas,Flag,false));
           break;
       }
       return;
@@ -2670,7 +2932,7 @@ function Load(width,height){
         Settings.frame = 4;
         scene.addChild(Settings);
         Settings.addEventListener('touchstart',function(e){
-          core.pushScene(ItemScene(Datas[12],Flag,false));
+          core.pushScene(ItemScene(Datas[12],Flag,false,0));
         });
       }//アイテム
 
@@ -2782,6 +3044,12 @@ function Load(width,height){
         scene.addChild(Character2);
       }//キャラ真ん中
 
+      var White = new Sprite(1600,900);
+      White.image = core.assets["image/white.png"];
+      White.x = 0;
+      White.y = 900;
+      scene.addChild(White);//白地
+
       if(Datas[4]!=false){
         var C1 = new Label();
         C1.font  = "60px monospace";
@@ -2793,8 +3061,8 @@ function Load(width,height){
         C1.text = "▶ " + Datas[4];
         scene.addChild(C1);
         C1.addEventListener('touchstart',function(e){
-          if(C1.text == "▶ 調べる") Inspect_loads(Datas[14],Flag);
-          else if (C1.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
+          if(C1.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
+          else if (C1.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
           else Scene_loads(Datas[8],false,Flag,false);
         });
       }
@@ -2810,8 +3078,8 @@ function Load(width,height){
         C2.text = "▶ " + Datas[5];
         scene.addChild(C2);
         C2.addEventListener('touchstart',function(e){
-          if(C2.text == "▶ 調べる") Inspect_loads(Datas[14],Flag);
-          else if (C2.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
+          if(C2.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
+          else if (C2.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
           else Scene_loads(Datas[9],false,Flag,false);
         });
       }
@@ -2827,8 +3095,8 @@ function Load(width,height){
         C3.text = "▶ " + Datas[6];
         scene.addChild(C3);
         C3.addEventListener('touchstart',function(e){
-          if(C3.text == "▶ 調べる") Inspect_loads(Datas[14],Flag);
-          else if (C3.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
+          if(C3.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
+          else if (C3.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
           else Scene_loads(Datas[10],false,Flag,false);
         });
       }
@@ -2844,8 +3112,8 @@ function Load(width,height){
         C4.text = "▶ " + Datas[7];
         scene.addChild(C4);
         C4.addEventListener('touchstart',function(e){
-          if(C4.text == "▶ 調べる") Inspect_loads(Datas[14],Flag);
-          else if (C4.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
+          if(C4.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
+          else if (C4.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",0));
           else Scene_loads(Datas[11],false,Flag,false);
         });
       }
@@ -2874,7 +3142,7 @@ function Load(width,height){
         });
       }//戻る2
 
-      if(Datas[14]!="ゲームオーバー"){
+      if(Datas[14]!=false&&Datas[14]!="ゲームオーバー"){
         var Settings = new Sprite(320,60);
         Settings.image = core.assets["image/Buttons.png"];
         Settings.x = 640;
@@ -2882,7 +3150,7 @@ function Load(width,height){
         Settings.frame = 4;
         scene.addChild(Settings);
         Settings.addEventListener('touchstart',function(e){
-          core.pushScene(ItemScene(Datas[14],Flag,false));
+          core.pushScene(ItemScene(Datas[14],Flag,false,0));
         });
       }
 
@@ -3040,7 +3308,7 @@ function Load(width,height){
       Button5.frame = 7;
       scene.addChild(Button5);
       Button5.addEventListener('touchstart',function(e){
-        core.pushScene(ItemScene(Datas[7],Flag,Datas[8]));
+        core.pushScene(ItemScene(Datas[7],Flag,Datas[8],0));
       });//つきつける
 
       return scene;
@@ -3292,12 +3560,22 @@ function Load(width,height){
         window.localStorage.setItem("surname",S_Input._element.value);
         window.localStorage.setItem("name",S_Input2._element.value);
         if(Round.x == Text9.x){
-          if(S_Input2._element.value=="チートマン"){
+          if(S_Input2._element.value=="ナンバー移動"){
             core.popScene();
             core.popScene();
             Flag = [];
-            Flag[99] = false;
             Scene_loads(S_Input._element.value*1,false,Flag,false);
+            return;
+          }
+          else if(S_Input2._element.value=="チート移動"){
+            core.popScene();
+            core.popScene();
+            Flag = [];
+            Scene_loads(S_Input._element.value,false,Flag,false);
+            return;
+          }
+          else if(S_Input2._element.value=="フラグチート"){
+            Flag[S_Input._element.value*1] = true;
             return;
           }
           window.localStorage.setItem("gender","男");
@@ -3378,7 +3656,7 @@ function Load(width,height){
       Text[2] = new Texts("犯行の手口","実際にやるなよ。","あいねちゃんを監視するための手段。実際にはリフレクトムーンの目撃情報の集計である。ネットリテラシーの欠片もない。");
       Text[3] = new Texts("電話","そんなこと電話で済ますか…？","夜分遅くに電話かけるのはよくないよ。あいねちゃんだから許してくれるけど。");
       Text[4] = new Texts("やっぱり必要だった","命は預けた。","アイカツカードはちゃんと持っとかないと。");
-      Text[5] = new Texts("字面が面白い","プライドを布教しよう。","ちなみに渡そうと思えば何回でも渡せる。");
+      Text[5] = new Texts("使途","プライドを布教しよう。","ちなみに渡そうと思えば何回でも渡せる。");
 
       Text1.addEventListener('touchstart',function(e){
         core.popScene();
@@ -3409,7 +3687,7 @@ function Load(width,height){
 
       return scene;
     };
-    var InspectScene = function(Datas,Flag){
+    var InspectScene = function(Datas,Flag,Item){
       var scene = new Scene();                                // 新しいシーンを作る
 
       var Background = new Sprite(1600,900);
@@ -3426,49 +3704,49 @@ function Load(width,height){
 
       if(Datas[5]!=false){
         var Background3 = new Sprite(Datas[1],Datas[2]);
-        Background3.image = core.assets["image/Transparent.png"];
+        Background3.image = core.assets["image/背景/Transparent.png"];
         Background3.x = Datas[3];
         Background3.y = Datas[4];
         scene.addChild(Background3);
         Background3.addEventListener('touchstart',function(e){
           if(Datas[5]=="シーンロード") core.popScene();
-          Scene_loads(Datas[6],false,Flag,false);
+          Scene_loads(Datas[6],false,Flag,Item);
         });
       }
 
       if(Datas[11]!=false){
         var Background4 = new Sprite(Datas[7],Datas[8]);
-        Background4.image = core.assets["image/Transparent.png"];
+        Background4.image = core.assets["image/背景/Transparent.png"];
         Background4.x = Datas[9];
         Background4.y = Datas[10];
         scene.addChild(Background4);
         Background4.addEventListener('touchstart',function(e){
           if(Datas[11]=="シーンロード") core.popScene();
-          Scene_loads(Datas[12],false,Flag,false);
+          Scene_loads(Datas[12],false,Flag,Item);
         });
       }
 
       if(Datas[17]!=false){
         var Background5 = new Sprite(Datas[13],Datas[14]);
-        Background5.image = core.assets["image/Transparent.png"];
+        Background5.image = core.assets["image/背景/Transparent.png"];
         Background5.x = Datas[15];
         Background5.y = Datas[16];
         scene.addChild(Background5);
         Background5.addEventListener('touchstart',function(e){
           if(Datas[17]=="シーンロード") core.popScene();
-          Scene_loads(Datas[18],false,Flag,false);
+          Scene_loads(Datas[18],false,Flag,Item);
         });
       }
 
       if(Datas[23]!=false){
         var Background6 = new Sprite(Datas[19],Datas[20]);
-        Background6.image = core.assets["image/Transparent.png"];
+        Background6.image = core.assets["image/背景/Transparent.png"];
         Background6.x = Datas[21];
         Background6.y = Datas[22];
         scene.addChild(Background6);
         Background6.addEventListener('touchstart',function(e){
           if(Datas[23]=="シーンロード") core.popScene();
-          Scene_loads(Datas[24],false,Flag,false);
+          Scene_loads(Datas[24],false,Flag,Item);
         });
       }
 
@@ -3525,41 +3803,33 @@ function Load(width,height){
       Enter.y = height-65;
       Enter.frame = 5;
       scene.addChild(Enter);
-      if(b!="ここでは使えないようだ。"&&b!="反応がない。"){
-        var Item = new Sprite(800,800);
-        Item.image = core.assets["image/Item_B.png"];
-        Item.x = 1600;
-        Item.y = 50;
-        Item.frame = a;
-        scene.addChild(Item);
-        core.assets["sound/Item.wav"].play();
-        Item.addEventListener("enterframe",function(){
-          if(Item.x!=400) Item.x -= 100;
-          if(Item.x==-800){
-            core.popScene();
-            Scene_loads(c,true,Flag,false);
-          }
-        })
-      }
-
-      Enter.addEventListener('touchstart',function(e){
-        if(b=="ここでは使えないようだ。"||b=="反応がない。") {
+      var Item = new Sprite(800,800);
+      Item.image = core.assets["image/Item_B.png"];
+      Item.x = 1600;
+      Item.y = 50;
+      Item.frame = a;
+      scene.addChild(Item);
+      core.assets["sound/Item.wav"].play();
+      Item.addEventListener("enterframe",function(){
+        if(Item.x!=400) Item.x -= 100;
+        if(Item.x==-800){
           core.popScene();
           Scene_loads(c,true,Flag,false);
         }
-        else {
-          if(Item.x>400) Item.x = 400;
-          else if(Item.x==400) Item.x -= 100;
-          else{
-            core.popScene();
-            Scene_loads(c,true,Flag,false);
-          }
+      })
+
+      Enter.addEventListener('touchstart',function(e){
+        if(Item.x>400) Item.x = 400;
+        else if(Item.x==400) Item.x -= 100;
+        else{
+          core.popScene();
+          Scene_loads(c,true,Flag,false);
         }
       });//進む
 
       return scene;
     }
-    var ItemScene = function(Number,Flag,Ig){
+    var ItemScene = function(Number,Flag,Ig,Pages){
       var scene = new Scene();                                // 新しいシーンを作る
 
       var Background = new Sprite(1600,1600);
@@ -3675,45 +3945,57 @@ function Load(width,height){
       Text10.height = 60;
       Text10.text = "▶ 次";
 
+      if(Pages!=0){
+        scene.addChild(Text9);
+        scene.addChild(Text10);
+      }
+
       var Numbers = 400;
-      var Numbers2 = 200;
 
       var Items = Class.create(Label, {
         initialize: function(a,b) {
             Label.call(this);
             this.font  = "60px monospace";
             this.color = 'black';
-            this.x = Numbers2;
+            this.x = 200;
             this.y = Numbers;
             this.width = 1600;
             this.height = 60;
             this.text = a;
-            Numbers += 100;
             scene.addChild(this);
-            if(Numbers2==1800){
-              scene.addChild(Text9);
-              scene.addChild(Text10);
-            }
-            if(Numbers==900){
-              Numbers = 400;
-              Numbers2 += 1600;
-            }
             if(b) this.syousai = "▶ " + b;
             else this.syousai = "";
-            Item_Number ++;
+            Numbers += 100;
           }
       });
 
       var Item = [];
       var Choice_Item = "未設定";
-      var Item_Number = 0;
+      var Item_Number = Pages;
 
-      if(Flag[5]) Item[Item_Number] = new Items("アイカツカード","詳細");
-      if(Flag[9]) Item[Item_Number] = new Items("双眼鏡","調べる");
-      if(Flag[6]) Item[Item_Number] = new Items("プライド","再生");
-      if(Flag[7]) Item[Item_Number] = new Items("偶然、必然。","再生");
-      if(Flag[8]) Item[Item_Number] = new Items("永遠の灯","再生");
-      if(Flag[23]) Item[Item_Number] = new Items("使い古された包丁","調べる");
+      function Item_view(a,b){
+        if(Item_Number>=0&&Item_Number<5){
+          Item[Item_Number] = new Items(a,b);
+        }
+        if(Item_Number==5){
+          scene.addChild(Text9);
+          scene.addChild(Text10);
+        }
+        Item_Number ++;
+        return;
+      }
+
+      if(Flag[5]) Item_view("アイカツカード","詳細");
+      if(Flag[9]) Item_view("双眼鏡","調べる");
+      if(Flag[6]) Item_view("プライド","再生");
+      if(Flag[7]) Item_view("偶然、必然。","再生");
+      if(Flag[8]) Item_view("永遠の灯","再生");
+      if(Flag[23]){
+        if(Flag[25]) Item_view("新品で強靭な包丁","調べる");
+        else if(Flag[26]) Item_view("折れた包丁","調べる");
+        else  Item_view("使い古された包丁","調べる");
+      }
+      if(Flag[24])Item_view("時の魔術師","詳細");
 
       function Item_text(a,b){
         a = a.substring(2);
@@ -3778,6 +4060,30 @@ function Load(width,height){
             Text[3] = "";
             return(Text[b]);
             break;
+          case "時の魔術師":
+            Item_image.frame = 7;
+            Text[0] = "光属性";
+            Text[1] = "レベル 2";
+            Text[2] = "【魔法使い族/効果】";
+            Text[3] = "攻撃力 500 守備力 400";
+            return(Text[b]);
+            break;
+            case "新品で強靭な包丁":
+              Item_image.frame = 8;
+              Text[0] = "最強の包丁。";
+              Text[1] = "どんな攻撃にも耐えられることだろう。";
+              Text[2] = "";
+              Text[3] = "";
+              return(Text[b]);
+              break;
+              case "折れた包丁":
+                Item_image.frame = 9;
+                Text[0] = "無惨。";
+                Text[1] = "これじゃあ使えもしない。";
+                Text[2] = "";
+                Text[3] = "";
+                return(Text[b]);
+                break;
           default:
             Item_image.frame = 0;
             return("開発中");
@@ -3820,12 +4126,15 @@ function Load(width,height){
           core.assets["sound/"+Choice_Item+".wav"].pause();
           this.text = "▶ 再生";
         }
-        else if(this.text=="▶ 調べる") Inspect_loads(Choice_Item,Flag);
+        else if(this.text=="▶ 調べる") Inspect_loads(Number,Flag,Choice_Item);
         else{
           var Syousai = "詳細";
           switch (Choice_Item) {
             case "アイカツカード":
               Syousai = 0;
+              break;
+            case "時の魔術師":
+              Syousai = 1;
               break;
             default:
               return;
@@ -3836,32 +4145,21 @@ function Load(width,height){
       });
 
       Text9.addEventListener('touchstart',function(e){
-        if(Item[0].x==200){
-          for (var i = 0; i < Item.length; i++){
-            Item[i].x -= 1600*((Item.length-Item.length%5)/5);
-            if(Item.length%5==0) Item[i].x += 1600;
-          }
+        if(Pages==0){
+          Pages = -(Item_Number-Item_Number%5);
+          if(Item_Number%5==0) Pages += 5;
+          core.replaceScene(ItemScene(Number,Flag,Ig,Pages));
         }
-        else{
-          for (var i = 0; i < Item.length; i++){
-            Item[i].x += 1600;
-          }
-        }
+        else core.replaceScene(ItemScene(Number,Flag,Ig,Pages+5));
         return;
       });
 
       Text10.addEventListener('touchstart',function(e){
-        if(Item[Item.length-1].x==200){
-          for (var i = 0; i < Item.length; i++){
-            Item[i].x += 1600*((Item.length-Item.length%5)/5);
-            if(Item.length%5==0) Item[i].x -= 1600;
-          }
+        if(Item_Number<=5){
+          Pages = 0
+          core.replaceScene(ItemScene(Number,Flag,Ig,Pages));
         }
-        else{
-          for (var i = 0; i < Item.length; i++){
-            Item[i].x -= 1600;
-          }
-        }
+        else core.replaceScene(ItemScene(Number,Flag,Ig,Pages-5));
         return;
       });
 
