@@ -99,13 +99,25 @@ function Load(width,height){
         var S_image = 6;
       }
       if(Number=="セーブ読み込み"){
-        Number = window.localStorage.getItem("Number")*1;
         Flag = window.localStorage.getItem("flag").split(",");
-        var www = window.localStorage.getItem("Items")*1;
-        for (var i = 0; i < www; i++) {
-          Item_Flag[i] = window.localStorage.getItem("Item"+i).split(",");
+        Pages = window.localStorage.getItem("Pages")*1;
+        Number = window.localStorage.getItem("Number")*1;
+        Item_Flag = window.localStorage.getItem("Item").split("端");
+        for (var i = 0; i < Item_Flag.length; i++){
+          Item_Flag[i] = Item_Flag[i].split(",");
         }
-        console.log(Item_Flag);
+        for (var i = 1; i < Item_Flag.length; i++){
+          var Item_Flag2 = [];
+          for (var k = 1; k < Item_Flag[i].length; k++){
+            Item_Flag2[k-1] = Item_Flag[i][k];
+            if(k==3) Item_Flag2[k-1] = Item_Flag2[k-1]*1;
+          }
+          Item_Flag[i] = Item_Flag2;
+        }
+        for (var i = 0; i < Item_Flag.length-1; i++) {
+          Item_Flag2[i] = Item_Flag[i];
+        }
+        Item_Flag = Item_Flag2;
         for (var i = 4; i < Flag.length; i++){
           if(Flag[i]=="true") Flag[i] = true;
           else Flag[i] = false;
@@ -435,10 +447,14 @@ function Load(width,height){
           Flag = R_S(Number,Flag,21);
           var T_Name = "友希 あいね";
           var Text = "これまでの『アイカツフレンズ！』。";
-          Item_Flag = [["アイカツカード","あいねの為にデザインしたアイカツカード。(改行)ピンクパートナーコーデ。",1,"詳細"]];
-          for (var i = 1; i < 25; i++) {
-            Get_Item("時の魔術師","光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
+          Item_Flag = [];
+          Get_Item("アイカツカード","あいねの為にデザインしたアイカツカード。(改行)ピンクパートナーコーデ。",1,"詳細");
+          for (var i = 1; i < 50001; i++) {
+            Get_Item("テストアイテム"+i,"テストのためのアイテム五万個の一つ。(改行)"+i+"個目",0);
           }
+          Get_Item("時の魔術師","光属性(改行)レベル 2(改行)【魔法使い族/効果】(改行)攻撃力 500 守備力 400",7,"詳細");
+          Rewrite_Item("時の魔術師","消失");
+          Rewrite_Item("アイカツカード","消失");
           window.localStorage.setItem("syoken",false);
           Data = true;
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -448,12 +464,13 @@ function Load(width,height){
           var T_Name = "あいね";
           var Text = "私　友希あいね。";
           Get_Item("双眼鏡","ストーカーの御供。",2,"調べる");
-          var T_Name = "テスト";
-          var Text = "どうでしょうか…？";
-          Datas = ["left",0,32,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
           core.replaceScene(MainScene(Datas,Return,Flag));
           break;
         case 3:
+          for (var i = 1; i < 50001; i++) {
+            Rewrite_Item("テストアイテム"+i,"消失");
+          }
           var T_Name = "あいね";
           var Text = "スターハーモニー学園に通う中学２年生。";
           Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -2684,11 +2701,9 @@ function Load(width,height){
       if(window.localStorage.getItem("syoken")!="false"){
         var Data = false;
         Flag = [];
-        for (var i = 0; i < Item_Flag.length; i++) {
-          window.localStorage.setItem("Item"+i,Item_Flag[i]);
-        }
-        window.localStorage.setItem("Items",Item_Flag.length);
+        window.localStorage.setItem("Item",Item_Flag);
         window.localStorage.setItem("flag",Flag);
+        window.localStorage.setItem("Pages",Pages);
         window.localStorage.setItem("gender","女");
         window.localStorage.setItem("name","みお");
         window.localStorage.setItem("surname","湊");
@@ -2775,11 +2790,13 @@ function Load(width,height){
 
       if(window.localStorage.getItem("Save")!="マニュアル"&&Datas[12]!=false&&Datas[12]!=1){
         window.localStorage.setItem("flag",Flag);
+        window.localStorage.setItem("Pages",Pages);
         window.localStorage.setItem("Number",Datas[12]);
+        var Item_Flag2 = [];
         for (var i = 0; i < Item_Flag.length; i++) {
-          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+          Item_Flag2[i] = Item_Flag[i] + "端";
         }
-        window.localStorage.setItem("Items",Item_Flag.length);
+        window.localStorage.setItem("Item",Item_Flag2);
       }
 
       var Background = new Sprite(1600,900);
@@ -2978,7 +2995,7 @@ function Load(width,height){
         Settings.frame = 4;
         scene.addChild(Settings);
         Settings.addEventListener('touchstart',function(e){
-          core.pushScene(ItemScene(Datas[12],Flag,false,Pages));
+          core.pushScene(ItemScene(Datas[12],Flag,false));
         });
       }//アイテム
 
@@ -3054,11 +3071,13 @@ function Load(width,height){
 
       if(window.localStorage.getItem("Save")!="マニュアル"&Datas[14]!="ゲームオーバー"){
         window.localStorage.setItem("flag",Flag);
+        window.localStorage.setItem("Pages",Pages);
         window.localStorage.setItem("Number",Datas[14]);
+        var Item_Flag2 = [];
         for (var i = 0; i < Item_Flag.length; i++) {
-          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+          Item_Flag2[i] = Item_Flag[i] + "端";
         }
-        window.localStorage.setItem("Items",Item_Flag.length);
+        window.localStorage.setItem("Item",Item_Flag2);
       }
 
       var Background = new Sprite(1600,900);
@@ -3112,7 +3131,7 @@ function Load(width,height){
         scene.addChild(C1);
         C1.addEventListener('touchstart',function(e){
           if(C1.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C1.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
+          else if (C1.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
           else Scene_loads(Datas[8],false,Flag,false);
         });
       }
@@ -3129,7 +3148,7 @@ function Load(width,height){
         scene.addChild(C2);
         C2.addEventListener('touchstart',function(e){
           if(C2.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C2.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
+          else if (C2.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
           else Scene_loads(Datas[9],false,Flag,false);
         });
       }
@@ -3146,7 +3165,7 @@ function Load(width,height){
         scene.addChild(C3);
         C3.addEventListener('touchstart',function(e){
           if(C3.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C3.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
+          else if (C3.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
           else Scene_loads(Datas[10],false,Flag,false);
         });
       }
@@ -3163,7 +3182,7 @@ function Load(width,height){
         scene.addChild(C4);
         C4.addEventListener('touchstart',function(e){
           if(C4.text == "▶ 調べる") Inspect_loads(Datas[14],Flag,false);
-          else if (C4.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常",Pages));
+          else if (C4.text == "▶ つきつける") core.pushScene(ItemScene(Datas[14],Flag,"日常"));
           else Scene_loads(Datas[11],false,Flag,false);
         });
       }
@@ -3200,7 +3219,7 @@ function Load(width,height){
         Settings.frame = 4;
         scene.addChild(Settings);
         Settings.addEventListener('touchstart',function(e){
-          core.pushScene(ItemScene(Datas[14],Flag,false,Pages));
+          core.pushScene(ItemScene(Datas[14],Flag,false));
         });
       }
 
@@ -3252,11 +3271,13 @@ function Load(width,height){
 
       if(window.localStorage.getItem("Save")!="マニュアル"&&Datas[5]!=false){
         window.localStorage.setItem("flag",Flag);
+        window.localStorage.setItem("Pages",Pages);
         window.localStorage.setItem("Number",Datas[5]);
+        var Item_Flag2 = [];
         for (var i = 0; i < Item_Flag.length; i++) {
-          window.localStorage.setItem("Item"+i,Item_Flag[i]);
+          Item_Flag2[i] = Item_Flag[i] + "端";
         }
-        window.localStorage.setItem("Items",Item_Flag.length);
+        window.localStorage.setItem("Item",Item_Flag2);
       }
 
       Flag[1] = Datas[5];
@@ -3362,7 +3383,7 @@ function Load(width,height){
       Button5.frame = 7;
       scene.addChild(Button5);
       Button5.addEventListener('touchstart',function(e){
-        core.pushScene(ItemScene(Datas[7],Flag,Datas[8],Pages));
+        core.pushScene(ItemScene(Datas[7],Flag,Datas[8]));
       });//つきつける
 
       return scene;
@@ -3590,11 +3611,13 @@ function Load(width,height){
       Text4.addEventListener('touchstart',function(e){
         if(Text4.text == "▶ セーブする"){
           window.localStorage.setItem("flag",Flag);
+          window.localStorage.setItem("Pages",Pages);
           window.localStorage.setItem("Number",Number);
+          var Item_Flag2 = [];
           for (var i = 0; i < Item_Flag.length; i++) {
-            window.localStorage.setItem("Item"+i,Item_Flag[i]);
+            Item_Flag2[i] = Item_Flag[i] + "端";
           }
-          window.localStorage.setItem("Items",Item_Flag.length);
+          window.localStorage.setItem("Item",Item_Flag2);
           core.assets["sound/Item.wav"].play();
           scene.addChild(Text5);
         }
@@ -4169,15 +4192,21 @@ function Load(width,height){
       });
 
       Text9.addEventListener('touchstart',function(e){
-        if(Pages==0) Pages = Item_Flag.length-Item_Flag.length%5;
+        if(Pages==0){
+          Pages = Item_Flag.length-Item_Flag.length%5;
+          if(Item_Flag.length%5==0) Pages-=5;
+        }
         else Pages-=5;
         core.replaceScene(ItemScene(Number,Flag,Ig));
         return;
       });
 
       Text10.addEventListener('touchstart',function(e){
-        if(Pages > Item_Flag.length) Pages = 0;
-        else Pages+=5;
+        if(Pages == Item_Flag.length-Item_Flag.length%5) Pages = 0;
+        else{
+          Pages+=5;
+          if(Pages==Item_Flag.length) Pages = 0;
+        }
         core.replaceScene(ItemScene(Number,Flag,Ig));
         return;
       });
