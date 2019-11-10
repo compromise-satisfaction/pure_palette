@@ -50,6 +50,7 @@ function Save(Number){
     k++;
   }
   console.log(Flag2);
+  console.log(Item_Flag);
 }//セーブ
 
 function rand(n) {
@@ -1779,12 +1780,12 @@ function Scene_loads2(Number,Item,get){
                   Scene_type = [6,"永遠の灯のCDを手に入れた。",137];
                 }
                 else {
-                  Get_I_C_F("アイテム","偶然、必然。","Third Color：PURPLE(改行)BEST FRIENDS！(改行)かぐや from BEST FRIENDS！(改行)片山将太,藤末 樹",5,"再生");
+                  Get_I_C_F("アイテム","偶然、必然。","Third Color：PURPLE(改行)BEST FRIENDS！(改行)かぐや from BEST FRIENDS！(改行)片山将太 藤末 樹",5,"再生");
                   Scene_type = [5,"偶然、必然。のCDを手に入れた。","調べる"];
                 }
               }
               else {
-                Get_I_C_F("アイテム","プライド","そこにしかないもの／プライド(改行)BEST FRIENDS！(改行)カレン・ミライ from BEST FRIENDS！(改行)藤末 樹,片山将太",4,"再生");
+                Get_I_C_F("アイテム","プライド","そこにしかないもの／プライド(改行)BEST FRIENDS！(改行)カレン・ミライ from BEST FRIENDS！(改行)藤末 樹 片山将太",4,"再生");
                 Scene_type = [4,"プライドのCDを手に入れた。","調べる"];
               }
               break;
@@ -1887,7 +1888,11 @@ function Scene_loads2(Number,Item,get){
               Scene_type = "メイン";
               break;
             case 148:
-             R_S(Number,172);
+              if(have("諦める")){
+                Rewind = 0;
+                Before = 188.1;
+              }
+              else R_S(Number,172);
               var T_Name = "あいね";
               var Text = "あれ？"+Name+"ちゃん？";
               Datas = [56,0,15,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -1998,16 +2003,16 @@ function Scene_loads2(Number,Item,get){
             case 163:
               var T_Name = "なこ";
               var Text = "うん！(改行)"+Name+"ちゃんのおかげで勇気出たし、(改行)フレンズ組もうって申し込んでみるよ。";
-              if(have("諦める")) Datas[0] = 36;
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 164:
               var T_Name = "なこ";
               var Text = "また遊ぼうね、あいねちゃん！(改行)あいねちゃんも頑張ってね！";
               if(have("一緒に行く")) Text = "また遊ぼうね、"+Name+"ちゃん！(改行)それと、あいねちゃんも頑張ってね！";
-              if(have("諦める")) Datas[0] = 36;
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 165:
@@ -2063,6 +2068,10 @@ function Scene_loads2(Number,Item,get){
               if(have("一緒に行く")){
                 R_S(147.1,172);
                 Rewind = 147.1;
+              }
+              else if(have("諦める")){
+                R_S(188.1,172);
+                Rewind = 188.1;
               }
               else{
                 R_S(148,172);

@@ -1239,6 +1239,10 @@ function Load(width,height){
             return;
           }
           else if(S_Input2._element.value=="チートフラグ"){
+            if(S_Input._element.value=="表示"){
+              console.log(Item_Flag);
+              return;
+            }
             for (var i = 10; i < Flag.length; i++){
               if(Flag[i]==S_Input._element.value){
                 Flag[i] = false;
