@@ -2,7 +2,7 @@ enchant()
 
 function Load(width,height){
   var core = new Core(width, height);
-  //core.preload("sound/Item.wav");
+  core.preload("sound/Item.wav");
   core.preload("image/left.png");
   core.preload("image/Round.png");
   core.preload("image/title.png");
@@ -10,18 +10,18 @@ function Load(width,height){
   core.preload("image/white.png");
   core.preload("image/stand.png");
   core.preload("image/Item_S.png");
-  //core.preload("sound/Choice.wav");
+  core.preload("sound/Choice.wav");
   core.preload("image/Buttons.png");
   core.preload("image/待った！.png");
-  //core.preload("sound/待った！.wav");
-  //core.preload("sound/Trophies.wav");
-  //core.preload("sound/プライド.wav");
+  core.preload("sound/待った！.wav");
+  core.preload("sound/Trophies.wav");
+  core.preload("sound/プライド.wav");
   core.preload("sound/永遠の灯.wav");
   core.preload("sound/偶然、必然。.wav");
   core.preload("image/Trophies.png");
   core.preload("image/背景/left.png");
   core.preload("image/異議あり！.png");
-  //core.preload("sound/異議あり！.wav");
+  core.preload("sound/異議あり！.wav");
   core.preload("image/背景/stand.png");
   core.preload("image/背景/Black.png");
   core.preload("image/背景/right.png");
@@ -45,19 +45,28 @@ function Load(width,height){
   core.fps = 100;
   core.onload = function(){
 
-    /*
+
     function BGM_Stop(){
+      if(Flag[9]==false) return;
       core.assets["sound/プライド.wav"].stop();
       core.assets["sound/永遠の灯.wav"].stop();
       core.assets["sound/偶然、必然。.wav"].stop();
+      return;
     }
-    */
+
+
+    function Sound_ON(Sound_Name,Play){
+      if(Flag[9]==false) return;
+      if(Play) core.assets["sound/"+Sound_Name+".wav"].play();
+      else core.assets["sound/"+Sound_Name+".wav"].pose();
+      return;
+    }
 
     function Scene_loads(Number,Return,Item){
       if(Number=="セーブ読み込み") Scene_type = Number;
       else Scene_loads2(Number,Item);
       //console.log(Scene_type);
-      if(Flag[9]) core.assets["sound/Choice.wav"].play();
+      Sound_ON("Choice",true);
       switch (Scene_type) {
           case "メイン":
             core.replaceScene(MainScene(Return));
@@ -89,7 +98,7 @@ function Load(width,height){
         core.replaceScene(TitleScene());
         break;
         case "セーブ読み込み":
-        //BGM_Stop();
+        BGM_Stop();
         Load_Datas();
         Scene_loads2(Number,Item);
         switch (Scene_type) {
@@ -216,12 +225,13 @@ function Load(width,height){
 
       var scene = new Scene();                                // 新しいシーンを作る
 
-      //BGM_Stop();
-
       if(window.localStorage.getItem("syoken")!="false"){
         var Data = false;
       }
-      else var Data = true;
+      else{
+        var Data = true;
+        BGM_Stop();
+      }
 
       var Title = new Sprite(1600,900);
       Title.image = core.assets["image/title.png"];
@@ -428,7 +438,7 @@ function Load(width,height){
         Item.y = Datas[15].substring(5,9)*1;
         Item.frame = Datas[16];
         if(Return!=true&&Datas[15].substring(11,12)*1!=0){
-          //core.assets["sound/Choice.wav"].play();
+          Sound_ON("Choice",true);
           Item.opacity = 0;
           Item.tl.fadeIn(Datas[15].substring(11,12)*1);
         }
@@ -576,7 +586,7 @@ function Load(width,height){
           Trophies_text.tl.fadeIn(5);
           Trophies_text.text = Datas[17];
           scene.addChild(Trophies_text);
-          //core.assets["sound/Trophies.wav"].play();
+          Sound_ON("Trophies",true);
           Trophies.addEventListener("enterframe",function(){
             Time++;
             if(Time==50){
@@ -783,7 +793,7 @@ function Load(width,height){
       Pop.image = core.assets["image/"+Type+".png"];
       Pop.x = 0;
       Pop.y = 0;
-      //core.assets["sound/"+Type+".wav"].play();
+      Sound_ON(Type,true);
       scene.addChild(Pop);//異議ありOR待った
 
       var Time = 0;
@@ -1165,7 +1175,7 @@ function Load(width,height){
       Text4.addEventListener('touchstart',function(e){
         if(Text4.text == "▶ セーブする"){
           Save(Number);
-          //core.assets["sound/Item.wav"].play();
+          Sound_ON("Item",true);
           scene.addChild(Text5);
         }
         return;
@@ -1198,7 +1208,7 @@ function Load(width,height){
           }
           else if(S_Input2._element.value=="チートアイテム"){
             Item_Flag[Item_Flag.length] = [S_Input._element.value,"チートで生み出したアイテム。"];
-            //core.assets["sound/Item.wav"].play();
+            Sound_ON("Item",true);
             Text12.text = S_Input._element.value;
             scene.addChild(Text12);
             return;
@@ -1213,7 +1223,7 @@ function Load(width,height){
               }
             }
             Flag[Flag.length] = S_Input._element.value;
-            //core.assets["sound/Item.wav"].play();
+            Sound_ON("Item",true);
             Text12.text = S_Input._element.value;
             scene.addChild(Text12);
             return;
@@ -1229,7 +1239,7 @@ function Load(width,height){
         }
         Flag[1] = S_Input._element.value;
         Flag[0] = S_Input2._element.value;
-        //core.assets["sound/Item.wav"].play();
+        Sound_ON("Item",true);
         scene.addChild(Text12);
         return;
       });
@@ -1436,7 +1446,7 @@ function Load(width,height){
       Item.x = 1600;
       Item.y = 50;
       scene.addChild(Item);
-      //core.assets["sound/Item.wav"].play();
+      Sound_ON("Item",true);
 
       Item.addEventListener("enterframe",function(){
         if(Item.x!=400) Item.x -= 100;
@@ -1699,7 +1709,7 @@ function Load(width,height){
       Text8.addEventListener('touchstart',function(e){
         if(this.text=="") return;
         else if(this.text=="▶ 再生"){
-          //core.assets["sound/"+Choice_Item+".wav"].play();
+          Sound_ON(Choice_Item,true);
           for (var i = 0; i < Item_Flag.length; i++) {
             if(Item_Flag[i][0]==Choice_Item) break;
           }
@@ -1709,7 +1719,7 @@ function Load(width,height){
           console.log("Scene数",Scene_kazu);
         }
         else if(this.text=="■ 停止"){
-          //core.assets["sound/"+Choice_Item+".wav"].pause();
+          Sound_ON(Choice_Item,false);
           for (var i = 0; i < Item_Flag.length; i++) {
             if(Item_Flag[i][0]==Choice_Item) break;
           }
