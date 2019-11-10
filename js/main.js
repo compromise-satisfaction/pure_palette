@@ -90,55 +90,7 @@ function Load(width,height){
         break;
         case "セーブ読み込み":
         //BGM_Stop();
-        Flag = window.localStorage.getItem("Flag").split(",");
-        Datas = window.localStorage.getItem("Datas").split(",");
-        Number = window.localStorage.getItem("Number");
-        if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
-        Item_Flag = window.localStorage.getItem("Item").split("端");
-        Character_Flag = window.localStorage.getItem("Character").split("端");
-        for (var i = 0; i < Item_Flag.length; i++){
-          Item_Flag[i] = Item_Flag[i].split(",");
-        }
-        for (var i = 1; i < Item_Flag.length; i++){
-          var Item_Flag2 = [];
-          for (var k = 1; k < Item_Flag[i].length; k++){
-            Item_Flag2[k-1] = Item_Flag[i][k];
-            if(k==3) Item_Flag2[k-1] = Item_Flag2[k-1]*1;
-          }
-          Item_Flag[i] = Item_Flag2;
-        }
-        for (var i = 0; i < Item_Flag.length-1; i++) {
-          Item_Flag2[i] = Item_Flag[i];
-        }
-        Item_Flag = Item_Flag2;
-        if(Item_Flag == undefined) Item_Flag = [];
-        for (var i = 0; i < Character_Flag.length; i++){
-          Character_Flag[i] = Character_Flag[i].split(",");
-        }
-        for (var i = 1; i < Character_Flag.length; i++){
-          var Character_Flag2 = [];
-          for (var k = 1; k < Character_Flag[i].length; k++){
-            Character_Flag2[k-1] = Character_Flag[i][k];
-            if(k==3) Character_Flag2[k-1] = Character_Flag2[k-1]*1;
-          }
-          Character_Flag[i] = Character_Flag2;
-        }
-        for (var i = 0; i < Character_Flag.length-1; i++) {
-          Character_Flag2[i] = Character_Flag[i];
-        }
-        Character_Flag = Character_Flag2;
-        if(Character_Flag == undefined) Character_Flag = [];
-        for (var i = 3; i < Flag.length; i++){
-          if(Flag[i]=="true") Flag[i] = true;
-          else if(Flag[i]=="false") Flag[i] = false
-          else if(Flag[i].replace(/\d/g,"").replace(/\./g,"")=="") Flag[i] = Flag[i] *1;
-        }
-        for (var i = 0; i < Datas.length; i++){
-          if(Datas[i].replace(/\d/g,"").replace(/\./g,"")=="") Datas[i] = Datas[i] *1;
-        }
-        Pages = Flag[7].split("乙");
-        Pages2 = Pages[1]*1;
-        Pages = Pages[0]*1;
+        Load_Datas();
         Scene_loads2(Number,Item);
         switch (Scene_type) {
           case "メイン":
@@ -207,6 +159,58 @@ function Load(width,height){
       return;
     }
 
+    function Load_Datas(){
+      Flag = window.localStorage.getItem("Flag").split(",");
+      Datas = window.localStorage.getItem("Datas").split(",");
+      Number = window.localStorage.getItem("Number");
+      if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1;
+      Item_Flag = window.localStorage.getItem("Item").split("端");
+      Character_Flag = window.localStorage.getItem("Character").split("端");
+      for (var i = 0; i < Item_Flag.length; i++){
+        Item_Flag[i] = Item_Flag[i].split(",");
+      }
+      for (var i = 1; i < Item_Flag.length; i++){
+        var Item_Flag2 = [];
+        for (var k = 1; k < Item_Flag[i].length; k++){
+          Item_Flag2[k-1] = Item_Flag[i][k];
+          if(k==3) Item_Flag2[k-1] = Item_Flag2[k-1]*1;
+        }
+        Item_Flag[i] = Item_Flag2;
+      }
+      for (var i = 0; i < Item_Flag.length-1; i++) {
+        Item_Flag2[i] = Item_Flag[i];
+      }
+      Item_Flag = Item_Flag2;
+      if(Item_Flag == undefined) Item_Flag = [];
+      for (var i = 0; i < Character_Flag.length; i++){
+        Character_Flag[i] = Character_Flag[i].split(",");
+      }
+      for (var i = 1; i < Character_Flag.length; i++){
+        var Character_Flag2 = [];
+        for (var k = 1; k < Character_Flag[i].length; k++){
+          Character_Flag2[k-1] = Character_Flag[i][k];
+          if(k==3) Character_Flag2[k-1] = Character_Flag2[k-1]*1;
+        }
+        Character_Flag[i] = Character_Flag2;
+      }
+      for (var i = 0; i < Character_Flag.length-1; i++) {
+        Character_Flag2[i] = Character_Flag[i];
+      }
+      Character_Flag = Character_Flag2;
+      if(Character_Flag == undefined) Character_Flag = [];
+      for (var i = 3; i < Flag.length; i++){
+        if(Flag[i]=="true") Flag[i] = true;
+        else if(Flag[i]=="false") Flag[i] = false
+        else if(Flag[i].replace(/\d/g,"").replace(/\./g,"")=="") Flag[i] = Flag[i] *1;
+      }
+      for (var i = 0; i < Datas.length; i++){
+        if(Datas[i].replace(/\d/g,"").replace(/\./g,"")=="") Datas[i] = Datas[i] *1;
+      }
+      Pages = Flag[7].split("乙");
+      Pages2 = Pages[1]*1;
+      Pages = Pages[0]*1;
+    }
+
 
     var TitleScene = function(){
 
@@ -217,60 +221,7 @@ function Load(width,height){
       if(window.localStorage.getItem("syoken")!="false"){
         var Data = false;
       }
-      else{
-        var Data = true;
-        /*
-        Flag = window.localStorage.getItem("Flag").split(",");
-        Datas = window.localStorage.getItem("Datas").split(",");
-        Number = window.localStorage.getItem("Number");
-        if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1;
-        Item_Flag = window.localStorage.getItem("Item").split("端");
-        Character_Flag = window.localStorage.getItem("Character").split("端");
-        for (var i = 0; i < Item_Flag.length; i++){
-          Item_Flag[i] = Item_Flag[i].split(",");
-        }
-        for (var i = 1; i < Item_Flag.length; i++){
-          var Item_Flag2 = [];
-          for (var k = 1; k < Item_Flag[i].length; k++){
-            Item_Flag2[k-1] = Item_Flag[i][k];
-            if(k==3) Item_Flag2[k-1] = Item_Flag2[k-1]*1;
-          }
-          Item_Flag[i] = Item_Flag2;
-        }
-        for (var i = 0; i < Item_Flag.length-1; i++) {
-          Item_Flag2[i] = Item_Flag[i];
-        }
-        Item_Flag = Item_Flag2;
-        if(Item_Flag == undefined) Item_Flag = [];
-        for (var i = 0; i < Character_Flag.length; i++){
-          Character_Flag[i] = Character_Flag[i].split(",");
-        }
-        for (var i = 1; i < Character_Flag.length; i++){
-          var Character_Flag2 = [];
-          for (var k = 1; k < Character_Flag[i].length; k++){
-            Character_Flag2[k-1] = Character_Flag[i][k];
-            if(k==3) Character_Flag2[k-1] = Character_Flag2[k-1]*1;
-          }
-          Character_Flag[i] = Character_Flag2;
-        }
-        for (var i = 0; i < Character_Flag.length-1; i++) {
-          Character_Flag2[i] = Character_Flag[i];
-        }
-        Character_Flag = Character_Flag2;
-        if(Character_Flag == undefined) Character_Flag = [];
-        for (var i = 3; i < Flag.length; i++){
-          if(Flag[i]=="true") Flag[i] = true;
-          else if(Flag[i]=="false") Flag[i] = false
-          else if(Flag[i].replace(/\d/g,"").replace(/\./g,"")=="") Flag[i] = Flag[i] *1;
-        }
-        for (var i = 0; i < Datas.length; i++){
-          if(Datas[i].replace(/\d/g,"").replace(/\./g,"")=="") Datas[i] = Datas[i] *1;
-        }
-        Pages = Flag[7].split("乙");
-        Pages2 = Pages[1]*1;
-        Pages = Pages[0]*1;
-        */
-      }
+      else var Data = true;
 
       var Title = new Sprite(1600,900);
       Title.image = core.assets["image/title.png"];
@@ -320,6 +271,7 @@ function Load(width,height){
       if(Data) scene.addChild(Clear);
 
       Beginning.addEventListener('touchstart',function(e){
+        Load_Datas();
         Scene_loads(1,false,false);
         return;
       });
