@@ -45,11 +45,13 @@ function Load(width,height){
   core.fps = 100;
   core.onload = function(){
 
+    /*
     function BGM_Stop(){
       core.assets["sound/プライド.wav"].stop();
       core.assets["sound/永遠の灯.wav"].stop();
       core.assets["sound/偶然、必然。.wav"].stop();
     }
+    */
 
     function Scene_loads(Number,Return,Item){
       if(Number=="セーブ読み込み") Scene_type = Number;
@@ -87,7 +89,7 @@ function Load(width,height){
         core.replaceScene(TitleScene());
         break;
         case "セーブ読み込み":
-        BGM_Stop();
+        //BGM_Stop();
         Flag = window.localStorage.getItem("Flag").split(",");
         Datas = window.localStorage.getItem("Datas").split(",");
         Number = window.localStorage.getItem("Number");
