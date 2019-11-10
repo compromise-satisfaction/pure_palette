@@ -59,7 +59,7 @@ function Load(width,height){
       if(Flag[9]==false) return;
       console.log(Sound_Name);
       if(Play) core.assets["sound/"+Sound_Name+".wav"].play();
-      else core.assets["sound/"+Sound_Name+".wav"].pose();
+      else core.assets["sound/"+Sound_Name+".wav"].pause();
       return;
     }
 
