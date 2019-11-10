@@ -2092,6 +2092,17 @@ function Load(width,height){
       Text2.text = "▶ はい";
       scene.addChild(Text2);
 
+      var Text2_5 = new Label();
+      Text2_5.font  = "60px monospace";
+      Text2_5.color = 'black';
+      Text2_5.x = 200;
+      Text2_5.y = 700;
+      Text2_5.width = 1600;
+      Text2_5.height = 60;
+      if(Flag[9]) Text2_5.text = "▶ サウンドオン";
+      else Text2_5.text = "▶ サウンドオフ";
+      scene.addChild(Text2_5);
+
       var Text3 = new Label();
       Text3.font  = "60px monospace";
       Text3.color = 'black';
@@ -2124,6 +2135,24 @@ function Load(width,height){
         Scene_kazu = 1;
         Get = false;
         core.replaceScene(TitleScene());
+        return;
+      });
+
+      Text2_5.addEventListener('touchstart',function(e){
+        if(Flag[9]){
+          Flag[9] = false;
+          Text2_5.text = "▶ サウンドオフ";
+          var Flag2 = window.localStorage.getItem("Flag").split(",");
+          Flag2[9] = false;
+          window.localStorage.setItem("Flag",Flag2);
+        }
+        else{
+          Flag[9] = true;
+          Text2_5.text = "▶ サウンドオン";
+          var Flag2 = window.localStorage.getItem("Flag").split(",");
+          Flag2[9] = true;
+          window.localStorage.setItem("Flag",Flag2);
+        }
         return;
       });
 
