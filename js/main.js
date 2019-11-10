@@ -46,8 +46,13 @@ function Load(width,height){
   core.onload = function(){
 
 
-    function BGM_Stop(){
+    function BGM_Stop(Pause){
       if(Flag[9]==false) return;
+      if(Pause){
+        core.assets["sound/プライド.wav"].pause();
+        core.assets["sound/永遠の灯.wav"].pause();
+        core.assets["sound/偶然、必然。.wav"].pause();
+      }
       core.assets["sound/プライド.wav"].stop();
       core.assets["sound/永遠の灯.wav"].stop();
       core.assets["sound/偶然、必然。.wav"].stop();
@@ -1151,12 +1156,12 @@ function Load(width,height){
 
       Text2_5.addEventListener('touchstart',function(e){
         if(Flag[9]){
-          BGM_Stop();
           Flag[9] = false;
           Text2_5.text = "▶ サウンドオフ";
         }
         else{
           Flag[9] = true;
+          Sound_ON("Item",true);
           Text2_5.text = "▶ サウンドオン";
         }
         return;
@@ -2141,6 +2146,7 @@ function Load(width,height){
       Text2_5.addEventListener('touchstart',function(e){
         if(Flag[9]){
           Flag[9] = false;
+          BGM_Stop(true);
           Text2_5.text = "▶ サウンドオフ";
           var Flag2 = window.localStorage.getItem("Flag").split(",");
           Flag2[9] = false;
@@ -2149,6 +2155,7 @@ function Load(width,height){
         else{
           Flag[9] = true;
           Text2_5.text = "▶ サウンドオン";
+          Sound_ON("Choice",true);
           var Flag2 = window.localStorage.getItem("Flag").split(",");
           Flag2[9] = true;
           window.localStorage.setItem("Flag",Flag2);
