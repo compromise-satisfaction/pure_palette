@@ -2,7 +2,7 @@ enchant()
 
 function Load(width,height){
   var core = new Core(width, height);
-  core.preload("sound/Item.wav");
+  //core.preload("sound/Item.wav");
   core.preload("image/left.png");
   core.preload("image/Round.png");
   core.preload("image/title.png");
@@ -10,18 +10,18 @@ function Load(width,height){
   core.preload("image/white.png");
   core.preload("image/stand.png");
   core.preload("image/Item_S.png");
-  core.preload("sound/Choice.wav");
+  //core.preload("sound/Choice.wav");
   core.preload("image/Buttons.png");
   core.preload("image/待った！.png");
-  core.preload("sound/待った！.wav");
-  core.preload("sound/Trophies.wav");
-  core.preload("sound/プライド.wav");
+  //core.preload("sound/待った！.wav");
+  //core.preload("sound/Trophies.wav");
+  //core.preload("sound/プライド.wav");
   core.preload("sound/永遠の灯.wav");
   core.preload("sound/偶然、必然。.wav");
   core.preload("image/Trophies.png");
   core.preload("image/背景/left.png");
   core.preload("image/異議あり！.png");
-  core.preload("sound/異議あり！.wav");
+  //core.preload("sound/異議あり！.wav");
   core.preload("image/背景/stand.png");
   core.preload("image/背景/Black.png");
   core.preload("image/背景/right.png");
@@ -548,7 +548,7 @@ function Load(width,height){
         Item.y = Datas[15].substring(5,9)*1;
         Item.frame = Datas[16];
         if(Return!=true&&Datas[15].substring(11,12)*1!=0){
-          core.assets["sound/Choice.wav"].play();
+          //core.assets["sound/Choice.wav"].play();
           Item.opacity = 0;
           Item.tl.fadeIn(Datas[15].substring(11,12)*1);
         }
@@ -696,7 +696,7 @@ function Load(width,height){
           Trophies_text.tl.fadeIn(5);
           Trophies_text.text = Datas[17];
           scene.addChild(Trophies_text);
-          core.assets["sound/Trophies.wav"].play();
+          //core.assets["sound/Trophies.wav"].play();
           Trophies.addEventListener("enterframe",function(){
             Time++;
             if(Time==50){
@@ -903,7 +903,7 @@ function Load(width,height){
       Pop.image = core.assets["image/"+Type+".png"];
       Pop.x = 0;
       Pop.y = 0;
-      core.assets["sound/"+Type+".wav"].play();
+      //core.assets["sound/"+Type+".wav"].play();
       scene.addChild(Pop);//異議ありOR待った
 
       var Time = 0;
@@ -1285,7 +1285,7 @@ function Load(width,height){
       Text4.addEventListener('touchstart',function(e){
         if(Text4.text == "▶ セーブする"){
           Save(Number);
-          core.assets["sound/Item.wav"].play();
+          //core.assets["sound/Item.wav"].play();
           scene.addChild(Text5);
         }
         return;
@@ -1318,7 +1318,7 @@ function Load(width,height){
           }
           else if(S_Input2._element.value=="チートアイテム"){
             Item_Flag[Item_Flag.length] = [S_Input._element.value,"チートで生み出したアイテム。"];
-            core.assets["sound/Item.wav"].play();
+            //core.assets["sound/Item.wav"].play();
             Text12.text = S_Input._element.value;
             scene.addChild(Text12);
             return;
@@ -1333,7 +1333,7 @@ function Load(width,height){
               }
             }
             Flag[Flag.length] = S_Input._element.value;
-            core.assets["sound/Item.wav"].play();
+            //core.assets["sound/Item.wav"].play();
             Text12.text = S_Input._element.value;
             scene.addChild(Text12);
             return;
@@ -1349,7 +1349,7 @@ function Load(width,height){
         }
         Flag[1] = S_Input._element.value;
         Flag[0] = S_Input2._element.value;
-        core.assets["sound/Item.wav"].play();
+        //core.assets["sound/Item.wav"].play();
         scene.addChild(Text12);
         return;
       });
@@ -1512,9 +1512,9 @@ function Load(width,height){
     var ItemgetScene = function(a,b,c){
       var scene = new Scene();                                // 新しいシーンを作る
 
-      if(!have("プライド")) core.assets["sound/プライド.wav"].stop();
-      if(!have("永遠の灯")) core.assets["sound/永遠の灯.wav"].stop();
-      if(!have("偶然、必然。")) core.assets["sound/偶然、必然。.wav"].stop();
+      //if(!have("プライド")) core.assets["sound/プライド.wav"].stop();
+      //if(!have("永遠の灯")) core.assets["sound/永遠の灯.wav"].stop();
+      //if(!have("偶然、必然。")) core.assets["sound/偶然、必然。.wav"].stop();
 
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/white.png"];
@@ -1556,7 +1556,7 @@ function Load(width,height){
       Item.x = 1600;
       Item.y = 50;
       scene.addChild(Item);
-      core.assets["sound/Item.wav"].play();
+      //core.assets["sound/Item.wav"].play();
 
       Item.addEventListener("enterframe",function(){
         if(Item.x!=400) Item.x -= 100;
@@ -1819,7 +1819,7 @@ function Load(width,height){
       Text8.addEventListener('touchstart',function(e){
         if(this.text=="") return;
         else if(this.text=="▶ 再生"){
-          core.assets["sound/"+Choice_Item+".wav"].play();
+          //core.assets["sound/"+Choice_Item+".wav"].play();
           for (var i = 0; i < Item_Flag.length; i++) {
             if(Item_Flag[i][0]==Choice_Item) break;
           }
@@ -1829,7 +1829,7 @@ function Load(width,height){
           console.log("Scene数",Scene_kazu);
         }
         else if(this.text=="■ 停止"){
-          core.assets["sound/"+Choice_Item+".wav"].pause();
+          //core.assets["sound/"+Choice_Item+".wav"].pause();
           for (var i = 0; i < Item_Flag.length; i++) {
             if(Item_Flag[i][0]==Choice_Item) break;
           }
