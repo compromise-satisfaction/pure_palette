@@ -57,6 +57,7 @@ function Load(width,height){
 
     function Sound_ON(Sound_Name,Play){
       if(Flag[9]==false) return;
+      console.log(Sound_Name);
       if(Play) core.assets["sound/"+Sound_Name+".wav"].play();
       else core.assets["sound/"+Sound_Name+".wav"].pose();
       return;
