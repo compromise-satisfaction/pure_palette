@@ -210,6 +210,8 @@ function Load(width,height){
 
     var TitleScene = function(){
 
+      var scene = new Scene();                                // 新しいシーンを作る
+
       BGM_Stop();
 
       if(window.localStorage.getItem("syoken")!="false"){
@@ -267,8 +269,6 @@ function Load(width,height){
         Pages2 = Pages[1]*1;
         Pages = Pages[0]*1;
       }
-
-      var scene = new Scene();                                // 新しいシーンを作る
 
       var Title = new Sprite(1600,900);
       Title.image = core.assets["image/title.png"];
@@ -345,6 +345,80 @@ function Load(width,height){
           console.log("Scene数",Scene_kazu);
         }
       })
+
+      return scene;
+    };
+    var TitleScene2 = function(){
+
+      var scene = new Scene();                                // 新しいシーンを作る
+
+      var Title = new Sprite(1600,900);
+      Title.image = core.assets["image/title.png"];
+      Title.x = 0;
+      Title.y = 0;
+      scene.addChild(Title);
+
+      var Beginning = new Label();
+      Beginning.font  = "60px monospace";
+      Beginning.color = 'black';
+      Beginning.x = 0;
+      Beginning.y = 960;
+      Beginning.width = 1600;
+      Beginning.height = 60;
+      Beginning.text = "▶ 最初から";
+      scene.addChild(Beginning);
+
+      var Continuation = new Label();
+      Continuation.font  = "60px monospace";
+      Continuation.color = 'black';
+      Continuation.x = 0;
+      Continuation.y = 1040;
+      Continuation.width = 1600;
+      Continuation.height = 60;
+      Continuation.text = "▶ 説明";
+      if(Data) Continuation.text = "▶ 続きから";
+      scene.addChild(Continuation);
+
+      var Explanation = new Label();
+      Explanation.font  = "60px monospace";
+      Explanation.color = 'black';
+      Explanation.x = 0;
+      Explanation.y = 1120;
+      Explanation.width = 1600;
+      Explanation.height = 60;
+      Explanation.text = "▶ 説明";
+      if(Data) scene.addChild(Explanation);
+
+      var Clear = new Label();
+      Clear.font  = "60px monospace";
+      Clear.color = 'black';
+      Clear.x = 1000;
+      Clear.y = 960;
+      Clear.width = 1600;
+      Clear.height = 60;
+      Clear.text = "▶ データ初期化";
+      if(Data) scene.addChild(Clear);
+
+      Beginning.addEventListener('touchstart',function(e){
+        Scene_loads(1,false,false);
+        return;
+      });
+
+      Continuation.addEventListener('touchstart',function(e){
+        if(Continuation.text == "▶ 説明") Scene_loads(-1,false,false);
+        else Scene_loads("セーブ読み込み",false,false);
+      });
+
+      Clear.addEventListener('touchstart',function(e){
+        core.pushScene(ClearScene());
+        Scene_kazu++;
+        console.log("Scene数",Scene_kazu);
+        return;
+      });
+
+      Explanation.addEventListener('touchstart',function(e){
+        Scene_loads(-1,false,false,false);
+      });
 
       return scene;
     };
