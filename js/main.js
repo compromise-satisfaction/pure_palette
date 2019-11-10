@@ -212,7 +212,7 @@ function Load(width,height){
 
       var scene = new Scene();                                // 新しいシーンを作る
 
-      BGM_Stop();
+      //BGM_Stop();
 
       if(window.localStorage.getItem("syoken")!="false"){
         var Data = false;
