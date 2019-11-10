@@ -4,7 +4,7 @@ var Skip = 0;
 var Before = 0;
 var After = 0;
 var Datas = [];
-var Flag = ["俛人","若辻","男",1,1,21,10,"0,0",true,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9選択音
+var Flag = ["みお","湊","女",1,1,21,10,"0,0",true,false,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9選択音,10おまけ裁判
 var Item_Flag = [];//所持アイテム
 var Character_Flag = [];//人物
 var Pages = 0;//アイテムのページ
@@ -45,12 +45,11 @@ function Save(Number){
   window.localStorage.setItem("syoken",false);
   var Flag2 = [];
   var k = 0;
-  for (var i = 10; i < Flag.length; i++) {
+  for (var i = 11; i < Flag.length; i++) {
     Flag2[k] = Flag[i];
     k++;
   }
   console.log(Flag2);
-  console.log(Item_Flag);
 }//セーブ
 
 function rand(n) {
@@ -166,11 +165,11 @@ function Scene_loads2(Number,Item,get){
   if(Gender=="男"){
     var www = ["僕","俺"];
     var Person = www[rand(1)];
-    var S_image = 1;
+    var S_image = 45;
   }
   else{
     var Person = "私";
-    var S_image = 2;
+    var S_image = 46;
   }
   if(Item){
     switch (Item) {
@@ -442,6 +441,16 @@ function Scene_loads2(Number,Item,get){
       Datas = [58,0,0,0,0,0,0,0,Name,Text,0,0,0,"調べる",0];
       Scene_type = "メイン";
       break;
+      case "調べる新品で強靭な包丁":
+      var Text = "光り輝いている。";
+      Datas = [60,0,0,0,0,0,0,0,Name,Text,0,0,0,"調べる",0];
+      Scene_type = "メイン";
+      break;
+      case "調べる折られた包丁":
+      var Text = "空間ごと折られているようだ。";
+      Datas = [61,0,0,0,0,0,0,0,Name,Text,0,0,0,"調べる",0];
+      Scene_type = "メイン";
+      break;
       case "調べる包丁":
       var Text = "手入れをしましょう。";
       Datas = [Datas[0],0,0,0,0,0,2,0,Name,Text,0,0,0,"調べる包丁2",0];
@@ -486,7 +495,7 @@ function Scene_loads2(Number,Item,get){
       case "調べる包丁修理5":
       var Text = "……成功！";
       After = "調べる包丁修理成功";
-      if(rand(1)==1){
+      if(rand(1)==1&&have("殺意")==false){
         Text = "……失敗！";
         After = "調べる包丁修理失敗";
       }
@@ -510,7 +519,7 @@ function Scene_loads2(Number,Item,get){
       else if(have("折れた包丁")){
         Get_I_C_F("アイテム","折れた包丁","書き換え","新品で強靭な包丁");
       }
-      Get_I_C_F("アイテム","新品で強靭な包丁","(改行)最強の包丁。(改行)どんな攻撃にも耐えられることだろう。",9);
+      Get_I_C_F("アイテム","新品で強靭な包丁","(改行)最強の包丁。(改行)どんな攻撃にも耐えられることだろう。",9,"調べる");
       Scene_type = [9,"新品で強靭な包丁になった！",Flag[4]];
       break;
       case "調べる包丁修理失敗":
@@ -554,6 +563,15 @@ function Scene_loads2(Number,Item,get){
       Scene_type = "メイン";
       break;
     case 1:
+      if(Flag[10]){
+        var C1 = "ピュアパレット物語";
+        var C2 = "かばんちゃん弁護";
+        var C3 = 0;
+        var C4 = 0;
+        Datas = ["Black",0,0,0,C1,C2,C3,C4,1.1,298,0,0,0,0,0];
+        Scene_type = "チョイス";
+        break;
+      }
       Data = true;
       Item_Flag = [];
       Character_Flag = [];
@@ -563,6 +581,7 @@ function Scene_loads2(Number,Item,get){
       Flag2[2] = Flag[2];
       Flag2[8] = Flag[8];
       Flag2[9] = Flag[9];
+      Flag2[10] = Flag[10];
       Flag = Flag2;
       Flag[6] = 10;
       R_S(Number,21);
@@ -573,7 +592,31 @@ function Scene_loads2(Number,Item,get){
       Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
       Scene_type = "メイン";
       break;
+    case 1.1:
+      Data = true;
+      Item_Flag = [];
+      Character_Flag = [];
+      var Flag2 = [];
+      Flag2[0] = Flag[0];
+      Flag2[1] = Flag[1];
+      Flag2[2] = Flag[2];
+      Flag2[8] = Flag[8];
+      Flag2[9] = Flag[9];
+      Flag2[10] = Flag[10];
+      Flag = Flag2;
+      Flag[6] = 10;
+      R_S(Number,21);
+      Get_I_C_F("アイテム","学生証","ステージをする時に必要な、(改行)大切なカードだ。",1);
+      Get_I_C_F("人物","友希 あいね","スターハーモニー学園に通うアイドル。(改行)私と出会ってアイドル科に転入した。(改行)可愛い。",1);
+      var T_Name = "友希 あいね";
+      var Text = "これまでの『アイカツフレンズ！』。";
+      After = 2;
+      Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      Scene_type = "メイン";
+      break;
     case 2:
+      Rewind = 0;
+      Before = 1.1;
       var T_Name = "あいね";
       var Text = "私　友希あいね。";
       Datas = [1,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -2181,7 +2224,7 @@ function Scene_loads2(Number,Item,get){
               var C3 = 0;
               if(have("新品で強靭な包丁")||have("使い古された包丁")) C3 = "殺してでも奪い取る";
               var C4 = 0;
-              Datas = [36,2,0,0,C1,C2,C3,C4,189,188.1,0,0,Rewind,Before,Number];
+              Datas = [36,2,0,0,C1,C2,C3,C4,189,188.1,261,0,Rewind,Before,Number];
               Scene_type = "チョイス";
               break;
             case 188.1:
@@ -2541,6 +2584,7 @@ function Scene_loads2(Number,Item,get){
               Scene_type = "メイン";
               break;
             case 230:
+              if(have("殺意")) R_S(Number,248);
               var T_Name = "なこ";
               var Text = "フレンズ結成おめでとう！(改行)あいねちゃん。";
               Datas = [36,0,1,15,0,0,15,15,T_Name,Text,Rewind,Before,Number,After,Skip];
@@ -2590,7 +2634,8 @@ function Scene_loads2(Number,Item,get){
               break;
             case 238:
               var T_Name = Name;
-              var Text = "ごめんね。なこちちゃんもあいねとフレンズを…。";
+              var Text = "ごめんね。(改行)なこちちゃんもあいねとフレンズを…。";
+              if(have("殺意")) Text = "色々と" + Text;
               Datas = [36,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
               Scene_type = "メイン";
               break;
@@ -2740,12 +2785,1045 @@ function Scene_loads2(Number,Item,get){
     case 260:
       var Percent = 0;
       var T_Name = "クリア";
+      if(have("即決")==false) Percent = Percent + 5;
+      if(have("電話をした")==false)Percent = Percent + 5;
+      if(have("妥協した")==false)Percent = Percent + 5;
+      if(have("ラブミーティア結成を復習した"))Percent = Percent + 5;
+      if(have("普通の聞き方")==false)Percent = Percent + 5;
+      if(have("悪ノリ")==false)Percent = Percent + 5;
+      if(have("ゲーム感覚")==false)Percent = Percent + 5;
+      if(have("疑惑")==false)Percent = Percent + 5;
+      if(have("嫉妬")==false)Percent = Percent + 5;
+      if(have("落ち着き")==false)Percent = Percent + 5;
+      if(have("一緒に行く")==false)Percent = Percent + 5;
+      if(have("あいねから誘う")==false)Percent = Percent + 5;
+      if(have("諦める")==false)Percent = Percent + 5;
+      if(have("沈黙")==false)Percent = Percent + 5;
+      if(have("違うタイミング")==false)Percent = Percent + 5;
+      if(have("ええ。")==false)Percent = Percent + 5;
+      if(have("もちろん！")==false)Percent = Percent + 5;
+      if(have("私もそう思う。")==false)Percent = Percent + 5;
+      if(have("うん　知ってた。"))Percent = Percent + 5;
+      if(have("殺意")==false)Percent = Percent + 5;
       var Text = "正解率"+Percent+"パーセント";
-      var Flag2 = [];
-      var k = 0;
       Datas = [49,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,"ゲームオーバー",0];
       Scene_type = "メイン";
       break;
+      case 261:
+      R_S(Number,274);
+      Get_I_C_F("フラグ","殺意");
+      var T_Name = Name;
+      var Text = "あいねは渡さない！";
+      Datas = [36,0,0,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      if(have("使い古された包丁")) Datas[2] = 40;
+      if(have("新品で強靭な包丁")) Datas[2] = 41;
+      Scene_type = "メイン";
+      break;
+      case 262:
+      var T_Name = "なこ";
+      var Text = "えっ？";
+      Datas = [36,0,0,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      if(have("使い古された包丁")) Datas[2] = 40;
+      if(have("新品で強靭な包丁")) Datas[2] = 41;
+      Scene_type = "メイン";
+      break;
+      case 263:
+      var T_Name = "あいね";
+      var Text = Name+"ちゃん？どうしてここに？";
+      Datas = [36,0,0,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      if(have("使い古された包丁")) Datas[2] = 40;
+      if(have("新品で強靭な包丁")) Datas[2] = 41;
+      Scene_type = "メイン";
+      break;
+      case 264:
+      var T_Name = Name;
+      var Text = "どいてあいねそいつ殺せない";
+      Datas = [36,0,0,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      if(have("使い古された包丁")) Datas[2] = 40;
+      if(have("新品で強靭な包丁")) Datas[2] = 41;
+      Scene_type = "メイン";
+      break;
+      case 265:
+      var T_Name = Name;
+      var Text = "あいねとフレンズになるのは私…！";
+      Datas = [36,0,0,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      if(have("使い古された包丁")) Datas[2] = 40;
+      if(have("新品で強靭な包丁")) Datas[2] = 41;
+      Scene_type = "メイン";
+      break;
+      case 266:
+      var T_Name = Name;
+      var Text = "そのためには邪魔な(改行)その女を殺すしかないのよ！";
+      Datas = [36,0,0,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      if(have("使い古された包丁")) Datas[2] = 40;
+      if(have("新品で強靭な包丁")) Datas[2] = 41;
+      Scene_type = "メイン";
+      break;
+    case 267:
+    var T_Name = "かばん";
+    var Text = "僕はそうは思いません。";
+    Datas = [36,0,43,15,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[6] = 40;
+    if(have("新品で強靭な包丁")) Datas[6] = 41;
+    Scene_type = "メイン";
+    break;
+    case 268:
+    var T_Name = "かばん";
+    var Text = "僕はそうは思いません。(改行)力だけで解決できることは少ないです。";
+    Datas = [36,0,43,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[6] = 40;
+    if(have("新品で強靭な包丁")) Datas[6] = 41;
+    Scene_type = "メイン";
+    break;
+    case 269:
+    var T_Name = "あいね";
+    var Text = "あっ かばんちゃん！";
+    Datas = [36,0,0,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[2] = 40;
+    if(have("新品で強靭な包丁")) Datas[2] = 41;
+    Scene_type = "メイン";
+    break;
+    case 270:
+    var T_Name = Name;
+    var Text = "あいね！さあ！";
+    Datas = [36,0,0,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[2] = 40;
+    if(have("新品で強靭な包丁")) Datas[2] = 41;
+    Scene_type = "メイン";
+    break;
+    case 271:
+    var T_Name = "かばん";
+    var Text = "周りが見えなくなってるみたいですね…。";
+    Datas = [36,0,43,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[6] = 40;
+    if(have("新品で強靭な包丁")) Datas[6] = 41;
+    Scene_type = "メイン";
+    break;
+    case 272:
+    var T_Name = "かばん";
+    var Text = "これはあいねさんに説得してもらうしかなさそうです。";
+    Datas = [36,0,43,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[6] = 40;
+    if(have("新品で強靭な包丁")) Datas[6] = 41;
+    Scene_type = "メイン";
+    break;
+    case 273:
+    var T_Name = "かばん";
+    var Text = "ただ、あの道具は危険そうなので(改行)僕がなんとかしておきますね。";
+    Datas = [36,0,43,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[6] = 40;
+    if(have("新品で強靭な包丁")) Datas[6] = 41;
+    Scene_type = "メイン";
+    break;
+    case 274:
+    var T_Name = "かばん";
+    var Text = "(クンッ)";
+    if(have("新品で強靭な包丁")) After = 294;
+    Number = 0;
+    Skip = 0;
+    Datas = [36,0,44,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    if(have("使い古された包丁")) Datas[6] = 40;
+    if(have("新品で強靭な包丁")) Datas[6] = 41;
+    Scene_type = "メイン";
+    break;
+    case 275:
+    R_S(Number,293);
+    var T_Name = "包丁";
+    var Text = "(ﾒｷｮ)";
+    if(have("使い古された包丁")) Get_I_C_F("アイテム","使い古された包丁","書き換え","折られた包丁");
+    if(have("包丁")) Get_I_C_F("アイテム","包丁","書き換え","折られた包丁");
+    Get_I_C_F("アイテム","折られた包丁","圧倒的ぱわーちゃん…。",10,"調べる");
+    Datas = [36,0,44,0,0,0,42,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 276:
+    var T_Name = Name;
+    var Text = "あっ 包丁が…。";
+    Datas = [36,0,43,0,0,0,2,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 277:
+    var T_Name = Name;
+    var Text = "ちょっと！ もう使えないじゃない！";
+    Datas = [36,0,43,0,0,0,2,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 278:
+    var T_Name = "かばん";
+    var Text = "大丈夫です。(改行)空間ごと折ったので後で戻せますよ。";
+    Datas = [36,0,43,0,0,0,2,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 279:
+    var T_Name = Name;
+    var Text = "そっ そうですか…。";
+    Datas = [36,0,43,0,0,0,2,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 280:
+    var T_Name = "あいね";
+    var Text = Name+"ちゃん。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 281:
+    var T_Name = Name;
+    var Text = "あいね…。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 282:
+    var T_Name = "あいね";
+    var Text = "さっき言ってたこと本当？";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 283:
+    var T_Name = Name;
+    var Text = "えっ？";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 284:
+    var T_Name = "あいね";
+    var Text = "私とフレンズになるって話。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 285:
+    var T_Name = Name;
+    var Text = "…。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 286:
+    var T_Name = Name;
+    var Text = "…うん。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 287:
+    var T_Name = Name;
+    var Text = "私、あいねとフレンズになりたい。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 288:
+    var T_Name = Name;
+    var Text = "フレンズを組むのは、あいねしかいないの…。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 289:
+    var T_Name = "あいね";
+    var Text = "うれしい…。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 290:
+    var T_Name = "あいね";
+    var Text = "私も、"+Name+"ちゃんと(改行)フレンズになりたいってすっごくすっごく思ってた。";
+    Datas = [36,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 291:
+    var T_Name = Name;
+    var Text = "あいね…。";
+    Datas = [36,0,11,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 292:
+    if(have("包丁")) Get_I_C_F("アイテム","包丁","書き換え","折られた包丁");
+    Get_I_C_F("アイテム","折られた包丁","圧倒的ぱわーちゃん…。",10,"調べる");
+    var T_Name = "かばん";
+    var Text = "…。";
+    Datas = [36,0,43,0,0,0,11,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 293:
+    if(have("折られた包丁")) Get_I_C_F("アイテム","折られた包丁","書き換え","包丁");
+    Get_I_C_F("アイテム","包丁","いつの間にか元に戻っている。",7);
+    var T_Name = "かばん";
+    var Text = "(ｽｯ)";
+    After = 230;
+    Skip = 0;
+    Datas = [36,0,44,0,0,0,11,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 294:
+    R_S(Number,296);
+    var T_Name = Name;
+    var Text = "フン！ タイムマジックで加工した(改行)この新品で強靭な包丁がその程度の攻撃で…。";
+    Datas = [36,0,44,0,0,0,41,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 295:
+    var T_Name = Name;
+    var Text = "…ん？";
+    Datas = [36,0,44,0,0,0,41,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 296:
+    var T_Name = "";
+    var Text = "【チュド～ン】";
+    Skip = 0;
+    Datas = [62,0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 297:
+    var Flag2 = window.localStorage.getItem("Flag").split(",");
+    Flag2[10] = true;
+    window.localStorage.setItem("Flag",Flag2);
+    Scene_type = [11,"おまけモードが解放された。(改行)最初からで始めることが出来るぞ。","ゲームオーバー"];
+    break;
+    case 298:
+    Item_Flag = [];
+    Character_Flag = [];
+    var Flag2 = [];
+    Flag2[0] = Flag[0];
+    Flag2[1] = Flag[1];
+    Flag2[2] = Flag[2];
+    Flag2[8] = Flag[8];
+    Flag2[9] = Flag[9];
+    Flag2[10] = Flag[10];
+    Flag = Flag2;
+    Flag[6] = 10;
+    R_S(Number,339);
+    var T_Name = "裁判長";
+    var Text = "「これより、\"かばん\"の裁判を開始します。」";
+    Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+    case 299:
+      Get_I_C_F("アイテム","弁護士バッジ",Person+"の身分を(改行)証明してくれる、(改行)大切なバッジだ。",11);
+      T_Name = Name;
+      Text = "「弁護側、準備完了しておりません。」";
+      Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      Scene_type = "メイン";
+      break;
+    case 300:
+      T_Name = "検事";
+      Text = "「検察側、同じく準備完了していません。」";
+      Datas = ["right",0,0,0,0,0,47,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      Scene_type = "メイン";
+      break;
+      case 301:
+      var T_Name = "裁判長";
+      var Text = "「どういうことですか？(改行) 双方準備が出来ていないとは。」";
+      Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+      Scene_type = "メイン";
+        break;
+      case 302:
+        T_Name = "検事";
+        Text = "「やっつけ仕事ですからね。(改行) 内容これっぽっちも考えていません。」";
+        Datas = ["right",0,0,0,0,0,47,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+        Scene_type = "メイン";
+        break;
+        case 303:
+        var Hanketu = ["有罪","無罪"];
+        var T_Name = "裁判長";
+        var Text = "「ふむ…では、被告人は(改行) "+Hanketu[rand(1)]+"ということで。」";
+        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+        Scene_type = "メイン";
+          break;
+          case 304:
+          Scene_type = "異議あり！305";
+          break;
+          case 305:
+            T_Name = "検事";
+            Before = 303;
+            Text = "「そのようなアレは困る。(改行) こちらにも事情があるのだ。」";
+            Datas = ["right",0,0,0,0,0,47,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+            Scene_type = "メイン";
+            break;
+            case 306:
+            var T_Name = "裁判長";
+            var Text = "「そうなのですか？一応、(改行) 勝手に決めるのも何なので(改行) ランダムで発言したのですが。」";
+            Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+            Scene_type = "メイン";
+              break;
+              case 307:
+                T_Name = "検事";
+              Text = "「有罪か無罪かは関係ない。(改行) このモードの目的は遊び方を覚えてもらうことだ。」";
+              Datas = ["right",0,0,0,0,0,47,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+              case 308:
+                T_Name = Name;
+                Text = "「遊び方？」";
+                Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                Scene_type = "メイン";
+                break;
+                case 309:
+                T_Name = "検事";
+                After = 309.1;
+                Text = "「そうだ。平たく言えば\"尋問\"だ。」";
+                Datas = ["right",0,0,0,0,0,47,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                Scene_type = "メイン";
+                break;
+                case 309.1:
+                Scene_type = "待った！310";
+                break;
+                case 310:
+                  T_Name = Name;
+                  Before = 309;
+                  Text = "「…それって仕事あるの"+Person+"だけじゃありませんか？」";
+                  Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 311:
+                  T_Name = "検事";
+                  Text = "「そのようだな。」";
+                  Datas = ["right",0,0,0,0,0,47,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 312:
+                  T_Name = "検事";
+                  Text = "「そのようだな。(改行) では私はこれで失礼させてもらう。」";
+                  Datas = ["right",0,0,0,0,0,47,-15,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 313:
+                    T_Name = Name;
+                    Text = "「帰っちまったぞ…」";
+                    Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 314:
+                    var T_Name = "裁判長";
+                    var Text = "「では弁護人。\"尋問\"を。」";
+                    Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                      break;
+                      case 315:
+                        T_Name = Name;
+                        Text = "「あれ。裁判長はいるんですね。」";
+                        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                        Scene_type = "メイン";
+                        break;
+                        case 316:
+                        var T_Name = "裁判長";
+                        var Text = "「実は裁判長席の画像がなかったので、(改行) 私は背景というわけですな。」";
+                        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                        Scene_type = "メイン";
+                          break;
+                          case 317:
+                          var T_Name = "裁判長";
+                          var Text = "「なので、いなくなるということは出来ないのです。」";
+                          Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                          Scene_type = "メイン";
+                            break;
+                        case 318:
+                          T_Name = Name;
+                          Text = "「ふーん。(改行) 画像、用意されるといいですね。」";
+                          Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                          Scene_type = "メイン";
+                          break;
+                          case 319:
+                          var T_Name = "裁判長";
+                          var Text = "「あなたが言うとシャレになりませんな…」";
+                          Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                          Scene_type = "メイン";
+                            break;
+                            case 320:
+                            T_Name = "？？？";
+                            Text = "「それより、尋問ですよ尋問！」";
+                            Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                            Scene_type = "メイン";
+                            break;
+                            case 321:
+                              T_Name = Name;
+                              Text = "「あ、先輩。」";
+                              Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 322:
+                              T_Name = "？？？";
+                              Text = "「やあ"+Surname+"くん。尋問の仕方はわかってるかな？」";
+                              Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 323:
+                                T_Name = Name;
+                                Text = "「えっと、証言と証拠に矛盾があれば(改行) \"つきつける\"で異議の申し立て。」";
+                                Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 324:
+                                  T_Name = Name;
+                                  Text = "「矛盾が見当たらなければとりあえず(改行) \"ゆさぶる\"ですよね。」";
+                                  Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                  Scene_type = "メイン";
+                                  break;
+                                  case 325:
+                                  T_Name = "？？？";
+                                  Text = "「そうだね。ではまずは証言。(改行) それからその証言に尋問をするよ。」";
+                                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                  Scene_type = "メイン";
+                                  break;
+                                  case 326:
+                                  T_Name = "";
+                                  Text = "証言開始";
+                                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                  Scene_type = "メイン";
+                                  break;
+                                  case 327:
+                                  T_Name = "？？？";
+                                  Text = "「被告人はかばんと名乗る(改行) 正体不明のムキムキの女の子よ。」";
+                                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                  Scene_type = "メイン";
+                                  break;
+                                  case 328:
+                                  T_Name = "？？？";
+                                  Text = "「その筋肉であるアイドルを爆破したみたい。」";
+                                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                  Scene_type = "メイン";
+                                  break;
+                                  case 329:
+                                  T_Name = "？？？";
+                                  Text = "「アイドルはタフだったから助かったみたいだけど、(改行) 他の物なんかは全て木端微塵になったみたいだね。」";
+                                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                  Scene_type = "メイン";
+                                  break;
+                          case 330:
+                          var T_Name = "裁判長";
+                          var Text = "「ふむぅ…爆破ですか。(改行) 被害者の方は？」";
+                          Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                          Scene_type = "メイン";
+                            break;
+                      case 331:
+                      T_Name = "？？？";
+                      Text = "「湊 みお 中学二年生。(改行) スターハーモニー学園のトップアイドルみたいね。」";
+                      Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                      Scene_type = "メイン";
+                      break;
+                      case 332:
+                      T_Name = "？？？";
+                      Text = "「全治二日半だそうよ。(改行) それでもフレンズ結成に支障があるとかなんとか。」";
+                      Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                      Scene_type = "メイン";
+                      break;
+                      case 333:
+                      var T_Name = "裁判長";
+                      var Text = "「なんともタフですな。(改行) それでは弁護人。尋問を。」";
+                      Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                      Scene_type = "メイン";
+                        break;
+                    case 334:
+                      T_Name = Name;
+                      Text = "「あの、資料がないんですが…。」";
+                      Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                      Scene_type = "メイン";
+                      break;
+                      case 335:
+                      T_Name = "検事席";
+                      Text = "「ホレ。」";
+                      Datas = ["right",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                      Scene_type = "メイン";
+                      break;
+case 336:
+  Scene_type = [12,"燃えカス1を法廷記録にファイルした。",337];
+  break;
+case 337:
+  Scene_type = [13,"燃えカス2を法廷記録にファイルした。",338];
+  break;
+case 338:
+  Scene_type = [8,"時の魔術師を法廷記録にファイルした。",339];
+  break;
+  case 339:
+  Get_I_C_F("アイテム","燃えカス1","被害者の持ち物。学生証だったもの。",12);
+  Get_I_C_F("アイテム","燃えカス2","被害者の持ち物。包丁だったもの。",13);
+  Get_I_C_F("アイテム","時の魔術師","被害者の持ち物。焦げ一つない。",8,"詳細",1);
+  T_Name = "？？？";
+  Text = "「準備よさそうね。(改行) それじゃ始めるよ。」";
+  Before = 335;
+  Skip = 0;
+  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+  Scene_type = "メイン";
+  break;
+  case 340:
+  T_Name = "";
+  Text = "尋問開始";
+  Rewind = 0;
+  Before = 0;
+  Skip = 0;
+  Datas = ["stand",0,48,50,54,0,49,50,T_Name,Text,Rewind,Before,Number,After,Skip];
+  Scene_type = "メイン";
+  break;
+  case 341:
+  T_Name = "？？？";
+  Text = "「被告人はかばんと名乗る(改行) 正体不明のムキムキの女の子よ。」";
+  Datas = [54,T_Name,Text,345,0,Number,After,0,"無"];
+  Scene_type = "尋問";
+  break;
+  case 342:
+  T_Name = "？？？";
+  Text = "「その筋肉であるアイドルを爆破したみたい。」";
+  Datas = [54,T_Name,Text,349,Before,Number,After,0,"無"];
+  Scene_type = "尋問";
+  break;
+  case 343:
+  T_Name = "？？？";
+  Text = "「アイドルはタフだったから助かったみたいだけど、(改行) 他の物なんかは全て木端微塵になったみたいだね。」";
+  Datas = [54,T_Name,Text,355,Before,Number,After,360,"時の魔術師"];
+  Scene_type = "尋問";
+  break;
+  case 344:
+    T_Name = Name;
+    Text = "(証言も証拠品も3つ…(改行) 正直、片っ端からやれば問題ないな。)";
+    Rewind = 0;
+    Before = 0;
+    Skip = 0;
+    After = 341;
+    Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+    Scene_type = "メイン";
+    break;
+      case 345:
+        T_Name = Name;
+        Text = "「正体について、本人はなんと？」";
+        Rewind = 0;
+        Before = 0;
+        Skip = 0;
+        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+        Scene_type = "メイン";
+        break;
+        case 346:
+        T_Name = "？？？";
+        Text = "「力のフレンズだ、と主張しているわ。」";
+        Rewind = 0;
+        Before = 0;
+        Skip = 0;
+        Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+        Scene_type = "メイン";
+        break;
+        case 347:
+          T_Name = Name;
+          Text = "「フレンズ…？」";
+          Rewind = 0;
+          Before = 0;
+          Skip = 0;
+          Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          Scene_type = "メイン";
+          break;
+          case 348:
+          T_Name = "？？？";
+          Text = "「わからないわ。多分犯行とは関係ないしね。(改行) 重要なのは筋肉よ。」";
+          Rewind = 0;
+          Before = 0;
+          Skip = 0;
+          After = 342;
+          Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+          Scene_type = "メイン";
+          break;
+          case 349:
+            T_Name = Name;
+            Text = "「筋肉で爆破？」";
+            Rewind = 0;
+            Before = 0;
+            Skip = 0;
+            Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+            Scene_type = "メイン";
+            break;
+            case 350:
+            T_Name = "？？？";
+            Text = "「あれほどの筋肉ならば(改行) スゴイパワーを使えるに違いない。(改行) というのが警察側の主張よ。」";
+            Rewind = 0;
+            Before = 0;
+            Skip = 0;
+            Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+            Scene_type = "メイン";
+            break;
+            case 351:
+              T_Name = Name;
+              Text = "「…」";
+              Rewind = 0;
+              Before = 0;
+              Skip = 0;
+              Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+            case 352:
+              T_Name = Name;
+              Text = "「…いやいや、それはないでしょう。」";
+              Rewind = 0;
+              Before = 0;
+              Skip = 0;
+              Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+              case 353:
+              T_Name = "？？？";
+              Text = "「でも他に爆破出来そうなものもないし…」";
+              Rewind = 0;
+              Before = 0;
+              Skip = 0;
+              Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+              case 354:
+              T_Name = "？？？";
+              Text = "「でも他に爆破出来そうなものもないし…(改行) とにかく凄い爆発だったのよ。」";
+              Rewind = 0;
+              Before = 0;
+              Skip = 0;
+              After = 343;
+              Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+              case 355:
+                T_Name = Name;
+                Text = "「周りに他に人はいなかったんですか？」";
+                Rewind = 0;
+                Before = 0;
+                Skip = 0;
+                Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                Scene_type = "メイン";
+                break;
+                case 356:
+                T_Name = "？？？";
+                Text = "「二人いたわ。」";
+                Rewind = 0;
+                Before = 0;
+                Skip = 0;
+                Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                Scene_type = "メイン";
+                break;
+                case 357:
+                  T_Name = Name;
+                  Text = "「その人たちは？無事だったんですか？」";
+                  Rewind = 0;
+                  Before = 0;
+                  Skip = 0;
+                  Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 358:
+                  T_Name = "？？？";
+                  Text = "「ええ。二人ともアイドルだったからね。」";
+                  Rewind = 0;
+                  Before = 0;
+                  Skip = 0;
+                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 359:
+                    T_Name = Name;
+                    Text = "(アイドル以外は消え去った…か。)";
+                    Rewind = 0;
+                    Before = 0;
+                    Skip = 0;
+                    After = 344;
+                    Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+            case 360:
+              R_S(Number,364);
+              T_Name = Name;
+              Text = "「証人。ここに容疑者の持ち物があります。」";
+              Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip,"1000,0250,15",8];
+              Scene_type = "メイン";
+              break;
+            case 361:
+              T_Name = Name;
+              Text = "「他の物は全て焼けていますが、(改行) これには焦げ跡一つありません！」";
+              Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip,"1000,0250,0",8];
+              Scene_type = "メイン";
+              break;
+              case 362:
+              T_Name = "？？？";
+              Text = "「そうみたいね。」";
+              Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+              case 363:
+              var T_Name = "裁判長";
+              var Text = "「ふむ…なぜでしょうか。」";
+              Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
+              break;
+              case 364:
+                var C1 = "爆発は時の魔術師が原因だから";
+                var C2 = "わからない";
+                var C3 = 0;
+                var C4 = 0;
+                Datas = ["裁判長",0,0,0,C1,C2,C3,C4,371,365,0,0,Rewind,Before,Number];
+                Scene_type = "チョイス";
+                break;
+                case 365:
+                T_Name = Name;
+                Text = "「そんなの、わかりませんよ。」";
+                Rewind = 0;
+                Before = 0;
+                Skip = 0;
+                Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                Scene_type = "メイン";
+                break;
+                case 366:
+                var T_Name = "裁判長";
+                var Text = "「なんですかその態度は！(改行) ペナルティを与えます！」";
+                Rewind = 0;
+                Before = 0;
+                Skip = 0;
+                Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                Scene_type = "メイン";
+                break;
+                case 367:
+                  T_Name = Name;
+                  Flag[6]--;
+                  Text = "(裁判長の心証が悪くなったみたいだ…。)(改行)(改行)(残り"+Flag[6]+"回)";
+                  if(Flag[6]==0) After = "つきつけ失敗7";
+                  Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,0,0,0,After,0];
+                  Scene_type = "メイン";
+                  break;
+                  case 368:
+                  T_Name = Name;
+                  Text = "「ま、待ってください。もう一度考えますから。」";
+                  Rewind = 0;
+                  Before = 0;
+                  Skip = 0;
+                  Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 369:
+                  var T_Name = "裁判長";
+                  var Text = "「では、もう一度。」";
+                  Rewind = 0;
+                  Before = 0;
+                  Skip = 0;
+                  Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 370:
+                  var T_Name = "裁判長";
+                  var Text = "「\"時の魔術師\"に焦げ一つない理由は？」";
+                  Rewind = 0;
+                  Before = 0;
+                  Skip = 0;
+                  After = 364;
+                  Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 371:
+                  R_S(Number,405);
+                  T_Name = Name;
+                  Text = "「時の魔術師の効果をご存じですか？」";
+                  Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 372:
+                  var T_Name = "裁判長";
+                  var Text = "「はて？」";
+                  Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 373:
+                  T_Name = "？？？";
+                  Text = "「詳細に書いてあるわね。」";
+                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip,"1000,0250,15",8];
+                  Scene_type = "メイン";
+                  break;
+                  case 374:
+                  T_Name = "？？？";
+                  Text = "「①：１ターンに１度、自分メインフェイズに発動で(改行)きる。コイントスを１回行い、裏表を当てる。当たっ(改行)た場合、相手フィールドのモンスターを全て破壊する。」";
+                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip,"1000,0250,0",8];
+                  Scene_type = "メイン";
+                  break;
+                  case 375:
+                  T_Name = "？？？";
+                  Text = "「ハズレの場合、自分フィールドのモンスターを全て破(改行)壊し、自分は表側表示で破壊されたモンスターの攻撃力(改行)を合計した数値の半分のダメージを受ける。」";
+                  Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip,"1000,0250,0",8];
+                  Scene_type = "メイン";
+                  break;
+                  case 376:
+                    T_Name = Name;
+                    Text = "「そうです。おそらくこの効果が暴発したのでしょう。」";
+                    Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                  case 377:
+                  var T_Name = "裁判長";
+                  var Text = "「その理由は？」";
+                  Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                  Scene_type = "メイン";
+                  break;
+                  case 378:
+                    T_Name = Name;
+                    Text = "「えーと…」";
+                    Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 379:
+                    var T_Name = "裁判長";
+                    var Text = "「わからないのですか？」";
+                    Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 380:
+                    T_Name = "あいね";
+                    Text = "「私 わかります！」";
+                    Datas = ["stand",0,0,0,1,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 381:
+                    var T_Name = "裁判長";
+                    var Text = "「おや？あなたは？」";
+                    Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 382:
+                    T_Name = "あいね";
+                    Get_I_C_F("人物","友希 あいね","スターハーモニー学園に通うアイドル。(改行)今回の事件の目撃者の一人。(改行)可愛い。",1);
+                    Text = "「事件の目撃者。(改行) スターハーモニー学園に通う中学二年生です。」";
+                    Datas = ["stand",0,0,0,1,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 383:
+                    var T_Name = "裁判長";
+                    var Text = "「なるほど。目撃者。(改行) そして理由とはなんですかな？」";
+                    Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 384:
+                    T_Name = "あいね";
+                    Text = "「あの時、みおちゃん言ってました。」";
+                    Datas = ["stand",0,0,0,1,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 385:
+                    var T_Name = "回想 みお";
+                    var Text = "フン！ タイムマジックで加工した(改行)この新品で強靭な包丁がその程度の攻撃で…。";
+                    Datas = [63,15,56,15,0,0,55,15,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 386:
+                    T_Name = "あいね";
+                    Text = "「タイムマジック、って言っちゃったから、(改行) 効果が発動したんだと思います。」";
+                    Datas = ["stand",0,0,0,1,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                    Scene_type = "メイン";
+                    break;
+                    case 387:
+                      T_Name = Name;
+                      Text = "「だ、そうです。」";
+                      Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                      Scene_type = "メイン";
+                      break;
+                      case 388:
+                        T_Name = Name;
+                        Text = "「たぶん外れの効果なんでしょうね。」";
+                        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                        Scene_type = "メイン";
+                        break;
+                        case 389:
+                          T_Name = Name;
+                          Text = "「よくよく考えたらアイドルがタフだからって(改行) 無傷なのはおかしいし。」";
+                          Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                          Scene_type = "メイン";
+                          break;
+                          case 390:
+                            T_Name = Name;
+                            Text = "「外れなので相手に影響を与えず、(改行) みおちゃんは表側表示で破壊された(改行) モンスターの攻撃力を合計した数値の半分の(改行) ダメージを受けた、と。」";
+                            Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                            Scene_type = "メイン";
+                            break;
+                            case 391:
+                              T_Name = Name;
+                              Text = "「場にいたのはおそらく時の魔術師1体なので(改行) その攻撃力の半分…250ダメージですね。」";
+                              Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 392:
+                              T_Name = "？？？";
+                              Text = "「あーそれで全治二日半…(改行) でも100ポイントあたり一日ですむってあたり(改行) やっぱりアイドルってタフね。」";
+                              Datas = ["stand",0,0,0,54,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 393:
+                              var T_Name = "裁判長";
+                              var Text = "「しかし、それならば(改行) 時の魔術師は破壊されてるはずでは？」";
+                              Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 394:
+                              T_Name = "あいね";
+                              Text = "「破壊と言っても墓地に行くだけですからね。」";
+                              Datas = ["stand",0,0,0,1,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 395:
+                              var T_Name = "裁判長";
+                              var Text = "「ふむ…検察側は異議はありますかな？」";
+                              Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 396:
+                              T_Name = "検事席";
+                              Text = "「…」";
+                              Datas = ["right",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                              Scene_type = "メイン";
+                              break;
+                              case 397:
+                                T_Name = Name;
+                                Text = "「異議がないどころか人がいないですけどね。」(改行)(なんかさっき証拠品くれたけど。)";
+                                Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 398:
+                                var T_Name = "裁判長";
+                                var Text = "「ではこれは被害者の(改行) 不注意による事故だった、と。」";
+                                Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 399:
+                                var T_Name = "裁判長";
+                                var Text = "「それでは被告人に判決を言い渡します！」";
+                                Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 400:
+                                var T_Name = "裁判長";
+                                var Text = "「それでは被告人に判決を言い渡します！」";
+                                Datas = ["裁判長",0,52,30,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 401:
+                                var T_Name = "裁判長";
+                                var Text = "「それでは被告人に判決を言い渡します！」";
+                                Datas = ["裁判長",0,52,0,0,0,53,30,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 402:
+                                var T_Name = "裁判長";
+                                var Text = "「本日はこれにて閉廷！」";
+                                Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 403:
+                                T_Name = "";
+                                Text = "ゲームクリア！";
+                                Datas = ["stand",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 404:
+                                T_Name = "";
+                                Text = "ゲームクリア！(改行)遊んでくれてありがとう！";
+                                Datas = ["stand",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 405:
+                                T_Name = "";
+                                Text = "ゲームクリア！(改行)遊んでくれてありがとう！(改行)こんどはもっとしっかりした事件考えます……。";
+                                Skip = 0;
+                                Datas = ["stand",0,0,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+                                Scene_type = "メイン";
+                                break;
+                                case 406:
+                                  var C1 = "タイトルに戻る";
+                                  var C2 = 0;
+                                  var C3 = 0;
+                                  var C4 = 0;
+                                  Datas = ["stand",0,0,0,C1,C2,C3,C4,C1,0,0,0,0,0,0];
+                                  Scene_type = "チョイス";
+                                  break;
     case "調べる何もない":
       T_Name = "";
       Text = "特に気になるものはない。";
@@ -2771,6 +3849,81 @@ function Scene_loads2(Number,Item,get){
       Get_Datas();
       Scene_type = Number;
       break;
+      case "つきつけ失敗":
+        T_Name = Name;
+        Text = "「今の証言はこの証拠品と明らかに矛盾しています！」";
+        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗2",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗2":
+        T_Name = "裁判長";
+        Text = "「どこがですかな？」";
+        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗3",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗3":
+        T_Name = Name;
+        Text = "「えっと…それは…」";
+        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗4",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗4":
+        T_Name = Name;
+        Text = "「…」";
+        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗5",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗5":
+        T_Name = "裁判長";
+        Text = "「弁護人はもっと考えて発言するように。」";
+        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗6",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗6":
+        T_Name = Name;
+        Flag[6]--;
+        Text = "(失敗したみたいだ…。)(改行)(改行)(残り"+Flag[6]+"回)";
+        if(Flag[6]==0) After = "つきつけ失敗7";
+        else After = Flag[4];
+        Datas = ["left",0,S_image,0,0,0,0,0,T_Name,Text,0,0,0,After,0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗7":
+        T_Name = "裁判長";
+        Text = "「そこまで！」";
+        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗8",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗8":
+        T_Name = "裁判長";
+        Text = "「当法廷はこれ以上の裁判を認めません。」";
+        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗9",0];
+        Scene_type = "メイン";
+        break;
+      case "つきつけ失敗9":
+        T_Name = "裁判長";
+        Text = "「被告人に判決を言い渡します。」";
+        Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗10",0];
+        Scene_type = "メイン";
+        break;
+        case "つきつけ失敗10":
+          T_Name = "裁判長";
+          Text = "「被告人に判決を言い渡します。」";
+          Datas = ["裁判長",0,50,30,0,0,0,0,T_Name,Text,0,0,0,"つきつけ失敗11",0];
+          Scene_type = "メイン";
+          break;
+          case "つきつけ失敗11":
+            T_Name = "裁判長";
+            Text = "「被告人に判決を言い渡します。」";
+            Datas = ["裁判長",0,50,0,0,0,51,30,T_Name,Text,0,0,0,"つきつけ失敗12",0];
+            Scene_type = "メイン";
+            break;
+            case "つきつけ失敗12":
+              T_Name = "裁判長";
+              Text = "「本日は、これにて閉廷！」";
+              Datas = ["裁判長",0,0,0,0,0,0,0,T_Name,Text,0,0,0,"ゲームオーバー",0];
+              Scene_type = "メイン";
+              break;
     default:
       Datas = ["Black",0,0,0,0,0,0,0,"","ここから先はできていません。",0,0,0,"ゲームオーバー",0];
       Scene_type = "メイン";
@@ -2779,7 +3932,6 @@ function Scene_loads2(Number,Item,get){
 }
 
 function Inspect_loads2(Number){
-  console.log(Number);
   switch (Number) {
     default:
     Flag[4] = Number;
@@ -2798,18 +3950,24 @@ function Inspect_loads2(Number){
       Inspect = [58,333,85,917,717,"調べる"+Number];
       break;
       case "使い古された包丁":
-      case "新品で強靭な包丁":
       case "折れた包丁":
       Inspect = [Datas[0],333,85,917,717,"調べる"+"包丁"];
-      if(have("使い古された包丁")) Inspect[0] = 59;
-      if(have("新品で強靭な包丁")) Inspect[0] = 60;
-      if(have("折れた包丁")) Inspect[0] = 61;
+      if(have("使い古された包丁")){
+        Inspect[0] = 59;
+        Datas[0] = 59;
+      }
+      if(have("折れた包丁")){
+        Inspect[0] = 61;
+        Datas[0] = 61;
+      }
       break;
-      case "調べる包丁2":
-      Inspect = [59,333,85,917,717,"調べる"+"包丁3"];
-      if(have("使い古された包丁")) Inspect[0] = 59;
-      if(have("新品で強靭な包丁")) Inspect[0] = 60;
-      if(have("折れた包丁")) Inspect[0] = 61;
+      case "新品で強靭な包丁":
+      Inspect = [60,333,85,917,717,"調べる"+Number];
+      Datas[0] = 60;
+      break;
+      case "折られた包丁":
+      Inspect = [61,333,85,917,717,"調べる"+Number];
+      Datas[0] = 61;
       break;
     case 137:
       Inspect = [5,1173,269,401,597,1138,0,177,162,723,1144];

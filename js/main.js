@@ -30,13 +30,13 @@ function Load(width,height){
   core.preload("image/Character_S.png");
   core.preload("image/Trophies_image.png");
   core.preload("image/背景/Transparent.png");
-  for (var i = 1; i <= 61; i++){
+  for (var i = 1; i <= 63; i++){
     core.preload("image/背景/"+i+".png");
   }
-  for (var i = 1; i <= 10; i++){
+  for (var i = 1; i <= 13; i++){
     core.preload("image/アイテム/"+i+".png");
   }
-  for (var i = 1; i <= 39; i++){
+  for (var i = 1; i <= 56; i++){
     core.preload("image/人物/"+i+".png");
   }
   for (var i = 0; i <= 1; i++){
@@ -171,19 +171,28 @@ function Load(width,height){
           }
           break;
       default:
-      if(Scene_type.length==3){
-        core.pushScene(ItemgetScene(Scene_type[0],Scene_type[1],Scene_type[2]));
-        Scene_kazu++;
-        console.log("Scene数",Scene_kazu);
-        return;
-      }
+        if(Scene_type.length==3){
+          core.pushScene(ItemgetScene(Scene_type[0],Scene_type[1],Scene_type[2]));
+          Scene_kazu++;
+          console.log("Scene数",Scene_kazu);
+          return;
+        }
         else if(Scene_type.substring(0,5)=="異議あり！"){
-          core.pushScene(PopScene(Scene_type.substring(5)*1,"異議あり！"));
+          Number = Scene_type.substring(5);
+          if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
+          core.pushScene(PopScene(Number,"異議あり！"));
           Scene_kazu++;
           console.log("Scene数",Scene_kazu);
         }
-        else {
-          //console.log("エラー");
+        else if(Scene_type.substring(0,4)=="待った！"){
+          Number = Scene_type.substring(4);
+          if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
+          core.pushScene(PopScene(Number,"待った！"));
+          Scene_kazu++;
+          console.log("Scene数",Scene_kazu);
+        }
+        else{
+          console.log("エラー");
         }
         break;
       }
@@ -209,7 +218,7 @@ function Load(width,height){
         Flag = window.localStorage.getItem("Flag").split(",");
         Datas = window.localStorage.getItem("Datas").split(",");
         Number = window.localStorage.getItem("Number");
-        if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
+        if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1;
         Item_Flag = window.localStorage.getItem("Item").split("端");
         Character_Flag = window.localStorage.getItem("Character").split("端");
         for (var i = 0; i < Item_Flag.length; i++){
@@ -1239,10 +1248,6 @@ function Load(width,height){
             return;
           }
           else if(S_Input2._element.value=="チートフラグ"){
-            if(S_Input._element.value=="表示"){
-              console.log(Item_Flag);
-              return;
-            }
             for (var i = 10; i < Flag.length; i++){
               if(Flag[i]==S_Input._element.value){
                 Flag[i] = false;
@@ -2134,6 +2139,21 @@ function Load(width,height){
         console.log("Scene数",Scene_kazu);
         Data = false;
         window.localStorage.clear();
+        Rewind = 0;
+        Skip = 0;
+        Before = 0;
+        After = 0;
+        Datas = [];
+        Flag = ["みお","湊","男",1,1,21,10,"0,0",true,false,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9選択音,10おまけ裁判
+        Item_Flag = [];//所持アイテム
+        Character_Flag = [];//人物
+        Pages = 0;//アイテムのページ
+        Pages2 = 0;//人物のページ
+        T_Name = "";
+        Text = "";
+        Scene_type = "メイン";
+        Scene_kazu = 1;
+        Get = false;
         core.replaceScene(TitleScene());
         return;
       });
