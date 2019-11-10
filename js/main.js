@@ -100,8 +100,7 @@ function Load(width,height){
         break;
         case "セーブ読み込み":
         BGM_Stop();
-        Load_Datas();
-        Scene_loads2(Number,Item);
+        Scene_loads2(Load_Datas(),Item);
         switch (Scene_type) {
           case "メイン":
             core.replaceScene(MainScene(Return));
@@ -219,6 +218,8 @@ function Load(width,height){
       Pages = Flag[7].split("乙");
       Pages2 = Pages[1]*1;
       Pages = Pages[0]*1;
+      console.log(Number);
+      return(Number);
     }
 
 
