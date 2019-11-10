@@ -271,7 +271,7 @@ function Load(width,height){
       if(Data) scene.addChild(Clear);
 
       Beginning.addEventListener('touchstart',function(e){
-        Load_Datas();
+        if(Data) Load_Datas();
         Scene_loads(1,false,false);
         return;
       });
