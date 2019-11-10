@@ -1891,36 +1891,43 @@ function Scene_loads2(Number,Item,get){
               var T_Name = "あいね";
               var Text = "あれ？"+Name+"ちゃん？";
               Datas = [56,0,15,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 149:
               var T_Name = "なこ";
               var Text = "えっ？";
               Datas = [56,0,15,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 150:
               var T_Name = Name;
               var Text = "あっ…";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 151:
               var T_Name = Name;
               var Text = "(しまった。近づきすぎた…)";
+              if(have("諦める")) Text = "(しまった。つい気力がなくなって見つかった。)";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 152:
               var T_Name = Name;
               var Text = "あっ…えっと、やっぱり気になっちゃって。";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 153:
               var T_Name = "あいね";
               var Text = "そうなんだ。";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 154:
@@ -1928,6 +1935,7 @@ function Scene_loads2(Number,Item,get){
               var T_Name = "なこ";
               var Text = "そうだ。"+Name+"ちゃんにも聞いて欲しいな。";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 155:
@@ -1935,53 +1943,62 @@ function Scene_loads2(Number,Item,get){
               var Text = "え。";
               if(have("一緒に行く")) Text = "なに？";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 156:
               var T_Name = "なこ";
               var Text = "私ね、この間イベントで知り合った子と(改行)すっごく仲良くなって(改行)そのことフレンズを組みたいって思ってるんだけど…";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 157:
               var T_Name = "なこ";
               var Text = "私は中学を卒業するまで名古屋にいるつもりだから(改行)遠距離フレンズがうまくいくか不安で…";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 158:
               var T_Name = "なこ";
               var Text = "名古屋と東京で離れていてもフレンズになれるかな？";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 159:
               var T_Name = Name;
               var Text = "なれる！仲がいいなら絶対なれるわ！";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 160:
               var T_Name = "なこ";
               var Text = "ありがとう！そう言ってくれると勇気出てくるよ！";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 161:
               var T_Name = "なこ";
               var Text = "そういえば、今その子がこっちに来てるんだよね。";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 162:
               var T_Name = Name;
               var Text = "だったら、今から行って申し込んでみたら？";
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 163:
               var T_Name = "なこ";
               var Text = "うん！(改行)"+Name+"ちゃんのおかげで勇気出たし、(改行)フレンズ組もうって申し込んでみるよ。";
+              if(have("諦める")) Datas[0] = 36;
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
               Scene_type = "メイン";
               break;
@@ -1989,6 +2006,7 @@ function Scene_loads2(Number,Item,get){
               var T_Name = "なこ";
               var Text = "また遊ぼうね、あいねちゃん！(改行)あいねちゃんも頑張ってね！";
               if(have("一緒に行く")) Text = "また遊ぼうね、"+Name+"ちゃん！(改行)それと、あいねちゃんも頑張ってね！";
+              if(have("諦める")) Datas[0] = 36;
               Datas = [56,0,2,0,0,0,15,0,T_Name,Text,Rewind,Before,Number,After,Skip];
               Scene_type = "メイン";
               break;
@@ -1996,42 +2014,49 @@ function Scene_loads2(Number,Item,get){
               var T_Name = Name;
               var Text = "\"あいねちゃんも…？\"";
               Datas = [56,0,2,0,0,0,15,-15,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 166:
               var T_Name = "あいね";
               var Text = "うん！私も"+Name+"ちゃんと(改行)フレンズになる為の相談を…。";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 167:
               var T_Name = "あいね";
               var Text = "あ。";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 168:
               var T_Name = Name;
               var Text = "え。";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 169:
               var T_Name = "あいね";
               var Text = "……私も、"+Name+"ちゃんと(改行)フレンズを組みたい！";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 170:
               var T_Name = Name;
               var Text = "あいね…。";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 171:
               var T_Name = "あいね";
               var Text = "ダメ、かな…？";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 172:
@@ -2047,6 +2072,7 @@ function Scene_loads2(Number,Item,get){
               Get_I_C_F("フラグ","あいねから誘う");
               var Text = "ううん。(改行)私も フレンズを組むなら(改行)あいねしかいないって思ってた。";
               Datas = [56,0,2,0,0,0,1,0,T_Name,Text,Rewind,171,Number,248,0];
+              if(have("諦める")) Datas[0] = 36;
               Scene_type = "メイン";
               break;
             case 173:
@@ -2146,8 +2172,17 @@ function Scene_loads2(Number,Item,get){
               var C3 = 0;
               if(have("新品で強靭な包丁")||have("使い古された包丁")) C3 = "殺してでも奪い取る";
               var C4 = 0;
-              Datas = [36,2,0,0,C1,C2,C3,C4,189,0,0,0,Rewind,Before,Number];
+              Datas = [36,2,0,0,C1,C2,C3,C4,189,188.1,0,0,Rewind,Before,Number];
               Scene_type = "チョイス";
+              break;
+            case 188.1:
+             R_S(Number,172);
+              Get_I_C_F("フラグ","諦める");
+              var T_Name = Name;
+              After = 148;
+              var Text = "(それでいいか…。もう帰ろう…。)";
+              Datas = [36,0,2,0,0,0,0,0,T_Name,Text,Rewind,Before,Number,After,Skip];
+              Scene_type = "メイン";
               break;
             case 189:
              R_S(Number,204);
