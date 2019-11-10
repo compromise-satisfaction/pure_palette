@@ -983,8 +983,8 @@ function Load(width,height){
       Text2_5.y = 400;
       Text2_5.width = 1600;
       Text2_5.height = 60;
-      if(Flag[9]) Text2_5.text = "▶ 選択音オン";
-      else Text2_5.text = "▶ 選択音オフ";
+      if(Flag[9]) Text2_5.text = "▶ サウンドオン";
+      else Text2_5.text = "▶ サウンドオフ";
       scene.addChild(Text2_5);
 
       var Text3 = new Label();
@@ -1149,12 +1149,13 @@ function Load(width,height){
 
       Text2_5.addEventListener('touchstart',function(e){
         if(Flag[9]){
+          BGM_Stop();
           Flag[9] = false;
-          Text2_5.text = "▶ 選択音オフ";
+          Text2_5.text = "▶ サウンドオフ";
         }
         else{
           Flag[9] = true;
-          Text2_5.text = "▶ 選択音オン";
+          Text2_5.text = "▶ サウンドオン";
         }
         return;
       });
@@ -2110,7 +2111,7 @@ function Load(width,height){
         Before = 0;
         After = 0;
         Datas = [];
-        Flag = ["みお","湊","男",1,1,21,10,"0,0",true,false,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9選択音,10おまけ裁判
+        Flag = ["みお","湊","男",1,1,21,10,"0,0",true,false,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9音,10おまけ裁判
         Item_Flag = [];//所持アイテム
         Character_Flag = [];//人物
         Pages = 0;//アイテムのページ
