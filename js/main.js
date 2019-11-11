@@ -2227,7 +2227,7 @@ function Load(width,height){
         Before = 0;
         After = 0;
         Datas = [];
-        Flag = ["みお","湊","女",1,1,21,10,"0,0",true,false,false,false,false,false,false,false];
+        Flag = ["みお","湊","女",1,1,21,10,"0乙0",true,false,false,false,false,false,false,false];
         //3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9おまけ裁判,10選択音,11トロフィー音,12アイテム音,13異議あり!音,14待った！音;
         Item_Flag = [];//所持アイテム
         Character_Flag = [];//人物

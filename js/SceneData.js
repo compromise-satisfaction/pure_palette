@@ -4,7 +4,7 @@ var Skip = 0;
 var Before = 0;
 var After = 0;
 var Datas = [];
-var Flag = ["みお","湊","女",1,1,21,10,"0,0",true,false,false,false,false,false,false,false];
+var Flag = ["みお","湊","女",1,1,21,10,"0乙0",true,false,false,false,false,false,false,false];
 //3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9おまけ裁判,10選択音,11トロフィー音,12アイテム音,13異議あり!音,14待った！音;
 var Item_Flag = [];//所持アイテム
 var Character_Flag = [];//人物
