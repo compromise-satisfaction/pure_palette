@@ -283,7 +283,7 @@ function Scene_loads2(Number,Item,get){
       break;
     }
     return;
-  }
+  }//ココを変えるつきつけ、使用
   Rewind = Flag[3];
   Skip = Flag[5];
   Before = Number-1;
@@ -3941,7 +3941,7 @@ case 338:
       Datas = ["Black",0,0,0,0,0,0,0,"","ここから先はできていません。",0,0,0,"ゲームオーバー",0];
       Scene_type = "メイン";
       break;
-  }
+  }//ココを変えるScene
 }
 
 function Inspect_loads2(Number){
@@ -3992,7 +3992,7 @@ function Inspect_loads2(Number){
     default:
       Inspect = ["Black",0,0,1600,900];
       break;
-  }
+  }//ココを変える調べる
   return(Inspect);
 }
 
