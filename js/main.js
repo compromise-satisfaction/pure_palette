@@ -54,9 +54,6 @@ function Load(width,height){
         core.assets["sound/偶然、必然。.wav"].pause();
         return;
       }
-      if(!have("プライド")) core.assets["sound/プライド.wav"].stop();
-      if(!have("永遠の灯")) core.assets["sound/永遠の灯.wav"].stop();
-      if(!have("偶然、必然。")) core.assets["sound/偶然、必然。.wav"].stop();
       return;
     }
 
