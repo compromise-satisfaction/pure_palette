@@ -4,7 +4,8 @@ var Skip = 0;
 var Before = 0;
 var After = 0;
 var Datas = [];
-var Flag = ["みお","湊","女",1,1,21,10,"0,0",true,false,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9選択音,10おまけ裁判
+var Flag = ["みお","湊","女",1,1,21,10,"0,0",true,false,false,false,false,false,false,false];
+//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9おまけ裁判,10選択音,11トロフィー音,12アイテム音,13異議あり!音,14待った！音;
 var Item_Flag = [];//所持アイテム
 var Character_Flag = [];//人物
 var Pages = 0;//アイテムのページ
@@ -45,7 +46,7 @@ function Save(Number){
   window.localStorage.setItem("syoken",false);
   var Flag2 = [];
   var k = 0;
-  for (var i = 11; i < Flag.length; i++) {
+  for (var i = 15; i < Flag.length; i++) {
     Flag2[k] = Flag[i];
     k++;
   }
@@ -563,7 +564,7 @@ function Scene_loads2(Number,Item,get){
       Scene_type = "メイン";
       break;
     case 1:
-      if(Flag[10]){
+      if(Flag[9]){
         var C1 = "ピュアパレット物語";
         var C2 = "かばんちゃん弁護";
         var C3 = 0;
@@ -582,6 +583,10 @@ function Scene_loads2(Number,Item,get){
       Flag2[8] = Flag[8];
       Flag2[9] = Flag[9];
       Flag2[10] = Flag[10];
+      Flag2[11] = Flag[11];
+      Flag2[12] = Flag[12];
+      Flag2[13] = Flag[13];
+      Flag2[14] = Flag[14];
       Flag = Flag2;
       Flag[6] = 10;
       R_S(Number,21);
@@ -603,6 +608,10 @@ function Scene_loads2(Number,Item,get){
       Flag2[8] = Flag[8];
       Flag2[9] = Flag[9];
       Flag2[10] = Flag[10];
+      Flag2[11] = Flag[11];
+      Flag2[12] = Flag[12];
+      Flag2[13] = Flag[13];
+      Flag2[14] = Flag[14];
       Flag = Flag2;
       Flag[6] = 10;
       R_S(Number,21);
@@ -3072,7 +3081,7 @@ function Scene_loads2(Number,Item,get){
     break;
     case 297:
     var Flag2 = window.localStorage.getItem("Flag").split(",");
-    Flag2[10] = true;
+    Flag2[9] = true;
     window.localStorage.setItem("Flag",Flag2);
     Scene_type = [11,"おまけモードが解放された。(改行)最初からで始めることが出来るぞ。","ゲームオーバー"];
     break;
@@ -3086,6 +3095,10 @@ function Scene_loads2(Number,Item,get){
     Flag2[8] = Flag[8];
     Flag2[9] = Flag[9];
     Flag2[10] = Flag[10];
+    Flag2[11] = Flag[11];
+    Flag2[12] = Flag[12];
+    Flag2[13] = Flag[13];
+    Flag2[14] = Flag[14];
     Flag = Flag2;
     Flag[6] = 10;
     R_S(Number,339);

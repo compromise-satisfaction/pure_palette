@@ -47,7 +47,6 @@ function Load(width,height){
 
 
     function BGM_Stop(Pause){
-      if(Flag[9]==false) return;
       if(Pause){
         console.log("BGM_pause");
         core.assets["sound/プライド.wav"].pause();
@@ -61,9 +60,26 @@ function Load(width,height){
       return;
     }
 
-
     function Sound_ON(Sound_Name,Play){
-      if(Flag[9]==false) return;
+      switch (Sound_Name) {
+        case "Choice":
+          if(Flag[10]==false) Play = false;
+          break;
+        case "Trophies":
+          if(Flag[11]==false) Play = false;
+          break;
+        case "Item":
+          if(Flag[12]==false) Play = false;
+          break;
+        case "異議あり！":
+          if(Flag[13]==false) Play = false;
+          break;
+        case "待った！":
+          if(Flag[14]==false) Play = false;
+          break;
+          default:
+          break;
+      }
       console.log(Sound_Name);
       if(Play) core.assets["sound/"+Sound_Name+".wav"].play();
       else core.assets["sound/"+Sound_Name+".wav"].pause();
@@ -76,12 +92,12 @@ function Load(width,height){
       //console.log(Scene_type);
       Sound_ON("Choice",true);
       switch (Scene_type) {
-          case "メイン":
-            core.replaceScene(MainScene(Return));
-            break;
-          case "アイテム":
-            core.replaceScene(MainScene(false));
-            break;
+        case "メイン":
+          core.replaceScene(MainScene(Return));
+          break;
+        case "アイテム":
+          core.replaceScene(MainScene(false));
+          break;
         case "調べる":
           if(Number.length>5){
             if(Number.substring(0,6)=="アイテム使用"){
@@ -97,74 +113,74 @@ function Load(width,height){
           Inspect_loads(Flag[4],false);
           break;
         case "チョイス":
-        core.replaceScene(ChoiceScene());
-        break;
+          core.replaceScene(ChoiceScene());
+          break;
         case "尋問":
-        core.replaceScene(InterrogationScene());
-        break;
+          core.replaceScene(InterrogationScene());
+          break;
         case "タイトルに戻る":
-        core.replaceScene(TitleScene());
-        break;
+          core.replaceScene(TitleScene());
+          break;
         case "セーブ読み込み":
-        BGM_Stop();
-        Scene_loads2(Load_Datas(),Item);
-        switch (Scene_type) {
-          case "メイン":
-            core.replaceScene(MainScene(Return));
-            break;
-          case "アイテム":
-            core.replaceScene(MainScene(false));
-            break;
-        case "調べる":
-          if(Number.length>5){
-            if(Number.substring(0,6)=="アイテム使用"){
-              Number = Number.substring(6).split(",");
-              Flag[4] = Number[1];
-              if(Flag[4].replace(/\d/g,"").replace(/\./g,"")=="") Flag[4] = Flag[4]*1;
-              Number = Number[0];
-              //console.log(Number);
-              Inspect_loads(Number,false);
-              return;
-            }
+          BGM_Stop();
+          Scene_loads2(Load_Datas(),Item);
+          switch (Scene_type) {
+            case "メイン":
+              core.replaceScene(MainScene(Return));
+              break;
+            case "アイテム":
+              core.replaceScene(MainScene(false));
+              break;
+            case "調べる":
+              if(Number.length>5){
+                if(Number.substring(0,6)=="アイテム使用"){
+                  Number = Number.substring(6).split(",");
+                  Flag[4] = Number[1];
+                  if(Flag[4].replace(/\d/g,"").replace(/\./g,"")=="") Flag[4] = Flag[4]*1;
+                  Number = Number[0];
+                  //console.log(Number);
+                  Inspect_loads(Number,false);
+                  return;
+                }
+              }
+              Inspect_loads(Flag[4],false);
+              break;
+            case "チョイス":
+              core.replaceScene(ChoiceScene());
+              break;
+            case "尋問":
+              core.replaceScene(InterrogationScene());
+              break;
+            case "タイトルに戻る":
+              core.replaceScene(TitleScene());
+              break;
           }
-          Inspect_loads(Flag[4],false);
           break;
-        case "チョイス":
-        core.replaceScene(ChoiceScene());
-        break;
-        case "尋問":
-        core.replaceScene(InterrogationScene());
-        break;
-        case "タイトルに戻る":
-        core.replaceScene(TitleScene());
-        break;
+        default:
+          if(Scene_type.length==3){
+            core.pushScene(ItemgetScene(Scene_type[0],Scene_type[1],Scene_type[2]));
+            Scene_kazu++;
+            console.log("Scene数",Scene_kazu);
+            return;
+          }
+          else if(Scene_type.substring(0,5)=="異議あり！"){
+            Number = Scene_type.substring(5);
+            if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
+            core.pushScene(PopScene(Number,"異議あり！"));
+            Scene_kazu++;
+            console.log("Scene数",Scene_kazu);
+          }
+          else if(Scene_type.substring(0,4)=="待った！"){
+            Number = Scene_type.substring(4);
+            if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
+            core.pushScene(PopScene(Number,"待った！"));
+            Scene_kazu++;
+            console.log("Scene数",Scene_kazu);
+          }
+          else{
+            console.log("エラー");
           }
           break;
-      default:
-        if(Scene_type.length==3){
-          core.pushScene(ItemgetScene(Scene_type[0],Scene_type[1],Scene_type[2]));
-          Scene_kazu++;
-          console.log("Scene数",Scene_kazu);
-          return;
-        }
-        else if(Scene_type.substring(0,5)=="異議あり！"){
-          Number = Scene_type.substring(5);
-          if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
-          core.pushScene(PopScene(Number,"異議あり！"));
-          Scene_kazu++;
-          console.log("Scene数",Scene_kazu);
-        }
-        else if(Scene_type.substring(0,4)=="待った！"){
-          Number = Scene_type.substring(4);
-          if(Number.replace(/\d/g,"").replace(/\./g,"")=="") Number = Number*1
-          core.pushScene(PopScene(Number,"待った！"));
-          Scene_kazu++;
-          console.log("Scene数",Scene_kazu);
-        }
-        else{
-          console.log("エラー");
-        }
-        break;
       }
       //console.log(Flag[4]);
     }
@@ -329,10 +345,10 @@ function Load(width,height){
       if(Datas[12]!=false){
         if(Datas[12].length>1){
           if(Datas[12].substring(0,2)=="使う") OK = false;
-            if(Datas[12].length>2){
-              if(Datas[12].substring(0,3)=="調べる") OK = false;
-                if(Datas[12].length>4){
-                  if(Datas[12].substring(0,5)=="つきつける") OK = false;
+          if(Datas[12].length>2){
+            if(Datas[12].substring(0,3)=="調べる") OK = false;
+            if(Datas[12].length>4){
+              if(Datas[12].substring(0,5)=="つきつける") OK = false;
             }
           }
         }
@@ -615,10 +631,10 @@ function Load(width,height){
 
       if(Datas[14].length>1){
         if(Datas[14].substring(0,2)=="使う") OK = false;
-          if(Datas[14].length>2){
-            if(Datas[14].substring(0,3)=="調べる") OK = false;
-              if(Datas[14].length>4){
-                if(Datas[14].substring(0,5)=="つきつける") OK = false;
+        if(Datas[14].length>2){
+          if(Datas[14].substring(0,3)=="調べる") OK = false;
+          if(Datas[14].length>4){
+            if(Datas[14].substring(0,5)=="つきつける") OK = false;
           }
         }
       }
@@ -992,8 +1008,7 @@ function Load(width,height){
       Text2_5.y = 400;
       Text2_5.width = 1600;
       Text2_5.height = 60;
-      if(Flag[9]) Text2_5.text = "▶ サウンドオン";
-      else Text2_5.text = "▶ サウンドオフ";
+      Text2_5.text = "▶ サウンド設定";
       scene.addChild(Text2_5);
 
       var Text3 = new Label();
@@ -1157,16 +1172,9 @@ function Load(width,height){
       });
 
       Text2_5.addEventListener('touchstart',function(e){
-        if(Flag[9]){
-          BGM_Stop(true);
-          Flag[9] = false;
-          Text2_5.text = "▶ サウンドオフ";
-        }
-        else{
-          Flag[9] = true;
-          Sound_ON("Item",true);
-          Text2_5.text = "▶ サウンドオン";
-        }
+        core.pushScene(SoundScene());
+        Scene_kazu++;
+        console.log("Scene数",Scene_kazu);
         return;
       });
 
@@ -1367,17 +1375,17 @@ function Load(width,height){
       });
 
       var Touchs = Class.create(Sprite, {
-          initialize: function(x,y,width,height,Number){
-              Sprite.call(this,width,height);
-              this.x = x;
-              this.y = y;
-              this.image = core.assets["image/背景/Transparent.png"];
-              scene.addChild(this);
-              this.addEventListener('touchstart',function(e){
-                Scene_loads(Number,false,Item);
-                return;
-              });
-          }
+        initialize: function(x,y,width,height,Number){
+          Sprite.call(this,width,height);
+          this.x = x;
+          this.y = y;
+          this.image = core.assets["image/背景/Transparent.png"];
+          scene.addChild(this);
+          this.addEventListener('touchstart',function(e){
+            Scene_loads(Number,false,Item);
+            return;
+          });
+        }
       });
 
       var Touch = [];
@@ -1606,10 +1614,10 @@ function Load(width,height){
 
       if(Number.length>1){
         if(Number.substring(0,2)=="使う") Text3.text = "未表示";
-          if(Number.length>2){
-            if(Number.substring(0,3)=="調べる") Text3.text = "未表示";
-              if(Number.length>4){
-                if(Number.substring(0,5)=="つきつける") Text3.text = "未表示";
+        if(Number.length>2){
+          if(Number.substring(0,3)=="調べる") Text3.text = "未表示";
+          if(Number.length>4){
+            if(Number.substring(0,5)=="つきつける") Text3.text = "未表示";
           }
         }
       }
@@ -1634,34 +1642,34 @@ function Load(width,height){
 
       var Items = Class.create(Label, {
         initialize: function(a) {
-            Label.call(this);
-            this.font  = "60px monospace";
-            this.color = 'black';
-            this.x = 200;
-            this.y = Numbers;
-            this.width = 1600;
-            this.height = 60;
-            this.text = a[0];
-            var Syousai_text = a[1].split("(改行)");
-            if(Syousai_text[0]) this.text2 = Syousai_text[0];
-            else this.text2 = "";
-            if(Syousai_text[1]) this.text3 = Syousai_text[1];
-            else this.text3 = "";
-            if(Syousai_text[2]) this.text4 = Syousai_text[2];
-            else this.text4 = "";
-            if(Syousai_text[3]) this.text5 = Syousai_text[3];
-            else this.text5 = "";
-            this.image_f = a[2];
-            if(a[3]){
-              if(a[3]=="停止") this.text6 = "■ 停止";
-              else this.text6 = "▶ " + a[3];
-              this.syousai = a[4];
-            }
-            else this.text6 = "";
-            scene.addChild(this);
-            Numbers += 100;
-            Item_Number ++;
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 200;
+          this.y = Numbers;
+          this.width = 1600;
+          this.height = 60;
+          this.text = a[0];
+          var Syousai_text = a[1].split("(改行)");
+          if(Syousai_text[0]) this.text2 = Syousai_text[0];
+          else this.text2 = "";
+          if(Syousai_text[1]) this.text3 = Syousai_text[1];
+          else this.text3 = "";
+          if(Syousai_text[2]) this.text4 = Syousai_text[2];
+          else this.text4 = "";
+          if(Syousai_text[3]) this.text5 = Syousai_text[3];
+          else this.text5 = "";
+          this.image_f = a[2];
+          if(a[3]){
+            if(a[3]=="停止") this.text6 = "■ 停止";
+            else this.text6 = "▶ " + a[3];
+            this.syousai = a[4];
           }
+          else this.text6 = "";
+          scene.addChild(this);
+          Numbers += 100;
+          Item_Number ++;
+        }
       });
 
       var Item = [];
@@ -1927,33 +1935,33 @@ function Load(width,height){
 
       var Characters = Class.create(Label, {
         initialize: function(a) {
-            Label.call(this);
-            this.font  = "60px monospace";
-            this.color = 'black';
-            this.x = 200;
-            this.y = Numbers;
-            this.width = 1600;
-            this.height = 60;
-            this.text = a[0];
-            var Syousai_text = a[1].split("(改行)");
-            if(Syousai_text[0]) this.text2 = Syousai_text[0];
-            else this.text2 = "";
-            if(Syousai_text[1]) this.text3 = Syousai_text[1];
-            else this.text3 = "";
-            if(Syousai_text[2]) this.text4 = Syousai_text[2];
-            else this.text4 = "";
-            if(Syousai_text[3]) this.text5 = Syousai_text[3];
-            else this.text5 = "";
-            this.image = a[2];
-            if(a[3]){
-              this.text6 = "▶ " + a[3];
-              this.syousai = a[4];
-            }
-            else this.text6 = "";
-            scene.addChild(this);
-            Numbers += 100;
-            Character_Number ++;
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 200;
+          this.y = Numbers;
+          this.width = 1600;
+          this.height = 60;
+          this.text = a[0];
+          var Syousai_text = a[1].split("(改行)");
+          if(Syousai_text[0]) this.text2 = Syousai_text[0];
+          else this.text2 = "";
+          if(Syousai_text[1]) this.text3 = Syousai_text[1];
+          else this.text3 = "";
+          if(Syousai_text[2]) this.text4 = Syousai_text[2];
+          else this.text4 = "";
+          if(Syousai_text[3]) this.text5 = Syousai_text[3];
+          else this.text5 = "";
+          this.image = a[2];
+          if(a[3]){
+            this.text6 = "▶ " + a[3];
+            this.syousai = a[4];
           }
+          else this.text6 = "";
+          scene.addChild(this);
+          Numbers += 100;
+          Character_Number ++;
+        }
       });
 
       var Character = [];
@@ -2071,6 +2079,109 @@ function Load(width,height){
 
       return scene;
     };
+    var SoundScene = function(){
+      var scene = new Scene();                                // 新しいシーンを作る
+
+      var Background = new Sprite(1600,1600);
+      Background.image = core.assets["image/Background.png"];
+      Background.x = 0;
+      Background.y = 0;
+      scene.addChild(Background);
+
+      var Text1 = new Label();
+      Text1.font  = "60px monospace";
+      Text1.color = 'black';
+      Text1.x = 200;
+      Text1.y = 200;
+      Text1.width = 1600;
+      Text1.height = 60;
+      Text1.text = "▶ 戻る";
+      scene.addChild(Text1);
+
+      var Numbers = 400;
+      var Text = [];
+      var Text2 = [];
+      var Text_Number = 10;
+
+      var Texts = Class.create(Label, {
+        initialize: function(a) {
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 200;
+          this.y = Numbers;
+          this.width = 1600;
+          this.height = 60;
+          this.c = Text_Number;
+          this.text = "▶ "+a;
+          scene.addChild(this);
+          Text2[Text_Number] = new Texts2(Flag[Text_Number]);
+        }
+      });
+
+      var Texts2 = Class.create(Label, {
+        initialize: function(a) {
+          Label.call(this);
+          this.font  = "60px monospace";
+          this.color = 'black';
+          this.x = 800;
+          this.y = Numbers;
+          this.width = 1600;
+          this.height = 60;
+          if(a) this.text = "現在はオンです。";
+          else this.text = "現在はオフです。";
+          scene.addChild(this);
+          Numbers += 200;
+          Text_Number ++;
+        }
+      });
+
+      Text[Text_Number] = new Texts("ボタン");
+      Text[Text_Number] = new Texts("トロフィー");
+      Text[Text_Number] = new Texts("アイテム");
+      Text[Text_Number] = new Texts("異議あり！");
+      Text[Text_Number] = new Texts("待った！");
+
+      for (var i = 10; i < Text.length; i++) {
+        Text[i].addEventListener('touchstart',function(e){
+          if(Flag[this.c]){
+            Flag[this.c] = false;
+            Text2[this.c].text = "現在はオフです。";
+          }
+          else{
+            Flag[this.c] = true;
+            Text2[this.c].text = "現在はオンです。";
+          }
+          switch (this.c) {
+            case 10:
+              Sound_ON("Choice",true);
+              break;
+            case 11:
+              Sound_ON("Trophies",true);
+              break;
+            case 12:
+              Sound_ON("Item",true);
+              break;
+            case 13:
+              Sound_ON("異議あり！",true);
+              break;
+            case 14:
+              Sound_ON("待った！",true);
+              break;
+          }
+          return;
+        });
+      }
+
+      Text1.addEventListener('touchstart',function(e){
+        core.popScene();
+        Scene_kazu--;
+        console.log("Scene数",Scene_kazu);
+        return;
+      });
+
+      return scene;
+    }
     var ClearScene = function(){
       var scene = new Scene();                                // 新しいシーンを作る
 
@@ -2100,17 +2211,6 @@ function Load(width,height){
       Text2.text = "▶ はい";
       scene.addChild(Text2);
 
-      var Text2_5 = new Label();
-      Text2_5.font  = "60px monospace";
-      Text2_5.color = 'black';
-      Text2_5.x = 200;
-      Text2_5.y = 700;
-      Text2_5.width = 1600;
-      Text2_5.height = 60;
-      if(Flag[9]) Text2_5.text = "▶ サウンドオン";
-      else Text2_5.text = "▶ サウンドオフ";
-      scene.addChild(Text2_5);
-
       var Text3 = new Label();
       Text3.font  = "60px monospace";
       Text3.color = 'black';
@@ -2132,7 +2232,8 @@ function Load(width,height){
         Before = 0;
         After = 0;
         Datas = [];
-        Flag = ["みお","湊","男",1,1,21,10,"0,0",true,false,false];//3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9音,10おまけ裁判
+        Flag = ["みお","湊","女",1,1,21,10,"0,0",true,false,false,false,false,false,false,false];
+        //3早戻し,4本線,5先送り,6体力,7ページ,8オートセーブ,9おまけ裁判,10選択音,11トロフィー音,12アイテム音,13異議あり!音,14待った！音;
         Item_Flag = [];//所持アイテム
         Character_Flag = [];//人物
         Pages = 0;//アイテムのページ
@@ -2146,25 +2247,6 @@ function Load(width,height){
         return;
       });
 
-      Text2_5.addEventListener('touchstart',function(e){
-        if(Flag[9]){
-          Flag[9] = false;
-          Text2_5.text = "▶ サウンドオフ";
-          var Flag2 = window.localStorage.getItem("Flag").split(",");
-          Flag2[9] = false;
-          window.localStorage.setItem("Flag",Flag2);
-        }
-        else{
-          Flag[9] = true;
-          Text2_5.text = "▶ サウンドオン";
-          Sound_ON("Choice",true);
-          var Flag2 = window.localStorage.getItem("Flag").split(",");
-          Flag2[9] = true;
-          window.localStorage.setItem("Flag",Flag2);
-        }
-        return;
-      });
-
       Text3.addEventListener('touchstart',function(e){
         core.popScene();
         Scene_kazu--;
@@ -2174,6 +2256,7 @@ function Load(width,height){
 
       return scene;
     }
+
     core.replaceScene(TitleScene());  // ゲームの_rootSceneをスタートシーンに置き換える
   }
   core.start()
