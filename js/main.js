@@ -122,7 +122,7 @@ function Load(width,height){
           core.replaceScene(TitleScene());
           break;
         case "セーブ読み込み":
-          BGM_Stop();
+          BGM_Stop(true);
           Scene_loads2(Load_Datas(),Item);
           switch (Scene_type) {
             case "メイン":
@@ -255,7 +255,7 @@ function Load(width,height){
       }
       else{
         var Data = true;
-        BGM_Stop();
+        BGM_Stop(true);
       }
 
       var Title = new Sprite(1600,900);
@@ -1421,7 +1421,7 @@ function Load(width,height){
     var ItemgetScene = function(a,b,c){
       var scene = new Scene();                                // 新しいシーンを作る
 
-      BGM_Stop();
+      BGM_Stop(true);
 
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/white.png"];
