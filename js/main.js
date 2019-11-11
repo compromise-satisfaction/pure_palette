@@ -54,9 +54,9 @@ function Load(width,height){
         core.assets["sound/偶然、必然。.wav"].pause();
         return;
       }
-      core.assets["sound/プライド.wav"].stop();
-      core.assets["sound/永遠の灯.wav"].stop();
-      core.assets["sound/偶然、必然。.wav"].stop();
+      if(!have("プライド")) core.assets["sound/プライド.wav"].stop();
+      if(!have("永遠の灯")) core.assets["sound/永遠の灯.wav"].stop();
+      if(!have("偶然、必然。")) core.assets["sound/偶然、必然。.wav"].stop();
       return;
     }
 
@@ -1421,9 +1421,7 @@ function Load(width,height){
     var ItemgetScene = function(a,b,c){
       var scene = new Scene();                                // 新しいシーンを作る
 
-      //if(!have("プライド")) core.assets["sound/プライド.wav"].stop();
-      //if(!have("永遠の灯")) core.assets["sound/永遠の灯.wav"].stop();
-      //if(!have("偶然、必然。")) core.assets["sound/偶然、必然。.wav"].stop();
+      BGM_Stop();
 
       var Background = new Sprite(1600,900);
       Background.image = core.assets["image/white.png"];
