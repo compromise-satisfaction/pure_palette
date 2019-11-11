@@ -15,9 +15,9 @@ function Load(width,height){
   core.preload("image/待った！.png");
   core.preload("sound/待った！.wav");
   core.preload("sound/Trophies.wav");
-  core.preload("sound/プライド.wav");
-  core.preload("sound/永遠の灯.wav");
-  core.preload("sound/偶然、必然。.wav");
+  //core.preload("sound/プライド.wav");
+  //core.preload("sound/永遠の灯.wav");
+  //core.preload("sound/偶然、必然。.wav");
   core.preload("image/Trophies.png");
   core.preload("image/背景/left.png");
   core.preload("image/異議あり！.png");
@@ -47,17 +47,12 @@ function Load(width,height){
 
 
     function BGM_Stop(Pause){
+      return;
       if(Pause){
         console.log("BGM_pause");
         core.assets["sound/プライド.wav"].pause();
         core.assets["sound/永遠の灯.wav"].pause();
         core.assets["sound/偶然、必然。.wav"].pause();
-      }
-      else{
-        console.log("BGM_pause");
-        core.assets["sound/プライド.wav"].stop();
-        core.assets["sound/永遠の灯.wav"].stop();
-        core.assets["sound/偶然、必然。.wav"].stop();
       }
       return;
     }
@@ -84,7 +79,7 @@ function Load(width,height){
       }
       console.log(Sound_Name);
       if(Play) core.assets["sound/"+Sound_Name+".wav"].play();
-      else core.assets["sound/"+Sound_Name+".wav"].pause();
+      //else core.assets["sound/"+Sound_Name+".wav"].pause();
       return;
     }
 
